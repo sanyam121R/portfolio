@@ -1,0 +1,92 @@
+$primary-color: #f3f3f3;
+
+.experiences-page {
+    margin: 90px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 200px;
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 230px;
+}
+
+.right {
+    height: 550px;
+}
+
+.experiences-list {
+    display: flex;
+    margin-top: 20px;
+    flex-direction: column;
+}
+
+.experience {
+    display: flex;
+    width: 670px;
+    margin: 7px;
+    padding: 5px;
+    justify-content: space-between;
+    align-items: center;
+    font-family: League Gothic;
+    font-size: 45px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    color: rgba(255, 255, 255, 0.60);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.60);
+
+}
+.active {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+    border-bottom: 2px solid;
+}
+
+.experience-des {
+    width: 432px;
+    color: var(--primary-color);
+    position: relative;
+    top: -86px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: start;
+    font-family: Lato;
+    font-style: normal;
+    line-height: normal;
+
+    .header {
+        font-size: 36px;
+        font-weight: 400;
+    }
+    & section {
+        width: fit-content;
+        & div {
+            text-align: start;
+        }
+    }
+}
+
+.heading {
+    color: var(--primary-color);
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: start;
+
+    & h1 {
+        font-family: Weird Words DEMO;
+        font-size: 90px;
+        margin: 0;
+    }
+    & p {
+        font-family: Lato;
+        margin: 0;
+        font-size: 22px;
+    }
+}

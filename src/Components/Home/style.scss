@@ -1,0 +1,27 @@
+$primary-color: #f3f3f3;
+
+.intro {
+    color: var(--primary-color);
+    margin: auto;
+    margin-top: 17%;
+    width: 1214px;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    
+    font-family: Weird Words DEMO;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.designation-intro {
+    margin: 0;
+    font-size: 42px;
+}
+
+.designation {
+    margin: 0;
+    font-size: 80px;
+}

@@ -1,0 +1,146 @@
+$primary-color: #f3f3f3;
+
+.navbar {
+    color: var(--primary-color);
+    margin: 6px 25px 0 25px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    font-family: Lato;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: normal;
+}
+
+.nav-left {
+    width: 290px;
+    text-align: left;
+    font-family: Montreuil Signature Font;
+    font-size: 64px;
+    line-height: 54px;
+}
+
+.nav-right {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.nav-center {
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
+    align-items: center;
+}
+
+.line {
+    stroke-width: 2px;
+    stroke: var(--primary-color, #CBCBCB);
+}
+
+.visit-resume {
+    width: 240px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.nav-name {
+    width: 290px;
+    text-align: left;
+    font-family: Montreuil Signature Font;
+    font-size: 64px;
+    line-height: 54px;
+    position: relative;
+    top: -46px;
+    left: 25px;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    gap: 70px;
+    width: 240px;
+    position: relative;
+    top: 100px;
+    left: 200px;
+
+    & .contact {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+    }
+}
+
+.menuOpened {
+    align-items: flex-start;
+}
+
+.closeMenuButton {
+    position: relative;
+    top: 5px;
+    left: 96%;
+    padding: 10px;
+    width: 28px;
+}
+
+.menuIntro {
+    color: var(--primary-color);
+    width: 616px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    font-family: Weird Words DEMO;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    position: relative;
+    top: 60%;
+    left: 3%;
+}
+
+.menu-designation-intro {
+    margin: 0;
+    font-size: 20px;
+}
+
+.menu-designation {
+    margin: 0;
+    font-size: 32px;
+}
+
+.menuOptions {
+    position: relative;
+    top: -41%;
+    left: -130px;
+    color: #f3f3f350;
+    font-family: Formular;
+    text-align: end;
+    font-size: 136px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    & span {
+        font-size: 20px;
+    }
+    & div :hover {
+        color: var(--primary-color);
+    }
+}
+
+.menu {
+    height: 97vh;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    width: 100%;
+    z-index: 100;
+    background: black;
+}
