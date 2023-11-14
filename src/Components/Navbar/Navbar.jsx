@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './style.scss'
 import Menu from './Menu';
+import { Outlet, Link } from "react-router-dom";
 
 const Navbar = () => {
     const prop = false;
@@ -15,7 +16,7 @@ const Navbar = () => {
     <div style={{position:'relative'}}>
         <div className='navbar' style={{display:menuOpen?"none":"flex"}}>
             <div className='nav-left'>
-                <span className='name'>sanyam.</span>
+                <span className='name'><Link style={{textDecoration:"none", color:"#f3f3f3"}} to="/">sanyam.</Link></span>
             </div>
             { prop &&
                 <div className='nav-center'>

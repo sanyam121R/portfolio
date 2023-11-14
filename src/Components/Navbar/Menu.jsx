@@ -1,5 +1,6 @@
 import React from 'react'
 import './style.scss'
+import { Link } from 'react-router-dom'
 
 const Menu = (props) => {  
   const {menuOpen, setMenuOpen} = props
@@ -14,7 +15,7 @@ const Menu = (props) => {
       </div>
       
       <div className='nav-name'>
-        <span className='name'>sanyam.</span>
+        <span className='name'><Link style={{textDecoration:"none", color:"#f3f3f3"}} to="/">sanyam.</Link></span>
       </div>
 
       <div className='details'>
@@ -37,11 +38,12 @@ const Menu = (props) => {
       </div>
 
       <div className="menuOptions">
-        <div> about <span>01</span> </div>
-        <div> projects <span>02</span> </div>
-        <div> experiences <span>03</span></div>
-        <div> skills <span>04</span> </div>
-        <div> gallery <span>05</span> </div>
+        
+        <div> <Link className='text-link' to="/"> about <span>01</span> </Link> </div>
+        <div> <Link className='text-link' to="/projects"> projects <span>02</span> </Link>  </div>
+        <div> <Link className='text-link' to="/experience"> experiences <span>03</span> </Link> </div>
+        <div> <Link className='text-link' to="/skills"> skills <span>04</span> </Link>  </div>
+        <div> <Link className='text-link' to="/gallery"> gallery <span>05</span> </Link>  </div>
       </div>
     </div>
   )

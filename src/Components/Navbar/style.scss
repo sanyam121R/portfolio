@@ -1,4 +1,4 @@
-$primary-color: #f3f3f3;
+$primary-color: #eeeeee;
 
 .navbar {
     color: var(--primary-color);
@@ -14,6 +14,7 @@ $primary-color: #f3f3f3;
     font-weight: 400;
     font-size: 16px;
     line-height: normal;
+    text-decoration: none;
 }
 
 .nav-left {
@@ -96,7 +97,6 @@ $primary-color: #f3f3f3;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-
     font-family: Weird Words DEMO;
     font-style: normal;
     font-weight: 400;
@@ -120,19 +120,25 @@ $primary-color: #f3f3f3;
     position: relative;
     top: -41%;
     left: -130px;
-    color: #f3f3f350;
     font-family: Formular;
     text-align: end;
     font-size: 136px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+
     & span {
         font-size: 20px;
     }
-    & div :hover {
+    div :hover {
+        // text-decoration: none;
         color: var(--primary-color);
     }
+}
+
+.text-link {
+    color: #5a5a5a;
+    text-decoration: none;
 }
 
 .menu {
@@ -142,5 +148,7 @@ $primary-color: #f3f3f3;
     right: 0px;
     width: 100%;
     z-index: 100;
-    background: black;
+    background: #000000cc;
+    text-decoration: none;
+    backdrop-filter: blur(4px);
 }
