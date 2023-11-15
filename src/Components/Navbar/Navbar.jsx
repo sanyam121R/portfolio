@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './style.scss'
 import Menu from './Menu';
-import { Outlet, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
     const prop = false;

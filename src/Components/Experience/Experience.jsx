@@ -13,7 +13,7 @@ const Experience = () => {
         "description": "It was a remarkable experience working here in  the company where seniors where tutoring and guiding me to the brighter future. And I learnt more than 10 technologies here and become specialist in few of them." 
     })
 
-    const [class_exp, setClass_exp] = useState("experience")
+    // const [class_exp, setClass_exp] = useState("experience")
     const [active, setActive] = useState(0);
     
     const experiences = [
