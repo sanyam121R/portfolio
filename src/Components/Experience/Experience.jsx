@@ -1,14 +1,12 @@
 import React, { useState } from 'react'
 import './style.scss';
-import cloudeq from './imgs/ales-nesetril-Im7lZjxeLhg-unsplash.jpg';
-import persistent from './imgs/luca-bravo-XJXWbfSo2f0-unsplash.jpg';
 
 const Experience = () => {
     const [experience_data, setExperience_data] = useState({
         "companyName": "CloudEQ",
         "designation": "Jr. SDE",
         "experience": "1 year",
-        "url": cloudeq,
+        "url": 'assets/imgs/experience/ben-kolde-cpLsWmMEa1Q-unsplash.jpg',
         "expToandFrom": "01-2023 to 01-2024",
         "description": "It was a remarkable experience working here in  the company where seniors where tutoring and guiding me to the brighter future. And I learnt more than 10 technologies here and become specialist in few of them." 
     })
@@ -21,7 +19,7 @@ const Experience = () => {
             "companyName": "CloudEQ",
             "designation": "Jr. SDE",
             "experience": "1 year",
-            "url": cloudeq,
+            "url": 'assets/imgs/experience/ben-kolde-cpLsWmMEa1Q-unsplash.jpg',
             "expToandFrom": "01-2023 to 01-2024",
             "description": "It was a remarkable experience working here in  the company where seniors where tutoring and guiding me to the brighter future. And I learnt more than 10 technologies here and become specialist in few of them." 
         },
@@ -29,8 +27,7 @@ const Experience = () => {
             "companyName": "Persistent System",
             "designation": "SDE",
             "experience": "4 months",
-            // "img" : "../../assets/imgs/ales-nesetril-Im7lZjxeLhg-unsplash.jpg",
-            "url": persistent,
+            "url": 'assets/imgs/experience/luca-bravo-XJXWbfSo2f0-unsplash.jpg',
             "expToandFrom": "06-2022 to 09-2022",
             "description": "It was a remarkable experience working here in  the company where seniors where tutoring and guiding me to the brighter future. And I learnt more than 10 technologies here and become specialist in few of them." 
         },
@@ -38,7 +35,7 @@ const Experience = () => {
             "companyName": "Persistent System",
             "designation": "SDE - Intern",
             "experience": "6 months",
-            "url": persistent,
+            "url": 'assets/imgs/experience/luca-bravo-XJXWbfSo2f0-unsplash.jpg',
             "expToandFrom": "12-2021 to 06-2022",
             "description": "It was a remarkable experience working here in  the company where seniors where tutoring and guiding me to the brighter future. And I learnt more than 10 technologies here and become specialist in few of them." 
         }

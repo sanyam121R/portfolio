@@ -28,16 +28,23 @@ $primary-color: #eeeeee;
     padding: 5px;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 2px solid white;
+    border-bottom: 2px solid rgb(188, 188, 188);
+    font-family: League Gothic;
+    font-size: 45px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    color: #eeeeee70;
 
-    & span {
+    & span:hover {
         color: var(--primary-color);
-
-        font-family: League Gothic;
-        font-size: 45px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
+        border-bottom: var(--primary-color);
+    }
+    .active {
+        color: var(--primary-color);
+        border-bottom: 2px solid var(--primary-color);
+        stroke: #eeeeee;
+        stroke-width: 2px;
     }
 }
 
