@@ -5,9 +5,9 @@ const Experience = () => {
     const [experience_data, setExperience_data] = useState({
         "companyName": "CloudEQ",
         "designation": "Jr. SDE",
-        "experience": "1 year",
+        "experience": "1 year + current",
         "url": 'assets/imgs/experience/ben-kolde-cpLsWmMEa1Q-unsplash.jpg',
-        "expToandFrom": "01-2023 to 01-2024",
+        "expToandFrom": "01-2023 to PRESENT",
         "description": "It was a remarkable experience working here in  the company where seniors where tutoring and guiding me to the brighter future. And I learnt more than 10 technologies here and become specialist in few of them." 
     })
 
@@ -18,9 +18,9 @@ const Experience = () => {
         {
             "companyName": "CloudEQ",
             "designation": "Jr. SDE",
-            "experience": "1 year",
+            "experience": "1 year + current",
             "url": 'assets/imgs/experience/ben-kolde-cpLsWmMEa1Q-unsplash.jpg',
-            "expToandFrom": "01-2023 to 01-2024",
+            "expToandFrom": "01-2023 to PRESENT",
             "description": "It was a remarkable experience working here in  the company where seniors where tutoring and guiding me to the brighter future. And I learnt more than 10 technologies here and become specialist in few of them." 
         },
         {
