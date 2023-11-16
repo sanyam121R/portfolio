@@ -1,27 +1,23 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useContext } from 'react'
 import './style.scss'
+import useMousePosition from "../../hooks/useMousePosition";
+import { MouseContext } from "../../context/mouse-context";
 
 const CustomCursor = () => {
-  const cursorRef = useRef(null);
-  
-  useEffect(()=>{
-    document.addEventListener('mousemove', (event) => {
-      const { clientX, clientY } = event;
-      
-      const mouseX = clientX - cursorRef.current.clientWidth / 2;
-      const mouseY = clientY - cursorRef.current.clientWidth / 2;
-      
-      cursorRef.current.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
-      console.log("🚀 cursorRef.current.clientWidth:", cursorRef.current.clientWidth)
-      console.log("🚀clientX:", clientX, clientY, mouseX, mouseY)
-    })
-  }, [])
-  
+  const { cursorType, cursorChangeHandler } = useContext(MouseContext);
+  const { x, y } = useMousePosition();
   return (
-    <div className='app-cursor' ref={cursorRef} >
-      <div className='app-cursor-inside' ref={cursorRef} />
-    </div>
-  )
+    <>
+      <div
+        style={{ left: `${x}px`, top: `${y}px` }}
+        className={"ring " + cursorType}
+      ></div>
+      <div
+        className={"dot " + cursorType}
+        style={{ left: `${x}px`, top: `${y}px` }}
+      ></div>
+    </>
+  );
 }
 
 export default CustomCursor
