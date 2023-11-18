@@ -10,10 +10,10 @@ const CustomCursor = () => {
     <>
       <div
         style={{ left: `${x}px`, top: `${y}px` }}
-        className={"ring " + cursorType}
+        className={`ring ${cursorType}`}
       ></div>
       <div
-        className={"dot " + cursorType}
+        className={`dot ${cursorType}`}
         style={{ left: `${x}px`, top: `${y}px` }}
       ></div>
     </>
