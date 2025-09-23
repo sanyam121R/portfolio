@@ -26,25 +26,25 @@ const Experience = () => {
         {
             "companyName": "CloudEQ",
             "designation": "SDE - I",
-            "experience": "2 year 8 months",
+            "experience": "2 yrs 8 months",
             "url": 'assets/imgs/experience/ben-kolde-cpLsWmMEa1Q-unsplash.jpg',
-            "expToandFrom": "01-2023 to 07-2025",
+            "expToandFrom": "01-2023 to 08-2025",
             "description": "From implementing multiple resuable React components to integrating Client inteface with our. Architecturing client intake automation for our company to reduce manual efforts to null." 
         },
         {
             "companyName": "Persistent System",
             "designation": "SDE",
-            "experience": "4 months",
+            "experience": "7 months",
             "url": 'assets/imgs/experience/luca-bravo-XJXWbfSo2f0-unsplash.jpg',
-            "expToandFrom": "06-2022 to 09-2022",
+            "expToandFrom": "06-2022 to 12-2022",
             "description": "It was a remarkable experience working here in  the company where seniors where tutoring and guiding me to the brighter future. And I learnt more than 10 technologies here and become specialist in few of them." 
         },
         {
             "companyName": "Persistent System",
             "designation": "SDE - Intern",
-            "experience": "6 months",
+            "experience": "8 months",
             "url": 'assets/imgs/experience/luca-bravo-XJXWbfSo2f0-unsplash.jpg',
-            "expToandFrom": "12-2021 to 06-2022",
+            "expToandFrom": "12-2021 to 08-2022",
             "description": "It was a remarkable experience working here in  the company where seniors where tutoring and guiding me to the brighter future. And I learnt more than 10 technologies here and become specialist in few of them." 
         }
     ]
