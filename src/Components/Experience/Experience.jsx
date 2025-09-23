@@ -32,12 +32,12 @@ const Experience = () => {
             "description": "From implementing multiple resuable React components to integrating Client inteface with our. Architecturing client intake automation for our company to reduce manual efforts to null." 
         },
         {
-            "companyName": "Persistent System",
-            "designation": "SDE",
+            "companyName": "InfoHub Innovations",
+            "designation": "Software Engineer I",
             "experience": "7 months",
             "url": 'assets/imgs/experience/luca-bravo-XJXWbfSo2f0-unsplash.jpg',
             "expToandFrom": "06-2022 to 12-2022",
-            "description": "It was a remarkable experience working here in  the company where seniors where tutoring and guiding me to the brighter future. And I learnt more than 10 technologies here and become specialist in few of them." 
+            "description": "It was a remarkable experience working here in the company where seniors where tutoring and guiding me to the brighter future. And I learnt may Frontend techstacks and how OAuth 2.0 works." 
         },
         {
             "companyName": "Persistent System",
@@ -45,7 +45,7 @@ const Experience = () => {
             "experience": "8 months",
             "url": 'assets/imgs/experience/luca-bravo-XJXWbfSo2f0-unsplash.jpg',
             "expToandFrom": "12-2021 to 08-2022",
-            "description": "It was a remarkable experience working here in  the company where seniors where tutoring and guiding me to the brighter future. And I learnt more than 10 technologies here and become specialist in few of them." 
+            "description": "As a fresher working and learing from HELLO WORLD to responsive UI components in Reactjs, working & collaborating with Agile team, it was the best platform to have insight about the IT industry where people supports you in all condition." 
         }
     ]
 
