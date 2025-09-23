@@ -17,11 +17,19 @@ const Experience = () => {
     const experiences = [
         {
             "companyName": "CloudEQ",
-            "designation": "Jr. SDE",
-            "experience": "1 year + current",
+            "designation": "SDE - II",
+            "experience": "2 months",
             "url": 'assets/imgs/experience/ben-kolde-cpLsWmMEa1Q-unsplash.jpg',
-            "expToandFrom": "01-2023 to PRESENT",
-            "description": "It was a remarkable experience working here in  the company where seniors where tutoring and guiding me to the brighter future. And I learnt more than 10 technologies here and become specialist in few of them." 
+            "expToandFrom": "08-2025 to PRESENT",
+            "description": "It's a remarkable journey here in CloudEQ where I can learn and implement new technologies, learning is curve is moving exponentially from internal products to leading Client calls." 
+        },
+        {
+            "companyName": "CloudEQ",
+            "designation": "SDE - I",
+            "experience": "2 year 8 months",
+            "url": 'assets/imgs/experience/ben-kolde-cpLsWmMEa1Q-unsplash.jpg',
+            "expToandFrom": "01-2023 to 07-2025",
+            "description": "From implementing multiple resuable React components to integrating Client inteface with our. Architecturing client intake automation for our company to reduce manual efforts to null." 
         },
         {
             "companyName": "Persistent System",
