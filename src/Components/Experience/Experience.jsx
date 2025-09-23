@@ -33,7 +33,7 @@ const Experience = () => {
         },
         {
             "companyName": "InfoHub Innovations",
-            "designation": "Software Engineer I",
+            "designation": "SE - I",
             "experience": "7 months",
             "url": 'assets/imgs/experience/luca-bravo-XJXWbfSo2f0-unsplash.jpg',
             "expToandFrom": "06-2022 to 12-2022",
