@@ -15,7 +15,7 @@ const Contact = () => {
   };
 
   return (
-    <section className="contact-section" role="region" aria-label="Contact">
+    <section className="contact-section" aria-label="Contact">
       <div className="contact-container">
         <h2 className="contact-title">Get in Touch</h2>
         <p className="contact-subtitle">Let's work together on something amazing</p>

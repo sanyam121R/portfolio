@@ -3,12 +3,11 @@ import './style.scss'
 import { MouseContext } from "../../context/mouse-context";
 
 const Home = () => {
-  const { cursorType, cursorChangeHandler } = useContext(MouseContext);
+  const { cursorChangeHandler } = useContext(MouseContext);
 
   return (
     <section 
       className="hero"
-      role="region"
       aria-label="Hero section"
     >
       <div 

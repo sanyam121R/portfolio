@@ -4,7 +4,6 @@ import { skillsData } from '../../data/skillsData';
 import { MouseContext } from '../../context/mouse-context';
 
 const Skills = () => {
-    const { cursorChangeHandler } = useContext(MouseContext);
     const [skill_data, setSkill_data] = useState(skillsData[0]);
     const [active, setActive] = useState(0);
 
@@ -27,7 +26,7 @@ const Skills = () => {
     };
 
     return (
-        <section className='skills-page' role="region" aria-label="Skills">
+        <section className='skills-page' aria-label="Skills">
             <div className='left'>
                 <div className='skills-list' role="tablist" aria-label="Skill categories">
                     {skillsData.map((skill, index) => {

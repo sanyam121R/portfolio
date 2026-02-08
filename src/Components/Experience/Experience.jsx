@@ -14,7 +14,7 @@ const Experience = () => {
     }
 
     return (
-    <section className='experiences-page' role="region" aria-label="Work Experience">
+    <section className='experiences-page' aria-label="Work Experience">
         <div className='left'>
             <div className='experiences-list' role="tablist" aria-label="Experience entries">
                 {experienceData.map((experience, index) => {

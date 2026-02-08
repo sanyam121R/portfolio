@@ -7,7 +7,7 @@ const Projects = () => {
   const { cursorChangeHandler } = useContext(MouseContext);
 
   return (
-    <section className="projects-section" role="region" aria-label="Projects">
+    <section className="projects-section" aria-label="Projects">
       <div className="projects-container">
         {projectsData.map((project) => (
           <article key={project.id} className="project__card">
