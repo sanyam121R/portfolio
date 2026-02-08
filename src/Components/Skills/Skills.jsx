@@ -1,7 +1,6 @@
-import React, { useState, useContext } from 'react'
+import React, { useState } from 'react'
 import './style.scss';
 import { skillsData } from '../../data/skillsData';
-import { MouseContext } from '../../context/mouse-context';
 
 const Skills = () => {
     const [skill_data, setSkill_data] = useState(skillsData[0]);
