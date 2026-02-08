@@ -1,55 +1,96 @@
-import React from 'react';
-import './Projects.scss';
+import React, { useContext } from 'react';
+import './style.scss';
+import { projectsData } from '../../data/projectsData';
+import { MouseContext } from '../../context/mouse-context';
 
 const Projects = () => {
+  const { cursorChangeHandler } = useContext(MouseContext);
+
   return (
-    <section className="project">
-      <div className="project__card">
-        <h2 className="project__title">
-          StreamSync
-          <span className="project__subtitle">
-            (Real-time video sharing)
-          </span>
-        </h2>
+    <section className="projects-section" role="region" aria-label="Projects">
+      <div className="projects-container">
+        {projectsData.map((project) => (
+          <article key={project.id} className="project__card">
+            <h2 className="project__title">
+              {project.title}
+              <span className="project__subtitle">
+                ({project.subtitle})
+              </span>
+            </h2>
 
-        <p className="project__note">
-          <em>Currently building to learn a modern AI-powered SaaS stack and upskill myself.</em>
-        </p>
+            {project.note && (
+              <p className="project__note">
+                <em>{project.note}</em>
+              </p>
+            )}
 
-        <p className="project__description">
-          Developing a full‑stack AI‑powered SaaS platform for real‑time video sharing with a cross‑platform desktop application.
-        </p>
+            <p className="project__description">
+              {project.description}
+            </p>
 
-        <ul className="project__bullets">
-          <li>
-            Implementing low‑latency video streaming and real‑time communication using Socket.io and Express.js for smooth synced playback between users.
-          </li>
-          <li>
-            Architecting static and dynamic content delivery on AWS CloudFront to ensure fast global video distribution and high availability.
-          </li>
-          <li>
-            Building both the web app and Electron desktop client with Next.js and TypeScript, backed by PostgreSQL and Prisma.
-          </li>
-        </ul>
+            {project.bullets && (
+              <ul className="project__bullets">
+                {project.bullets.map((bullet, idx) => (
+                  <li key={idx}>{bullet}</li>
+                ))}
+              </ul>
+            )}
 
-        <div className="project__section-label">Tech Stack</div>
+            <div className="project__section-label">Tech Stack</div>
 
-        <p className="project__tech-inline">
-          Next.js, Electron, Express.js, Socket.io, AWS CloudFront, PostgreSQL,
-          Prisma, Tailwind CSS, Clerk
-        </p>
+            {project.techStack && (
+              <p className="project__tech-inline">
+                {project.techStack.join(', ')}
+              </p>
+            )}
 
-        <div className="project__learning">
-          <span>Learning from:</span>{' '}
-          <a
-            href="https://www.youtube.com/watch?v=3R63m4sTpKo&t=3466s"
-            className="project__link"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Web Prodigies – AI SaaS Realtime Video Sharing + Desktop App
-          </a>
-        </div>
+            {project.learningResource && (
+              <div className="project__learning">
+                <span>Learning from:</span>{' '}
+                <a
+                  href={project.learningResource.url}
+                  className="project__link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Learning resource: ${project.learningResource.text}`}
+                  onMouseEnter={() => cursorChangeHandler('hovered')}
+                  onMouseLeave={() => cursorChangeHandler('')}
+                >
+                  {project.learningResource.text}
+                </a>
+              </div>
+            )}
+
+            <div className="project__links">
+              {project.links?.github && (
+                <a
+                  href={project.links.github}
+                  className="project__action-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${project.title} GitHub repository`}
+                  onMouseEnter={() => cursorChangeHandler('hovered')}
+                  onMouseLeave={() => cursorChangeHandler('')}
+                >
+                  GitHub
+                </a>
+              )}
+              {project.links?.demo && (
+                <a
+                  href={project.links.demo}
+                  className="project__action-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${project.title} live demo`}
+                  onMouseEnter={() => cursorChangeHandler('hovered')}
+                  onMouseLeave={() => cursorChangeHandler('')}
+                >
+                  Live Demo
+                </a>
+              )}
+            </div>
+          </article>
+        ))}
       </div>
     </section>
   );

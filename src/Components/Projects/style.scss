@@ -1,3 +1,24 @@
+.projects-section {
+    // min-height: 100vh; 
+    border-radius: 16px;
+    display: flex;
+    padding: 2rem;
+    margin: 4rem 0 4rem 0;
+    color: #e5e7eb;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    flex-direction: row;
+    align-items: center;
+    background: radial-gradient(circle at top left, #20293a, #020617);
+}
+
+.projects-container {
+    width: 100%;
+    max-width: 540px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
 .project {
     min-height: 100vh;
     display: flex;
@@ -112,4 +133,27 @@
 
 .project__link:hover {
     text-decoration: underline;
+}
+
+.project__links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.project__action-link {
+    padding: 0.5rem 1rem;
+    border: 1px solid rgba(96, 165, 250, 0.5);
+    border-radius: 0.5rem;
+    color: #60a5fa;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+
+    &:hover {
+        background: rgba(96, 165, 250, 0.1);
+        border-color: #60a5fa;
+        color: #93c5fd;
+    }
 }

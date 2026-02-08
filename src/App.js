@@ -5,6 +5,7 @@ import Home from './Components/Home/Home';
 import Skills from './Components/Skills/Skills';
 import Experience from './Components/Experience/Experience';
 import Projects from './Components/Projects/Projects';
+import Contact from './Components/Contact/Contact';
 import Layout from './Components/Layout';
 
 function App() {
@@ -19,15 +20,12 @@ function App() {
               <Route path="/skills" element={<Skills />} />
               <Route path="/experience" element={<Experience />} />
               <Route path="/projects" element={<Projects />} />
+              <Route path="/contact" element={<Contact />} />
               <Route path="/gallery" element={<Home />} />
               <Route path="*" element={<Home />} />
             </Route>
           </Routes>
         </BrowserRouter>
-        {/* <Home /> */}
-        {/* <Skills /> */}
-        {/* <Experience /> */}
-        {/* <Projects /> */}
       </div>
     </>
   );

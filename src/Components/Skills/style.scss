@@ -6,6 +6,7 @@ $primary-color: #eeeeee;
     flex-direction: row;
     align-items: center;
     gap: 300px;
+    font-family: Lato;
 }
 
 .left {
@@ -29,7 +30,7 @@ $primary-color: #eeeeee;
     justify-content: space-between;
     align-items: center;
     border-bottom: 2px solid rgb(188, 188, 188);
-    font-family: League Gothic;
+    font-family: Lato;
     font-size: 45px;
     font-style: normal;
     font-weight: 400;
@@ -40,6 +41,7 @@ $primary-color: #eeeeee;
         color: var(--primary-color);
         border-bottom: var(--primary-color);
     }
+
     .active {
         color: var(--primary-color);
         border-bottom: 2px solid var(--primary-color);
@@ -62,6 +64,7 @@ $primary-color: #eeeeee;
     & section {
         width: fit-content;
         letter-spacing: 1px;
+
         & div {
             text-align: start;
         }
@@ -69,7 +72,7 @@ $primary-color: #eeeeee;
 
     & header {
         color: var(--primary-color);
-        
+
         text-align: center;
         font-size: 48px;
         font-weight: 700;
@@ -90,10 +93,11 @@ $primary-color: #eeeeee;
     text-align: start;
 
     & h1 {
-        font-family: Weird Words DEMO;
+        font-family: Lato;
         font-size: 90px;
         margin: 0;
     }
+
     & p {
         font-family: Lato;
         margin: 0;

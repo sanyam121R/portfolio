@@ -36,7 +36,7 @@ const Navbar = ({ showNextProject = false, nextProjectNo, nextProjectName }) => 
                             <path d="M240 1.50002C240.276 1.50002 240.5 1.27616 240.5 1.00002C240.5 0.723879 240.276 0.500021 240 0.500021L240 1.50002ZM-4.37114e-08 1.5L240 1.50002L240 0.500021L4.37114e-08 0.5L-4.37114e-08 1.5Z" fill="#AAAAAA" />
                         </svg>
                     </div>
-                    <button
+                    <div
                         className='burger-menu'
                         onClick={() => setMenuOpen(!menuOpen)}
                         aria-label="Toggle menu"
@@ -46,7 +46,7 @@ const Navbar = ({ showNextProject = false, nextProjectNo, nextProjectName }) => 
                             <line x1="9.08325" y1="19.5" x2="28.8333" y2="19.5" stroke="white" strokeWidth="3" strokeLinecap="round" />
                             <line x1="9.08325" y1="1.5" x2="28.8333" y2="1.5" stroke="white" strokeWidth="3" strokeLinecap="round" />
                         </svg>
-                    </button>
+                    </div>
                 </div>
             </div>
 

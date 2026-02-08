@@ -39,10 +39,11 @@ const Menu = (props) => {
 
       <div className="menuOptions">
         
-        <div> <Link className='text-link' to="/"> about <span>01</span> </Link> </div>
-        <div> <Link className='text-link' to="/projects"> projects <span>02</span> </Link>  </div>
-        <div> <Link className='text-link' to="/experience"> experiences <span>02</span> </Link> </div>
-        <div> <Link className='text-link' to="/skills"> skills <span>03</span> </Link>  </div>
+        <div> <Link className='text-link' to="/" onClick={() => setMenuOpen(false)}> about <span>01</span> </Link> </div>
+        <div> <Link className='text-link' to="/projects" onClick={() => setMenuOpen(false)}> projects <span>02</span> </Link>  </div>
+        <div> <Link className='text-link' to="/experience" onClick={() => setMenuOpen(false)}> experiences <span>03</span> </Link> </div>
+        <div> <Link className='text-link' to="/skills" onClick={() => setMenuOpen(false)}> skills <span>04</span> </Link>  </div>
+        <div> <Link className='text-link' to="/contact" onClick={() => setMenuOpen(false)}> contact <span>05</span> </Link>  </div>
         {/* <div> <Link className='text-link' to="/gallery"> gallery <span>04</span> </Link>  </div> */}
       </div>
     </div>

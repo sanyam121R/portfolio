@@ -63,6 +63,15 @@ $primary-color: #eeeeee;
     left: 25px;
 }
 
+a {
+    text-decoration: none;
+    color: #f3f3f3;
+}
+
+a:active {
+    color: #f3f3f3;
+}
+
 .details {
     display: flex;
     flex-direction: column;
@@ -130,6 +139,7 @@ $primary-color: #eeeeee;
     & span {
         font-size: 20px;
     }
+
     div :hover {
         // text-decoration: none;
         color: var(--primary-color);
@@ -142,7 +152,7 @@ $primary-color: #eeeeee;
 }
 
 .menu {
-    height: 97vh;
+    height: 100vh;
     position: fixed;
     top: 0px;
     right: 0px;
