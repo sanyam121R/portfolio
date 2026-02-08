@@ -4,18 +4,19 @@ import useMousePosition from "../../hooks/useMousePosition";
 import { MouseContext } from "../../context/mouse-context";
 
 const CustomCursor = () => {
-  const { cursorType, cursorChangeHandler } = useContext(MouseContext);
+  const { cursorType } = useContext(MouseContext);
   const { x, y } = useMousePosition();
+
   return (
     <>
       <div
-        style={{ left: `${x}px`, top: `${y}px` }}
+        style={{ transform: `translate(${x}px, ${y}px)` }}
         className={`ring ${cursorType}`}
-      ></div>
+      />
       <div
+        style={{ transform: `translate(${x}px, ${y}px)` }}
         className={`dot ${cursorType}`}
-        style={{ left: `${x}px`, top: `${y}px` }}
-      ></div>
+      />
     </>
   );
 }

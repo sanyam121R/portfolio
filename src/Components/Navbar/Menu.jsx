@@ -40,7 +40,7 @@ const Menu = (props) => {
       <div className="menuOptions">
         
         <div> <Link className='text-link' to="/"> about <span>01</span> </Link> </div>
-        {/* <div> <Link className='text-link' to="/projects"> projects <span>02</span> </Link>  </div> */}
+        <div> <Link className='text-link' to="/projects"> projects <span>02</span> </Link>  </div>
         <div> <Link className='text-link' to="/experience"> experiences <span>02</span> </Link> </div>
         <div> <Link className='text-link' to="/skills"> skills <span>03</span> </Link>  </div>
         {/* <div> <Link className='text-link' to="/gallery"> gallery <span>04</span> </Link>  </div> */}
