@@ -32,8 +32,8 @@ $primary-color: #eeeeee;
     padding: 5px;
     justify-content: space-between;
     align-items: center;
-    font-family: League Gothic;
-    font-size: 45px;
+    font-family: 'Lato';
+    font-size: 28px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -41,6 +41,7 @@ $primary-color: #eeeeee;
     border-bottom: 2px solid rgba(255, 255, 255, 0.60);
 
 }
+
 .active {
     color: var(--primary-color);
     border-color: var(--primary-color);
@@ -64,8 +65,10 @@ $primary-color: #eeeeee;
         font-size: 36px;
         font-weight: 400;
     }
+
     & section {
         width: fit-content;
+
         & div {
             text-align: start;
         }
@@ -84,6 +87,7 @@ $primary-color: #eeeeee;
         font-size: 90px;
         margin: 0;
     }
+
     & p {
         font-family: Lato;
         margin: 0;
