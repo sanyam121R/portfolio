@@ -1,11 +1,13 @@
 $primary-color: #eeeeee;
 
 .experiences-page {
-    margin: 90px;
+    align-items: center;
     display: flex;
     flex-direction: row;
-    align-items: center;
     gap: 200px;
+    height: 90vh;
+    padding: 32px;
+    justify-content: space-between;
 }
 
 .left {
@@ -17,11 +19,12 @@ $primary-color: #eeeeee;
 
 .right {
     height: 550px;
+    width: 550px;
+    text-align: center;
 }
 
 .experiences-list {
     display: flex;
-    margin-top: 20px;
     flex-direction: column;
 }
 
@@ -32,14 +35,13 @@ $primary-color: #eeeeee;
     padding: 5px;
     justify-content: space-between;
     align-items: center;
-    font-family: 'Lato';
+    font-family: 'Formular';
     font-size: 28px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
     color: rgba(255, 255, 255, 0.60);
     border-bottom: 2px solid rgba(255, 255, 255, 0.60);
-
 }
 
 .active {
@@ -49,7 +51,7 @@ $primary-color: #eeeeee;
 }
 
 .experience-des {
-    width: 432px;
+    width: 550px;
     color: var(--primary-color);
     position: relative;
     top: -86px;
@@ -57,7 +59,7 @@ $primary-color: #eeeeee;
     flex-direction: column;
     gap: 10px;
     align-items: start;
-    font-family: Lato;
+    font-family: Formular;
     font-style: normal;
     line-height: normal;
 
@@ -89,7 +91,7 @@ $primary-color: #eeeeee;
     }
 
     & p {
-        font-family: Lato;
+        font-family: Formular;
         margin: 0;
         font-size: 22px;
     }
