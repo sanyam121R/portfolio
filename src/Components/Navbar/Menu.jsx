@@ -25,7 +25,9 @@ const Menu = (props) => {
         </div>
 
         <div className='visit-resume menuOpened'>
-          <div>visit my resume</div>
+          <a href='/Sanyam Rathore - Full Stack.pdf' target="_blank" rel="noopener noreferrer">
+              visit my resume
+          </a>
           <svg xmlns="http://www.w3.org/2000/svg" width="241" height="2" viewBox="0 0 241 2" fill="none">
               <path d="M240 1.50002C240.276 1.50002 240.5 1.27616 240.5 1.00002C240.5 0.723879 240.276 0.500021 240 0.500021L240 1.50002ZM-4.37114e-08 1.5L240 1.50002L240 0.500021L4.37114e-08 0.5L-4.37114e-08 1.5Z" fill="#AAAAAA"/>
           </svg>
