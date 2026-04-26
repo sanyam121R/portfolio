@@ -3,7 +3,7 @@ export const experienceData = [
     id: 1,
     companyName: "CloudEQ",
     designation: "SDE - II",
-    experience: "7 months",
+    experience: "9 months",
     url: "assets/imgs/experience/ben-kolde-cpLsWmMEa1Q-unsplash.jpg",
     expToandFrom: "08-2025 to PRESENT",
     description: "It's a remarkable journey here in CloudEQ where I can learn and implement new technologies, learning curve is moving exponentially from internal products to leading Client calls."

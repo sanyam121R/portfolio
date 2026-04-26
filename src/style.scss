@@ -15,6 +15,10 @@ body {
     cursor: none !important;
 }
 
+* ::-webkit-scrollbar {
+    display: none;
+}
+
 // Or more specific:
 body,
 a,

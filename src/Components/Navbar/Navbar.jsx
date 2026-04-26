@@ -1,14 +1,33 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './style.scss'
 import Menu from './Menu';
 import { Link } from "react-router-dom";
 
 const Navbar = ({ showNextProject = false, nextProjectNo, nextProjectName }) => {
     const [menuOpen, setMenuOpen] = useState(false);
+    
+    useEffect(() => {
+        if (!menuOpen) {
+            document.body.style.overflow = '';
+            document.body.style.paddingRight = '';
+            return;
+        }
+
+        const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+        document.body.style.overflow = 'hidden';
+        if (scrollbarWidth > 0) {
+            document.body.style.paddingRight = `${scrollbarWidth}px`;
+        }
+
+        return () => {
+            document.body.style.overflow = '';
+            document.body.style.paddingRight = '';
+        };
+    }, [menuOpen]);
 
     return (
         <div className='navbar-wrapper'>
-            <div className='navbar' style={{ display: menuOpen ? "none" : "flex" }}>
+            <div className={`navbar ${menuOpen ? 'menu-open' : ''}`}>
                 <div className='nav-left'>
                     <span className='name'>
                         <Link to="/">sanyam.</Link>
@@ -36,21 +55,21 @@ const Navbar = ({ showNextProject = false, nextProjectNo, nextProjectName }) => 
                             <path d="M240 1.50002C240.276 1.50002 240.5 1.27616 240.5 1.00002C240.5 0.723879 240.276 0.500021 240 0.500021L240 1.50002ZM-4.37114e-08 1.5L240 1.50002L240 0.500021L4.37114e-08 0.5L-4.37114e-08 1.5Z" fill="#AAAAAA" />
                         </svg>
                     </div>
-                    <div
-                        className='burger-menu'
-                        onClick={() => setMenuOpen(!menuOpen)}
-                        aria-label="Toggle menu"
-                    >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="39" height="21" viewBox="0 0 39 21" fill="none">
-                            <line x1="3.66675" y1="10.5" x2="35.3334" y2="10.5" stroke="white" strokeWidth="3" strokeLinecap="round" />
-                            <line x1="9.08325" y1="19.5" x2="28.8333" y2="19.5" stroke="white" strokeWidth="3" strokeLinecap="round" />
-                            <line x1="9.08325" y1="1.5" x2="28.8333" y2="1.5" stroke="white" strokeWidth="3" strokeLinecap="round" />
-                        </svg>
-                    </div>
                 </div>
             </div>
 
-            {menuOpen && <Menu setMenuOpen={setMenuOpen} menuOpen={menuOpen} />}
+            <button
+                type="button"
+                className={`wrapper-menu ${menuOpen ? 'open' : ''}`}
+                onClick={() => setMenuOpen(!menuOpen)}
+                aria-label="Toggle menu"
+            >
+                <span className="line-menu half start"></span>
+                <span className="line-menu"></span>
+                <span className="line-menu half end"></span>
+            </button>
+
+            {menuOpen && <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />}
         </div>
     )
 }
