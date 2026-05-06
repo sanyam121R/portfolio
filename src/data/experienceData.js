@@ -5,7 +5,7 @@ export const experienceData = [
     location: "Chandigarh, India (Hybrid)",
     designation: "Software Engineer II",
     experience: "3 yrs 4 months",
-    expToandFrom: "Aug 2025 - Present",
+    expToandFrom: "Aug 2025 - April 2026",
     stacks: [
       "Node.js",
       "Salesforce CDC",
