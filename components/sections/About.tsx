@@ -25,7 +25,7 @@ export default function About() {
             <div className="flex flex-col md:flex-row justify-center items-center gap-10">
                 <section className="relative w-[280px] h-[345px] lg:w-[380px] lg:h-[473px] md:h-auto">
                     <Image
-                        src="/assets/About Me.png"
+                        src='/assets/About me.png'
                         width={375}
                         height={473}
                         alt="Photo of Sanyam Rathore"
