@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+:root {
+  --background: #111;
+  --foreground: #fff;
+  --primary: #fff;
+  --secondary: #E1E1E1;
+  --tertiary: #787878;
+  --toggle: #525252;
+  --primary-border: #4F4F4F;
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-tertiary: var(--tertiary);
+  --color-toggle: var(--toggle);
+  --color-primary-border: var(--primary-border);
+
+  --font-inter: var(--font-inter);
+  --font-mont-sign: var(--font-montreuil-signature);
+  --font-weird-word: var(--font-weird-word);
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    color: var(--color-primary);
+    background-color: var(--color-background);
+    font-family: Inter, Helvetica, sans-serif;
+  }
+
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  h1 {
+    font-size: 2rem;
+    font-family: var(--font-weird-word);
+  }
+
+  ::-webkit-scrollbar {
+    display: none
+  }
+}
+
+@utility smooth-corners {
+  corner-shape: squircle;
+}
