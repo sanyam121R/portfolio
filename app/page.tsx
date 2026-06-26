@@ -8,7 +8,7 @@ import TechStack from "@/components/TechStack";
 export default function Home() {
   return (
     <div className="flex flex-col font-inter text-sm">
-      <header className="flex flex-row justify-between py-3 px-4 fixed w-svw top-0">
+      <header className="flex flex-row justify-between py-4 px-8 fixed w-svw top-0">
         <section className="flex flex-row gap-3 text-center items-center">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clipPath="url(#clip0_1459_80)">

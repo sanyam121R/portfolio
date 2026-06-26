@@ -38,8 +38,8 @@ export default function About() {
                 <section className="flex flex-col sm:[300px] lg:w-[810px] md:w-[500px] max-w-full gap-6">
 
                     <h2 className="font-normal text-secondary text-base tracking-[0.03px]">
-                        Hi, I&apos;m{" "}
-                        <span className="font-mont-sign text-[64px]/[72px] tracking-[0.08px]">
+                        <span className="pb-2">Hi, I&apos;m{" "}</span>
+                        <span className="font-mont-sign text-[64px]/[48px] tracking-[0.08px] pl-1">
                             Sanyam Rathore.
                         </span>
                     </h2>
