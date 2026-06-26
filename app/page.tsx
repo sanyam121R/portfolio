@@ -2,8 +2,8 @@ import About from "@/components/sections/About";
 import Experience from "@/components/sections/Experience";
 import Footer from "@/components/sections/Footer";
 import Hero from "@/components/sections/Hero";
-import { SkillsEcosystem } from "@/components/sections/SkillsEcosystem";
 import Work from "@/components/sections/Work";
+import TechStack from "@/components/TechStack";
 
 export default function Home() {
   return (
@@ -33,7 +33,7 @@ export default function Home() {
       <About />
       <Work />
       <Experience />
-      <SkillsEcosystem />
+      <TechStack />
       <Footer />
     </div>
   );
