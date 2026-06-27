@@ -77,7 +77,7 @@ export default function Work() {
     );
 
     return (
-        <div className="h-fit w-svw p-8 pt-16 flex flex-col gap-12 items-center">
+        <div id="work" className="h-fit w-svw p-8 pt-16 flex flex-col gap-12 items-center">
             <section className="h-[calc(100svh-100px)] w-[calc(100%-340px)] border border-primary-border smooth-corners p-5 rounded-4xl text-center">
                 Pending - Infinite Canvas
             </section>

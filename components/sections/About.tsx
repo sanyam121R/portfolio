@@ -12,7 +12,7 @@ function DotGrid() {
 
 export default function About() {
     return (
-        <div className="h-svh w-svw p-8 pt-20 flex flex-col gap-10">
+        <div id="about" className="h-svh w-svw p-8 pt-20 flex flex-col gap-10">
 
             <h1 className="
                 bg-[linear-gradient(0deg,#000_11%,#fff_57%)]

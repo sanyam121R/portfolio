@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Experience() {
   return (
-    <div className="h-svh w-svw flex justify-center text-center">
+    <div id="experience" className="h-svh w-svw flex justify-center text-center">
       <Image
         src={'/assets/experience.png'}
         alt="experience"

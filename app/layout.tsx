@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import CursorCanvas from "@/components/CursorCanvas";
-import { inter, montreuil, werid_word } from "@/public/fonts";
+import { inter, doto, montreuil, werid_word, mansalva } from "@/lib/fonts";
 import DraggableNav from "@/components/DraggableNav";
 
 export const metadata: Metadata = {
@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${montreuil.variable} ${inter.variable} ${werid_word.variable} h-full antialiased md:subpixel-antialiased`}
+      className={`${montreuil.variable} ${inter.variable} ${werid_word.variable} ${doto.variable} ${mansalva.variable} h-full antialiased md:subpixel-antialiased`}
     >
       <body className="min-h-full bg-[url('/assets/black-bg.jpeg')] bg-cover bg-center bg-fixed">
         <CursorCanvas />

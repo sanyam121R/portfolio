@@ -23,6 +23,10 @@
   --font-inter: var(--font-inter);
   --font-mont-sign: var(--font-montreuil-signature);
   --font-weird-word: var(--font-weird-word);
+  --font-doto: var(--font-doto);
+  --font-mansalva: var(--font-mansalva);
+
+  --animate-marquee: marquee 22s linear infinite;
 }
 
 @layer base {

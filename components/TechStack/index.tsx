@@ -65,6 +65,7 @@ export default function TechStack() {
 
   return (
     <section
+      id="stack"
       ref={sectionRef}
       className="relative min-h-screen w-full overflow-hidden py-14 px-6 md:px-10"
     >

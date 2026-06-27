@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Hero() {
   return (
-    <div className="h-svh w-svw flex justify-center text-center">
+    <div id="hero" className="h-svh w-svw flex justify-center text-center">
       <section className="flex w-svw flex-col gap-6 md:gap-8 justify-end p-6 mb-70 md:mb-48">
         <div className="flex flex-col justify-center text-center">
           <h1 className="font-weird-word text-4xl md:text-7xl">Full-Stack</h1>

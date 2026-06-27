@@ -2,20 +2,51 @@
 
 import gsap from "gsap";
 import { Draggable } from "gsap/Draggable";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Link from "next/link";
 import { useEffect, useRef } from "react";
 
-gsap.registerPlugin(Draggable, ScrollTrigger);
+gsap.registerPlugin(Draggable, ScrollTrigger, ScrollToPlugin);
 
 const NAV_ITEMS = [
-    { label: "About", href: "/about" },
-    { label: "Work", href: "/work" },
-    { label: "Experience", href: "/experience" },
-    { label: "Stack", href: "/stack" },
-    { label: "Writing", href: "/writing" },
-    { label: "Let's Talk", href: "/lets-talk" },
+    { label: "About", sectionId: "about" },
+    { label: "Work", sectionId: "work" },
+    { label: "Experience", sectionId: "experience" },
+    { label: "Stack", sectionId: "stack" },
+    { label: "Writing", sectionId: "writing" },
+    { label: "Let's Talk", sectionId: "contact-me" },
 ];
+
+function scrollToSection(sectionId: string) {
+    const trigger = ScrollTrigger.getById(sectionId);
+
+    if (trigger) {
+        gsap.to(window, {
+            duration: 1.2,
+            ease: "power3.inOut",
+            scrollTo: {
+                y: trigger.start,
+                autoKill: true,
+            },
+        });
+
+        return;
+    }
+
+    // Fallback for normal sections.
+    const el = document.getElementById(sectionId);
+
+    if (!el) return;
+
+    gsap.to(window, {
+        duration: 1,
+        ease: "power3.inOut",
+        scrollTo: {
+            y: el,
+            autoKill: true,
+        },
+    });
+}
 
 export default function DraggableNav() {
     const wrapperRef = useRef<HTMLDivElement>(null);
@@ -368,12 +399,19 @@ export default function DraggableNav() {
                     <div ref={itemsRef} className="flex flex-row gap-1 overflow-hidden">
                         {NAV_ITEMS.map((item) => (
                             <div
-                                key={item.href}
+                                key={item.sectionId}
                                 className="menu-item w-max py-1 px-1 hover:underline rounded-3xl flex items-center text-center shrink-0"
                             >
-                                <Link href={item.href} className="select-none whitespace-nowrap">
+                                <a
+                                    href={`#${item.sectionId}`}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        scrollToSection(item.sectionId);
+                                    }}
+                                    className="select-none whitespace-nowrap cursor-pointer"
+                                >
                                     {item.label}
-                                </Link>
+                                </a>
                             </div>
                         ))}
                     </div>
@@ -414,10 +452,17 @@ export default function DraggableNav() {
 
                 <div className="grid grid-cols-[repeat(3,1fr)] justify-items-center pr-1">
                     {NAV_ITEMS.map((item) => (
-                        <div key={item.href} className="w-max py-[2px] pb-0 px-1 hover:underline items-center text-center">
-                            <Link href={item.href} className="select-none whitespace-nowrap">
+                        <div key={item.sectionId} className="w-max py-[2px] pb-0 px-1 hover:underline items-center text-center">
+                            <a
+                                href={`#${item.sectionId}`}
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    scrollToSection(item.sectionId);
+                                }}
+                                className="select-none whitespace-nowrap cursor-pointer"
+                            >
                                 {item.label}
-                            </Link>
+                            </a>
                         </div>
                     ))}
                 </div>
