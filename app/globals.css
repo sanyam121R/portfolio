@@ -63,3 +63,34 @@
 @utility smooth-corners {
   corner-shape: squircle;
 }
+
+/* Infinite marquee scroll for LetsTalk section */
+@utility marquee-track {
+  display: inline-flex;
+  width: max-content;
+  align-items: center;
+  animation: marquee 30s linear infinite;
+}
+
+@keyframes marquee {
+from {
+  transform: translate3d(0, 0, 0);
+}
+
+to {
+  transform: translate3d(-50%, 0, 0);
+}
+}
+
+@media (hover: hover) {
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+}
+
+@media (prefers-reduced-motion: reduce) {
+.marquee-track {
+  animation: none;
+  transform: none;
+}
+}
