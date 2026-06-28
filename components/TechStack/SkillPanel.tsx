@@ -7,6 +7,7 @@ import type { TechItem } from "@/lib/techStackData";
 interface SkillPanelProps {
   skill: TechItem;
   onClose: () => void;
+  isFixed?: boolean;
   monochrome?: boolean;
 }
 // SkillPanel.tsx  — replace the two variant definitions
@@ -30,7 +31,7 @@ const itemVariants: Variants = {
   hidden: { opacity: 0, y: 10 },
   visible: { opacity: 1, y: 0 },
 };
-export function SkillPanel({ skill, onClose, monochrome = false }: SkillPanelProps) {
+export function SkillPanel({ skill, onClose, isFixed = false, monochrome = false }: SkillPanelProps) {
   const Icon = skill.icon;
   const iconColor = monochrome ? "#ffffff" : skill.color;
 
@@ -48,9 +49,16 @@ export function SkillPanel({ skill, onClose, monochrome = false }: SkillPanelPro
           variants={itemVariants}
           className="flex items-center justify-between"
         >
-          <span className="text-[10px] font-inter font-semibold tracking-widest text-tertiary uppercase">
-            Selected Skill
-          </span>
+          <div className="flex items-center gap-2">
+            <span className="text-[10px] font-inter font-semibold tracking-widest text-tertiary uppercase">
+              {isFixed ? "Pinned Skill" : "Selected Skill"}
+            </span>
+            {isFixed && (
+              <span className="text-[9px] font-inter font-medium text-green-400 bg-green-400/10 px-1.5 py-0.5 rounded">
+                PINNED
+              </span>
+            )}
+          </div>
           <button
             onClick={onClose}
             className="text-tertiary hover:text-foreground transition-colors p-1 rounded-md hover:bg-white/5"

@@ -15,6 +15,7 @@ import { techItems, type TechItem } from "@/lib/techStackData";
 
 export default function TechStack() {
   const [activeSkill, setActiveSkill] = useState<TechItem | null>(null);
+  const [fixedSkill, setFixedSkill] = useState<TechItem | null>(null);
 
   const sectionRef = useRef<HTMLElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -67,32 +68,8 @@ export default function TechStack() {
     <section
       id="stack"
       ref={sectionRef}
-      className="relative min-h-screen w-full overflow-hidden py-14 px-6 md:px-10"
+      className="relative min-h-screen w-full overflow-hidden py-40 md:w-[calc(100%-340px)] m-auto"
     >
-      {/* Watermark */}
-      {/* <span
-        className="pointer-events-none select-none absolute inset-0 flex items-center justify-center
-          font-weird-word text-[clamp(4rem,13vw,10rem)] text-white opacity-[0.04]
-          tracking-widest uppercase whitespace-nowrap z-0"
-        aria-hidden="true"
-      >
-        TECH STACK
-      </span> */}
-
-
-      {/* <span
-        className="pointer-events-none select-none absolute inset-0 flex items-center justify-center
-          font-weird-word text-[clamp(4rem,15vw,12rem)] text-transparent opacity-[0.15]
-          tracking-widest uppercase whitespace-nowrap z-0
-          bg-[linear-gradient(0deg,#000_11%,#fff_57%)]
-          bg-clip-text [-webkit-background-clip:text]
-          [-webkit-text-fill-color:transparent]
-          text-4xl text-center leading-normal"
-        aria-hidden="true"
-      >
-        TECHSTACK
-      </span> */}
-
       {/*
         Three-column grid.
         The SVG layer is positioned absolute relative to this grid wrapper,
@@ -107,8 +84,31 @@ export default function TechStack() {
           items={techItems}
           activeId={activeSkill?.id ?? ""}
           cardRefs={cardRefs}
-          onHover={setActiveSkill}
-          onLeave={() => setActiveSkill(null)}
+          onHover={(item) => {
+            // When hovering another card while one is fixed, unfix it
+            if (fixedSkill && fixedSkill.id !== item.id) {
+              setFixedSkill(null);
+            }
+            setActiveSkill(item);
+          }}
+          onLeave={() => {
+            // Only clear active skill if not fixed
+            if (!fixedSkill) {
+              setActiveSkill(null);
+            }
+          }}
+          onClick={(item) => {
+            if (fixedSkill?.id === item.id) {
+              // If already fixed, unfix it
+              setFixedSkill(null);
+              setActiveSkill(null);
+            } else {
+              // Fix this skill and set it as active
+              setFixedSkill(item);
+              setActiveSkill(item);
+            }
+          }}
+          fixedSkill={fixedSkill}
         />
 
         {/* ── Center column ── */}
@@ -140,7 +140,11 @@ export default function TechStack() {
               <SkillPanel
                 key={activeSkill.id}
                 skill={activeSkill}
-                onClose={() => setActiveSkill(null)}
+                isFixed={fixedSkill?.id === activeSkill.id}
+                onClose={() => {
+                  setActiveSkill(null);
+                  setFixedSkill(null);
+                }}
               />
             ) : (
               <OverviewPanel key="overview" />

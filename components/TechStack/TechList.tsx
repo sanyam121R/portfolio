@@ -10,9 +10,11 @@ interface TechListProps {
   cardRefs: RefObject<(HTMLDivElement | null)[]>;
   onHover:  (item: TechItem) => void;
   onLeave:  () => void;
+  onClick:  (item: TechItem) => void;
+  fixedSkill: TechItem | null;
 }
 
-export function TechList({ items, activeId, cardRefs, onHover, onLeave }: TechListProps) {
+export function TechList({ items, activeId, cardRefs, onHover, onLeave, onClick, fixedSkill }: TechListProps) {
   return (
     <div className="flex flex-col gap-2">
       {/* Badge — full width */}
@@ -48,10 +50,12 @@ export function TechList({ items, activeId, cardRefs, onHover, onLeave }: TechLi
             key={item.id}
             item={item}
             isActive={item.id === activeId}
+            isFixed={fixedSkill?.id === item.id}
             index={index}
             ref={(el) => { cardRefs.current[index] = el; }}
             onHover={onHover}
             onLeave={onLeave}
+            onClick={() => onClick(item)}
           />
         ))}
       </div>
