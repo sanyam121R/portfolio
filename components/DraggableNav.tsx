@@ -2,11 +2,11 @@
 
 import gsap from "gsap";
 import { Draggable } from "gsap/Draggable";
-import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef } from "react";
+import Lenis from "lenis";
 
-gsap.registerPlugin(Draggable, ScrollTrigger, ScrollToPlugin);
+gsap.registerPlugin(Draggable, ScrollTrigger);
 
 const NAV_ITEMS = [
     { label: "About", sectionId: "about" },
@@ -18,33 +18,27 @@ const NAV_ITEMS = [
 ];
 
 function scrollToSection(sectionId: string) {
+    const lenis = (window as any).__lenis as Lenis | undefined;
+    if (!lenis) return;
+
+    // Try ScrollTrigger-based position first
     const trigger = ScrollTrigger.getById(sectionId);
-
     if (trigger) {
-        gsap.to(window, {
-            duration: 1.2,
-            ease: "power3.inOut",
-            scrollTo: {
-                y: trigger.start,
-                autoKill: true,
-            },
+        lenis.scrollTo(trigger.start, {
+            duration: 1.4,
+            easing: (t) => 1 - Math.pow(1 - t, 3),
         });
-
         return;
     }
 
-    // Fallback for normal sections.
+    // Fallback for normal sections
     const el = document.getElementById(sectionId);
-
     if (!el) return;
 
-    gsap.to(window, {
-        duration: 1,
-        ease: "power3.inOut",
-        scrollTo: {
-            y: el,
-            autoKill: true,
-        },
+    lenis.scrollTo(el, {
+        offset: 0,
+        duration: 1.2,
+        easing: (t) => 1 - Math.pow(1 - t, 3),
     });
 }
 

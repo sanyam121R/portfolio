@@ -3,6 +3,8 @@ import "./globals.css";
 import CursorCanvas from "@/components/CursorCanvas";
 import { inter, doto, montreuil, werid_word, mansalva } from "@/lib/fonts";
 import DraggableNav from "@/components/DraggableNav";
+import PreLoader from "@/components/PreLoader";
+import SmoothScroll from "@/components/SmoothScroll";
 
 export const metadata: Metadata = {
   title: "Sanyam Rathore's Portfolio",
@@ -22,8 +24,11 @@ export default function RootLayout({
     >
       <body className="min-h-full bg-[url('/assets/black-bg.jpeg')] bg-cover bg-center bg-fixed">
         <CursorCanvas />
-        {children}
-        <DraggableNav />
+        <SmoothScroll>
+          {children}
+          <DraggableNav />
+        </SmoothScroll>
+        <PreLoader minMs={2000} />
       </body>
     </html>
   );

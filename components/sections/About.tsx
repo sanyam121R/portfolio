@@ -92,13 +92,13 @@ export default function About() {
 
                         <div className="flex flex-row gap-1.5 flex-wrap justify-start">
                             {["☘️ Charming", "⚡️ Completion-oriented", "✨ Aesthetics-aware", "🚀 Quick learner", "🧑🏻‍🎨 Sketch artist", "Backend depth", "Frontend calm",].map((spec, index) => (
-                                <button
-                                    aria-label="Decorative glass button"
+                                <div
+                                    aria-label="Decorative glass"
                                     className="w-max py-1 px-3 italic text-sm-200 h-[28px] rounded-xl smooth-corners text-secondary backdrop-blur-[1.5px] backdrop-brightness-100 backdrop-saturate-100 [-webkit-backdrop-filter:blur(1.5px)_brightness(100.0%)_saturate(100.0%)] shadow-[inset_0_1px_0_rgba(255,255,255,0.40),inset_1px_0_0_rgba(255,255,255,0.32),inset_0_-1px_1px_rgba(0,0,0,0.13),inset_-1px_0_1px_rgba(0,0,0,0.11)] bg-[linear-gradient(180deg,rgba(0,0,0,0.2)_0%,rgba(102,102,102,0.2)_100%),linear-gradient(0deg,rgba(44,44,44,0.2)_0%,rgba(44,44,44,0.2)_100%)]"
                                     key={index + spec}
                                 >
                                     {spec}
-                                </button>
+                                </div>
                             ))}
                             {/* </div> */}
                         </div>

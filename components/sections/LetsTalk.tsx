@@ -27,21 +27,20 @@ const T = {
 export function Marquee({ text }: { text: string }) {
   return (
     <div className="absolute bottom-1 left-0 right-0 z-40 overflow-hidden border-y border-primary">
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-linear-to-r from-background to-transparent" />
-
-<div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-linear-to-l from-background to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-6 md:w-50 bg-linear-to-r from-background to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-6 md:w-50 bg-linear-to-l from-background to-transparent" />
 
       <div className="marquee-track">
-      {Array.from({ length: 4 }).map((_, i) => (
-        <div
-          key={i}
-          aria-hidden={i !== 0}
-          className="shrink-0 whitespace-nowrap pl-1 text-[10px] tracking-wide text-secondary md:text-sm"
-        >
-          { text}
-        </div>
-      ))}
-    </div>
+        {Array.from({ length: 4 }).map((_, i) => (
+          <div
+            key={i}
+            aria-hidden={i !== 0}
+            className="shrink-0 whitespace-nowrap pl-1 text-[10px] tracking-wide text-secondary md:text-sm"
+          >
+            {text}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
@@ -145,7 +144,7 @@ export default function LetsTalk() {
       <div className="relative flex h-screen items-center justify-center overflow-hidden">
 
         {/* Tagline — top right */}
-        <section
+        {/* <section
           className="
             absolute top-40 right-53 md:top-40 md:right-53 z-30
             text-right font-mansalva text-2xl md:text-[44px]
@@ -158,6 +157,23 @@ export default function LetsTalk() {
           <p className="relative top-[-23px]">
             if not NOW, then WHEN!
           </p>
+        </section> */}
+        <section
+          className="
+            absolute top-36 right-20 md:top-40 md:left-[55%] z-30
+            flex flex-col gap-2.5 text-xl md:text-[32px]
+            text-secondary leading-relaxed
+          "
+        >
+          <div>
+            <p className=" text-xl md:text-[32px]/[26px]">Every great product</p>
+            <p className="">starts with a conversation.</p>
+          </div>
+          <div className="w-12 h-px bg-tertiary rounded-2xl"></div>
+          <div className="text-tertiary text-base">
+            Ideas. People. Purpose.
+          </div>
+
         </section>
 
         {/* ── Hands + center image ─────────────────────────────────── */}
@@ -194,6 +210,7 @@ export default function LetsTalk() {
                   src={src}
                   alt={`Stage ${idx + 1}`}
                   fill
+                  sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 33vw"
                   className="object-contain"
                   priority
                   draggable={false}
@@ -223,21 +240,26 @@ export default function LetsTalk() {
         </div>
 
         {/* CTA — bottom left */}
-        <div className="absolute bottom-8 left-8 md:bottom-36 md:left-56 z-30">
+        <div className="absolute bottom-32 left-26 md:bottom-40 md:left-69 z-30">
           <h2
             className="
-              font-doto md:text-7xl lg:text-8xl/[110px]
-              bg-[linear-gradient(0deg,#000_10%,#fff_40%)]
+              font-doto font-bold text-[54px] md:text-6xl/[84px] lg:text-7xl/[84px]
+              bg-[linear-gradient(0deg,#000_10%,#fff_50%)]
               bg-clip-text [-webkit-background-clip:text]
               text-transparent [-webkit-text-fill-color:transparent]
-              text-4xl text-center tracking-normal leading-normal whitespace-nowrap
+              text-start tracking-normal leading-normal whitespace-nowrap
             "
           >
-            Hire Me.
+            HIRE ME.
           </h2>
-          <p className="font-mansalva text-2xl md:text-3xl lg:text-[34px]">
-            LET&apos;S CONNECT!
-          </p>
+          <div className="text-[18px] text-secondary md:text-xl lg:text-[24px]">
+            <p >
+              Building thoughtful software
+            </p>
+            <p>
+              for ambitious teams.
+            </p>
+          </div>
         </div>
       </div>
 
