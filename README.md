@@ -131,3 +131,14 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 - **LinkedIn:** [linkedin.com/in/sanyam-rathore](https://linkedin.com/in/sanyam-rathore)
 - **Email:** sanyam.12rathore@gmail.com
 
+
+### Curosr
+
+cursor: url('https://cdn.cursors-4u.net/previews/paper-airplane-19477b19-32.webp') 28 28, auto !important; 
+cursor: url('https://cdn.cursors-4u.net/previews/batman-536f0ffc-32.webp') 32 32, auto !important; 
+cursor: url('https://cdn.cursors-4u.net/previews/chrome-pointer-4db561db-32.webp') 34 34, auto !important; 
+cursor: url('https://cdn.cursors-4u.net/previews/batman-logo-5093138d-32.webp') 32 32, auto !important;
+
+Tailwind style
+cursor-[url('https://cdn.cursors-4u.net/previews/paper-airplane-19477b19-32.webp')_32_32,_auto] !important
+cursor-[url('https://cdn.cursors-4u.net/previews/batman-logo-5093138d-32.webp')_32_32,_auto] !important

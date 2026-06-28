@@ -70,13 +70,13 @@ const Footer = () => {
           <nav aria-label="Footer navigation">
             <ul className="flex flex-wrap gap-1 flex-col md:flex-row" role="list">
               {links.map(({ label, url, ariaLabel, icon: Icon, external }) => (
-                <li key={label}>
+                <li key={label} className="cursor-[url('https://cdn.cursors-4u.net/previews/tiny-finger-point-c1336353-32.webp')_32_32,auto]">
                   <a
                     href={url}
-                    target={external ? '_blank' : '_self'}
+                    target='_blank'
                     rel={external ? 'noopener noreferrer' : undefined}
                     aria-label={ariaLabel}
-                    className="group inline-flex items-center gap-1.5 text-sm text-tertiary transition-colors duration-200 hover:text-secondary hover:bg-primary/4 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-primary/30"
+                    className="cursor-[url('https://cdn.cursors-4u.net/previews/tiny-finger-point-c1336353-32.webp')_32_32,auto] group inline-flex items-center gap-1.5 text-sm text-tertiary transition-colors duration-200 hover:text-secondary hover:bg-primary/4 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-primary/30"
                   >
                     <Icon
                       size={14}

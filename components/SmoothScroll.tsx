@@ -26,9 +26,10 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 0.9,
+      wheelMultiplier: 1,
       syncTouch: true,
-      syncTouchLerp: 0.075,
+      syncTouchLerp: 0.1,
+      touchMultiplier: 1.5,
     });
 
     // Expose globally for other components

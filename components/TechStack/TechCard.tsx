@@ -23,8 +23,9 @@ export const TechCard = forwardRef<HTMLDivElement, TechCardProps>(
       <motion.div
         ref={ref}
         className={`tech-entrance-item relative flex items-center gap-2.5
-          rounded-xl border px-2.5 py-2 cursor-pointer select-none
+          rounded-xl border px-2.5 py-2 select-none
           transition-colors duration-150
+          cursor-[url('https://cdn.cursors-4u.net/previews/tiny-finger-point-c1336353-32.webp')_32_32,auto]
           ${isFixed
             ? "border-white/40 bg-[#1e1e1e]"
             : isActive

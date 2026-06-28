@@ -61,7 +61,7 @@ export function SkillPanel({ skill, onClose, isFixed = false, monochrome = false
           </div>
           <button
             onClick={onClose}
-            className="text-tertiary hover:text-foreground transition-colors p-1 rounded-md hover:bg-white/5"
+            className="cursor-[url('https://cdn.cursors-4u.net/previews/tiny-finger-point-c1336353-32.webp')_32_32,auto] text-tertiary hover:text-foreground transition-colors p-1 rounded-md hover:bg-white/5"
             aria-label="Close panel"
           >
             <X size={14} />

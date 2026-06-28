@@ -15,13 +15,14 @@ const CENTER_IMAGES = [
   "/assets/lets talk/4.png",
 ];
 
+// Optimized timing for smoother animation
 const T = {
   img1In: 0,
-  img2In: 1.1,
-  img3In: 2.2,
-  img4In: 3.3,
-  finalHold: 3.9,
-  end: 4.5,
+  img2In: 0.8,
+  img3In: 1.6,
+  img4In: 2.4,
+  finalHold: 3.0,
+  end: 3.5,
 } as const;
 
 export function Marquee({ text }: { text: string }) {
@@ -71,18 +72,24 @@ export default function LetsTalk() {
       const tl = gsap.timeline({
         scrollTrigger: {
           id: "lets-talk",
-
           trigger: sectionRef.current,
           start: "top top",
-          // end: "+=4200",
-          end: () => `+=${window.innerHeight * 5}`,
-
+          // Reduced from 5x to 3x viewport height for smoother scroll
+          end: () => `+=${window.innerHeight * 3}`,
           pin: true,
-          scrub: 0.9,
-          // ✅ FIX 1: pinSpacing ensures the spacer expands properly
+          // Lower scrub value for more responsive feel (was 0.9)
+          scrub: 0.5,
           pinSpacing: true,
-          anticipatePin: 1,
+          // Reduced anticipatePin to prevent jump (was 1)
+          anticipatePin: 0.5,
           invalidateOnRefresh: true,
+          // Add smooth end transition
+          onLeave: () => {
+            gsap.to(sectionRef.current, { opacity: 1, duration: 0.3 });
+          },
+          onEnterBack: () => {
+            gsap.to(sectionRef.current, { opacity: 1, duration: 0.3 });
+          },
         },
       });
 
@@ -185,7 +192,9 @@ export default function LetsTalk() {
             className="
               relative z-10 flex-1
               h-[38vh] md:h-[50vh] lg:h-[calc(100vh-20px)]
+              will-change-transform
             "
+            style={{ transform: 'translateZ(0)' }}
           >
             <Image
               src="/assets/lets talk/left hand.png"
@@ -204,7 +213,8 @@ export default function LetsTalk() {
               <div
                 key={src}
                 ref={(el) => { imgRefs.current[idx] = el; }}
-                className="absolute inset-0"
+                className="absolute inset-0 will-change-transform"
+                style={{ transform: 'translateZ(0)' }}
               >
                 <Image
                   src={src}
@@ -225,7 +235,9 @@ export default function LetsTalk() {
             className="
               relative z-10 flex-1
               h-[38vh] md:h-[50vh] lg:h-[calc(100vh-20px)]
+              will-change-transform
             "
+            style={{ transform: 'translateZ(0)' }}
           >
             <Image
               src="/assets/lets talk/right hand.png"

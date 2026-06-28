@@ -37,7 +37,6 @@
     padding: 0;
     box-sizing: border-box;
   }
-
   body {
     color: var(--color-primary);
     background-color: var(--color-background);
@@ -70,16 +69,18 @@
   width: max-content;
   align-items: center;
   animation: marquee 30s linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 @keyframes marquee {
-from {
-  transform: translate3d(0, 0, 0);
-}
-
-to {
-  transform: translate3d(-50%, 0, 0);
-}
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
 }
 
 @media (hover: hover) {

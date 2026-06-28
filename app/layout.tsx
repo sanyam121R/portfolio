@@ -10,6 +10,10 @@ export const metadata: Metadata = {
   title: "Sanyam Rathore's Portfolio",
   description: "Get to know Sanyam Rathore..",
   icons: { icon: "/assets/favicon.png" },
+  other: {
+    // This injects the link tag automatically into the <head>
+    'cursor-style': 'https://cdn.cursors-4u.net/cursors/animated/paper-airplane-19477b19-32.css',
+  },
 };
 
 export default function RootLayout({

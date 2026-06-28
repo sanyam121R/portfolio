@@ -4,6 +4,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import { useRef } from "react";
+import WaveText from "../WaveText";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -187,7 +188,7 @@ export default function Work() {
                                     rel="noopener noreferrer"
                                     className="w-max text-base md:text-lg hover:underline"
                                 >
-                                    Case Study
+                                    <WaveText text="Case Study"/>
                                 </a>
                                 <svg
                                     width="17" height="16" viewBox="0 0 19 18" fill="none"

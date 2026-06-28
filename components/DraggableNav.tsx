@@ -5,6 +5,7 @@ import { Draggable } from "gsap/Draggable";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef } from "react";
 import Lenis from "lenis";
+import WaveText from "./WaveText";
 
 gsap.registerPlugin(Draggable, ScrollTrigger);
 
@@ -402,9 +403,9 @@ export default function DraggableNav() {
                                         e.preventDefault();
                                         scrollToSection(item.sectionId);
                                     }}
-                                    className="select-none whitespace-nowrap cursor-pointer"
+                                    className="select-none whitespace-nowrap"
                                 >
-                                    {item.label}
+                                    <WaveText text={item.label} />
                                 </a>
                             </div>
                         ))}
@@ -414,7 +415,7 @@ export default function DraggableNav() {
                         ref={togglerRef}
                         className="group
                         relative w-8 h-8 p-1.5 rounded-full
-                        flex flex-col justify-center items-center gap-0.5 shrink-0 cursor-pointer"
+                        flex flex-col justify-center cursor-[url('https://cdn.cursors-4u.net/previews/tiny-finger-point-c1336353-32.webp')_32_32,auto] items-center gap-0.5 shrink-0"
                     >
                         <span
                             className="relative w-full h-0.5 bg-toggle rounded-full origin-center
@@ -453,7 +454,7 @@ export default function DraggableNav() {
                                     e.preventDefault();
                                     scrollToSection(item.sectionId);
                                 }}
-                                className="select-none whitespace-nowrap cursor-pointer"
+                                className="select-none whitespace-nowrap cursor-[url('https://cdn.cursors-4u.net/previews/tiny-finger-point-c1336353-32.webp')_32_32,auto]"
                             >
                                 {item.label}
                             </a>
