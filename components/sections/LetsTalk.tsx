@@ -188,7 +188,7 @@ export default function LetsTalk() {
             "
           >
             <Image
-              src="/assets/lets connect/left hand.png"
+              src="/assets/lets talk/left hand.png"
               alt=""
               fill
               sizes="50vw"
@@ -228,7 +228,7 @@ export default function LetsTalk() {
             "
           >
             <Image
-              src="/assets/lets connect/right hand.png"
+              src="/assets/lets talk/right hand.png"
               alt=""
               fill
               sizes="50vw"
