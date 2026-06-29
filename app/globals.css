@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+:root {
+  --background: #111;
+  --foreground: #fff;
+  --primary: #fff;
+  --secondary: #E1E1E1;
+  --tertiary: #787878;
+  --toggle: #525252;
+  --primary-border: #303030;
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-tertiary: var(--tertiary);
+  --color-toggle: var(--toggle);
+  --color-primary-border: var(--primary-border);
+
+  --font-inter: var(--font-inter);
+  --font-mont-sign: var(--font-montreuil-signature);
+  --font-weird-word: var(--font-weird-word);
+  --font-doto: var(--font-doto);
+  --font-mansalva: var(--font-mansalva);
+
+  --animate-marquee: marquee 22s linear infinite;
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    color: var(--color-primary);
+    background-color: var(--color-background);
+    font-family: Inter, Helvetica, sans-serif;
+  }
+
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  h1 {
+    font-size: 2rem;
+    font-family: var(--font-weird-word);
+  }
+
+  ::-webkit-scrollbar {
+    display: none
+  }
+}
+
+@utility smooth-corners {
+  corner-shape: squircle;
+}
+
+/* Infinite marquee scroll for LetsTalk section */
+@utility marquee-track {
+  display: inline-flex;
+  width: max-content;
+  align-items: center;
+  animation: marquee 30s linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+@keyframes marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (hover: hover) {
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+}
+
+@media (prefers-reduced-motion: reduce) {
+.marquee-track {
+  animation: none;
+  transform: none;
+}
+}
