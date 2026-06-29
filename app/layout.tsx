@@ -32,7 +32,7 @@ export default function RootLayout({
           {children}
           <DraggableNav />
         </SmoothScroll>
-        {/* <PreLoader minMs={2000} /> */}
+        <PreLoader minMs={2000} />
       </body>
     </html>
   );
