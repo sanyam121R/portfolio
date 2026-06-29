@@ -41,7 +41,7 @@ export function SkillPanel({ skill, onClose, isFixed = false, monochrome = false
       initial="hidden"
       animate="visible"
       exit="exit"
-      className="h-full rounded-4xl smooth-corners border border-primary-border shadow-2xl p-5 space-y-7"
+      className="h-full rounded-4xl smooth-corners border border-primary-border shadow-2xl p-4 sm:p-5 space-y-5 sm:space-y-7 max-w-lg mx-auto lg:max-w-none"
     >
       {/* Header */}
       <motion.div variants={itemVariants}>
@@ -71,13 +71,13 @@ export function SkillPanel({ skill, onClose, isFixed = false, monochrome = false
         {/* Skill hero */}
         <motion.div variants={itemVariants} className="flex items-start gap-3 mt-2">
           <div
-            className="shrink-0 w-14 h-14 rounded-xl flex items-center justify-center bg-[#1e1e1e] border border-primary-border"
+            className="shrink-0 w-11 h-11 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center bg-[#1e1e1e] border border-primary-border"
             style={{ boxShadow: `0 0 16px 2px ${skill.color}22` }}
           >
-            <Icon size={28} color={skill.color} />
+            <Icon size={22} className="sm:w-[28px] sm:h-[28px]" color={skill.color} />
           </div>
           <div>
-            <h3 className="text-primary font-inter font-bold text-xl leading-tight">
+            <h3 className="text-primary font-inter font-bold text-lg sm:text-xl leading-tight">
               {skill.name}
             </h3>
             <p className="text-tertiary font-inter text-xs mt-0.5">{skill.category}</p>
@@ -129,7 +129,7 @@ export function SkillPanel({ skill, onClose, isFixed = false, monochrome = false
           {skill.tools.map((tool) => (
             <span
               key={tool}
-              className="bg-toggle border border-primary-border text-secondary text-[10px] rounded-full px-2.5 py-0.5"
+              className="bg-toggle border border-primary-border text-secondary text-[9px] sm:text-[10px] rounded-full px-2 sm:px-2.5 py-0.5"
             >
               {tool}
             </span>
@@ -149,7 +149,7 @@ export function SkillPanel({ skill, onClose, isFixed = false, monochrome = false
               <span className="text-secondary font-inter text-xs">
                 • {proj.name}
               </span>
-              <span className="bg-toggle border border-primary-border text-secondary font-inter text-[10px] rounded-full px-2 py-0.5 shrink-0">
+              <span className="bg-toggle border border-primary-border text-secondary font-inter text-[9px] sm:text-[10px] rounded-full px-1.5 sm:px-2 py-0.5 shrink-0">
                 {proj.tech}
               </span>
             </li>
@@ -184,9 +184,9 @@ function StatTile({
   color: string;
 }) {
   return (
-    <div className="flex flex-col items-center gap-0.5 bg-[#1a1a1a] rounded-xl border border-primary-border p-3">
-      <span className={`font-inter font-bold text-xl ${color}`}>{value}</span>
-      <span className="text-tertiary font-inter text-[9px] text-center leading-tight">
+    <div className="flex flex-col items-center gap-0.5 bg-[#1a1a1a] rounded-xl border border-primary-border p-2 sm:p-3">
+      <span className={`font-inter font-bold text-lg sm:text-xl ${color}`}>{value}</span>
+      <span className="text-tertiary font-inter text-[8px] sm:text-[9px] text-center leading-tight">
         {label}
       </span>
     </div>

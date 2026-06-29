@@ -36,7 +36,7 @@ export function OverviewPanel() {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="h-full rounded-4xl smooth-corners border border-primary-border shadow-2xl p-5 space-y-7"
+      className="h-full rounded-4xl smooth-corners border border-primary-border shadow-2xl p-4 sm:p-5 space-y-5 sm:space-y-7 max-w-lg mx-auto lg:max-w-none"
     >
       {/* Header */}
       <motion.div variants={itemVariants}>
@@ -44,11 +44,14 @@ export function OverviewPanel() {
           Overview
         </p>
         <div className="flex items-start gap-3 mt-2">
-          <div className="w-12 h-12 shrink-0 rounded-xl border border-primary-border flex items-center justify-center">
-            <span className="text-foreground text-2xl">✦</span>
+          <div className="w-10 h-10 sm:w-12 sm:h-12 shrink-0 rounded-3xl smooth-corners border border-primary-border flex items-center justify-center">
+            <span className="text-foreground text-xl sm:text-2xl">✦</span>
           </div>
+          {/* <div className="w-12 h-12 shrink-0 rounded-xl border border-primary-border flex items-center justify-center">
+            <span className="text-foreground text-2xl">✦</span>
+          </div> */}
           <div>
-            <h3 className="text-foreground font-inter font-bold text-lg leading-tight">
+            <h3 className="text-foreground font-inter font-bold text-base sm:text-lg leading-tight">
               Full Stack Engineer
             </h3>
             <p className="text-secondary font-inter text-xs mt-1 leading-relaxed">
@@ -68,11 +71,11 @@ export function OverviewPanel() {
         ].map(({ icon, value, label }) => (
           <div
             key={label}
-            className="flex flex-col items-center gap-1 bg-[#1a1a1a] rounded-xl border border-primary-border p-3"
+            className="flex flex-col items-center gap-1 bg-[#1a1a1a] rounded-3xl smooth-corners border border-primary-border p-2 sm:p-3"
           >
             <span className="text-tertiary">{icon}</span>
-            <span className="text-foreground font-inter font-bold text-lg">{value}</span>
-            <span className="text-tertiary font-inter text-[9px] text-center leading-tight">
+            <span className="text-foreground font-inter font-bold text-base sm:text-lg">{value}</span>
+            <span className="text-tertiary font-inter text-[8px] sm:text-[9px] text-center leading-tight">
               {label}
             </span>
           </div>
@@ -101,7 +104,7 @@ export function OverviewPanel() {
         </p>
         <div className="space-y-2">
           <ApproachCard
-            icon={<Layers size={20} className="text-secondary" />}
+            icon={<Layers size={18} className="sm:w-[20px] sm:h-[20px] text-secondary" />}
             text={
               <>
                 The right technology for the right problem. Always scalable.
@@ -111,7 +114,7 @@ export function OverviewPanel() {
             }
           />
           <ApproachCard
-            icon={<MousePointer size={20} className="text-secondary" />}
+            icon={<MousePointer size={18} className="sm:w-[20px] sm:h-[20px] text-secondary" />}
             text="Hover over any technology to see how I leverage it."
           />
         </div>
@@ -128,8 +131,8 @@ function ApproachCard({
   text: React.ReactNode;
 }) {
   return (
-    <div className="flex items-start gap-3 rounded-xl border border-primary-border  p-3">
-      <div className="mt-0.5 shrink-0 border border-white/20 p-2 rounded-full">{icon}</div>
+    <div className="flex items-start gap-3 rounded-3xl smooth-corners border border-primary-border p-2.5 sm:p-3">
+      <div className="mt-0.5 shrink-0 border border-white/20 p-1.5 sm:p-2 rounded-full">{icon}</div>
       <p className="text-secondary font-inter text-xs leading-relaxed">{text}</p>
     </div>
   );

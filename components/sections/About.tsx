@@ -12,7 +12,7 @@ function DotGrid() {
 
 export default function About() {
     return (
-        <div id="about" className="h-svh w-svw p-8 pt-20 flex flex-col gap-10">
+        <div id="about" className="h-auto md:h-svh w-svw p-8 pt-20 flex flex-col gap-10">
 
             <h1 className="
                 bg-[linear-gradient(0deg,#000_11%,#fff_57%)]
@@ -52,12 +52,12 @@ export default function About() {
                             <span className="text-secondary">ART</span>{" "}
                             <span className="text-secondary">form</span>
                             . I care about how things look because, I care about how things{" "}
-                            <em className="text-secondary italic">feel</em>
+                            <em className="text-secondary italic">feel{" "}</em>
                             {" "}to use.
                         </p>
 
                         <p className="mb-5">
-                            +4 years in, I&apos;ve shipped systems that move data between enterprise
+                            <span className="text-secondary">+4 years </span> in, I&apos;ve shipped systems that move data between enterprise
                             platforms at scale, handle real-time events reliably, and give teams back
                             hours they used to lose, to manual work. My stack lives mostly in React,
                             TypeScript, Node.js, and cloud infrastructure — but the{" "}
@@ -83,7 +83,7 @@ export default function About() {
                     </div>
 
                     {/* <div className="flex flex-col gap-4 justify-center text-center items-center"> */}
-                    <svg  width="100%" height="6" viewBox="0 0 434 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="100%" height="6" viewBox="0 0 434 6" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M-3.26633e-05 2.88678L2.88672 5.77353L5.77347 2.88678L2.88672 2.83718e-05L-3.26633e-05 2.88678ZM433.773 2.88678L430.887 2.83718e-05L428 2.88678L430.887 5.77353L433.773 2.88678ZM2.88672 2.88678V3.38678H430.887V2.88678V2.38678H2.88672V2.88678Z" fill="white" />
                     </svg>
 

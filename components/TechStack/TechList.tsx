@@ -16,7 +16,7 @@ interface TechListProps {
 
 export function TechList({ items, activeId, cardRefs, onHover, onLeave, onClick, fixedSkill }: TechListProps) {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 items-center lg:items-start">
       {/* Badge — full width */}
       <div className="tech-entrance-item inline-flex items-center gap-2 rounded-xl smooth-corners border border-primary-border px-3 py-1.5 w-fit mb-1">
         <span className="relative flex h-2 w-2">
@@ -28,8 +28,8 @@ export function TechList({ items, activeId, cardRefs, onHover, onLeave, onClick,
         </span>
       </div>
 
-      {/* Hero copy — intentionally NOT constrained, fills column */}
-      <div className="tech-entrance-item mb-0.5">
+      {/* Hero copy — centered on mobile, left-aligned on desktop */}
+      <div className="tech-entrance-item mb-0.5 text-center lg:text-left">
         <h2 className="text-[clamp(1.35rem,2.5vw,2rem)] leading-snug">
           Technologies converge.
         </h2>
@@ -39,12 +39,12 @@ export function TechList({ items, activeId, cardRefs, onHover, onLeave, onClick,
       </div>
 
       {/* Subtext */}
-      <p className="tech-entrance-item text-tertiary text-xs font-inter leading-relaxed mb-2 max-w-[260px]">
+      <p className="tech-entrance-item text-tertiary text-xs font-inter leading-relaxed mb-2 max-w-[260px] text-center lg:text-left">
         I combine the right technologies to build scalable, performant and impactful solutions.
       </p>
 
-      {/* Cards — constrained width */}
-      <div className="flex flex-col gap-2 max-w-[220px] ml-10">
+      {/* Cards — centered on mobile, offset on desktop */}
+      <div className="flex flex-col gap-2 w-full max-w-[260px] sm:max-w-[300px] lg:max-w-[220px] lg:ml-10">
         {items.map((item, index) => (
           <TechCard
             key={item.id}

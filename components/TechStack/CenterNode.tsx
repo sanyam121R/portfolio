@@ -25,13 +25,12 @@ export function CenterNode() {
 
   return (
     /*
-      Fixed size wrapper — this is what centerRef points to.
+      Responsive size wrapper — this is what centerRef points to.
       The SVG hexagon fills it, content sits on top.
     */
     <div
       ref={pulseRef}
-      className="relative flex items-center justify-center"
-      style={{ width: 210, height: 235 }}
+      className="relative flex items-center justify-center w-[160px] h-[180px] sm:w-[185px] sm:h-[205px] lg:w-[210px] lg:h-[235px]"
     >
       {/* ── Hexagon SVG background ── */}
       <svg
@@ -64,41 +63,18 @@ export function CenterNode() {
           d={hexPath(105, 117, 98, 14)}
           fill="url(#hex-grad)"
         />
-
-        {/*
-          Individual face strokes:
-          Top-right + right faces: brighter
-          Bottom-left + left faces: dimmer
-          We draw each edge as a separate line.
-        */}
-        {/* {hexEdges(105, 117, 98, 14).map((edge, i) => (
-          <line
-            key={i}
-            x1={edge.x1} y1={edge.y1}
-            x2={edge.x2} y2={edge.y2}
-            stroke={
-              i === 0 || i === 1
-                ? "rgba(255,255,255,0.35)"   // top faces — bright
-                : i === 2
-                ? "rgba(255,255,255,0.20)"   // upper-right
-                : "rgba(255,255,255,0.08)"   // other faces — dim
-            }
-            strokeWidth="1"
-            strokeLinecap="round"
-          />
-        ))} */}
       </svg>
 
       {/* ── Inner content ── */}
-      <div className="relative z-10 flex flex-col items-center gap-2.5 px-3">
-        <p className="font-inter font-bold text-foreground text-[20px] text-center leading-snug">
+      <div className="relative z-10 flex flex-col items-center gap-1.5 sm:gap-2.5 px-2 sm:px-3">
+        <p className="font-inter font-bold text-foreground text-[15px] sm:text-[17px] lg:text-[20px] text-center leading-snug">
           Full Stack Engineer
         </p>
         <span className="text-center">
-        <p className="text-tertiary text-[10px] font-inter tracking-wide leading-relaxed">
+        <p className="text-tertiary text-[8px] sm:text-[9px] lg:text-[10px] font-inter tracking-wide leading-relaxed">
           Designing • Building • Scaling
         </p>
-        <p className="text-tertiary text-[10px] font-inter tracking-wide leading-relaxed">
+        <p className="text-tertiary text-[8px] sm:text-[9px] lg:text-[10px] font-inter tracking-wide leading-relaxed">
           End-to-end digital solutions
         </p>
         </span>

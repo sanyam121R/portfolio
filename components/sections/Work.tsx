@@ -79,9 +79,10 @@ export default function Work() {
 
     return (
         <div id="work" className="h-fit w-svw p-8 pt-16 flex flex-col gap-12 items-center">
-            <section className="h-[calc(100svh-100px)] w-[calc(100%-340px)] border border-primary-border smooth-corners p-5 rounded-4xl text-center">
+            {/* <section className="h-[calc(100svh-100px)] w-[calc(100%-340px)] border border-primary-border smooth-corners p-5 rounded-4xl text-center">
                 Pending - Infinite Canvas
-            </section>
+                md:left-20 md:-top-35
+            </section> */}
 
             <section className="relative w-full">
                 <Image
@@ -89,7 +90,8 @@ export default function Work() {
                     alt="work laptop"
                     height={206}
                     width={216}
-                    className="absolute left-20 -top-35 z-20"
+                    className="absolute md:left-20 md:-top-6
+                    left-2 -top-12 h-[80px] w-[80px] md:h-auto md:w-auto invisible md:visible"
                 />
                 <div className="flex flex-col items-center relative">
                     <h1 className="
@@ -108,7 +110,8 @@ export default function Work() {
                     alt="work laptop"
                     height={140}
                     width={140}
-                    className="absolute right-20 top-10"
+                    className="absolute -right-8 top-20 md:right-20 md:top-10 
+                    h-[100px] w-[100px] md:h-auto md:w-auto"
                 />
             </section>
 

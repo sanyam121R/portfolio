@@ -132,7 +132,7 @@ export function ConnectionLines({
         if (rightPanelRef.current) {
           const p = toSec(rightPanelRef.current.getBoundingClientRect());
           const tx = p.left;
-          const ty = p.top + rightPanelRef.current.getBoundingClientRect().height * 0.4412 ;
+          const ty = p.top + rightPanelRef.current.getBoundingClientRect().height * 0.5 ;
           const midX = hexRightX + (tx - hexRightX) * 0.5;
 
           newPaths.push({
