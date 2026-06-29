@@ -317,8 +317,11 @@ export default function PreLoader({ minMs = 2500, onDone }: PreLoaderProps) {
       <canvas ref={canvasRef} style={{ display: 'block' }} />
 
       {/* Remove the span below if you don't want the loading label */}
-      <span className="absolute bottom-[30%] left-1/2 -translate-x-1/2 text-[10px] tracking-[0.45em] opacity-55 select-none whitespace-nowrap">
+      <span className="absolute bottom-[30%] left-1/2 -translate-x-1/2 text-[10px] tracking-[0.45em]  select-none whitespace-nowrap">
         LOADING...
+      </span>
+      <span className="absolute uppercase bottom-[27%] left-1/2 -translate-x-1/2 text-[10px] tracking-[0.45em]  select-none whitespace-nowrap">
+        For Better Experince open on Laptop
       </span>
     </div>
   );

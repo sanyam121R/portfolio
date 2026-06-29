@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef } from "react";
 import Lenis from "lenis";
 import WaveText from "./WaveText";
+import { scrollToSection } from "./SmoothScroll";
 
 gsap.registerPlugin(Draggable, ScrollTrigger);
 
@@ -18,30 +19,30 @@ const NAV_ITEMS = [
     { label: "Let's Talk", sectionId: "contact-me" },
 ];
 
-function scrollToSection(sectionId: string) {
-    const lenis = (window as any).__lenis as Lenis | undefined;
-    if (!lenis) return;
+// function scrollToSection(sectionId: string) {
+//     const lenis = (window as any).__lenis as Lenis | undefined;
+//     if (!lenis) return;
 
-    // Try ScrollTrigger-based position first
-    const trigger = ScrollTrigger.getById(sectionId);
-    if (trigger) {
-        lenis.scrollTo(trigger.start, {
-            duration: 1.4,
-            easing: (t) => 1 - Math.pow(1 - t, 3),
-        });
-        return;
-    }
+//     // Try ScrollTrigger-based position first
+//     const trigger = ScrollTrigger.getById(sectionId);
+//     if (trigger) {
+//         lenis.scrollTo(trigger.start, {
+//             duration: 1.4,
+//             easing: (t) => 1 - Math.pow(1 - t, 3),
+//         });
+//         return;
+//     }
 
-    // Fallback for normal sections
-    const el = document.getElementById(sectionId);
-    if (!el) return;
+//     // Fallback for normal sections
+//     const el = document.getElementById(sectionId);
+//     if (!el) return;
 
-    lenis.scrollTo(el, {
-        offset: 0,
-        duration: 1.2,
-        easing: (t) => 1 - Math.pow(1 - t, 3),
-    });
-}
+//     lenis.scrollTo(el, {
+//         offset: 0,
+//         duration: 1.2,
+//         easing: (t) => 1 - Math.pow(1 - t, 3),
+//     });
+// }
 
 export default function DraggableNav() {
     const wrapperRef = useRef<HTMLDivElement>(null);
@@ -388,7 +389,9 @@ export default function DraggableNav() {
                         ref={logoRef}
                         className="flex flex-row justify-center items-center gap-1 bg-background h-8 w-max p-3 rounded-full shrink-0"
                     >
-                        <div ref={logoLineRef} className="text-5xl/7 font-mont-sign text-secondary">sanyam.</div>
+                        <div ref={logoLineRef} onClick={()=>scrollToSection("hero")} className="text-5xl/7 font-mont-sign text-secondary cursor-[url('https://cdn.cursors-4u.net/previews/tiny-finger-point-c1336353-32.webp')_32_32,auto]">
+                            <WaveText text="sanyam." />
+                        </div>
                     </div>
 
                     <div ref={itemsRef} className="flex flex-row gap-1 overflow-hidden">

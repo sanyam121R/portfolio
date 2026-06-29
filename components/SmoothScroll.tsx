@@ -14,6 +14,31 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
  */
 export const lenisRef = { current: null as Lenis | null };
 
+export function scrollToSection(sectionId: string) {
+  const lenis = (window as any).__lenis as Lenis | undefined;
+  if (!lenis) return;
+
+  // Try ScrollTrigger-based position first
+  const trigger = ScrollTrigger.getById(sectionId);
+  if (trigger) {
+      lenis.scrollTo(trigger.start, {
+          duration: 1.4,
+          easing: (t) => 1 - Math.pow(1 - t, 3),
+      });
+      return;
+  }
+
+  // Fallback for normal sections
+  const el = document.getElementById(sectionId);
+  if (!el) return;
+
+  lenis.scrollTo(el, {
+      offset: 0,
+      duration: 1.2,
+      easing: (t) => 1 - Math.pow(1 - t, 3),
+  });
+}
+
 export default function SmoothScroll({ children }: { children: ReactNode }) {
   const wrapperRef = useRef<HTMLDivElement>(null);
 
