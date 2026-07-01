@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useRef, useState, useCallback } from 'react';
-
+import { motion } from 'framer-motion';
 // ─── Types ──────────────────────────────────────────────────────────────────────
 
 type Phase = 'in' | 'out' | 'gone';
@@ -35,7 +35,7 @@ function waitForPageReady(): Promise<void> {
 
   // 2. Fonts ready
   if (document.fonts) {
-    checks.push(document.fonts.ready.then(() => {}));
+    checks.push(document.fonts.ready.then(() => { }));
   }
 
   // 3. Lenis initialised (poll up to 5 s)
@@ -82,7 +82,7 @@ function waitForPageReady(): Promise<void> {
   );
 
   // Safety timeout — never block longer than 10 s
-//   const timeout = new Promise<void>((resolve) => setTimeout(resolve, 10_000));
+  //   const timeout = new Promise<void>((resolve) => setTimeout(resolve, 10_000));
 
   return Promise.race([Promise.all(checks).then(() => undefined)]);
 }
@@ -110,15 +110,15 @@ function renderFrame(
 
   const cx = W / 2;
   const cy = H * 0.46;
-  const R  = Math.min(W, H) * 0.14;
+  const R = Math.min(W, H) * 0.14;
 
   ctx.save();
-  ctx.lineCap  = 'round';
+  ctx.lineCap = 'round';
   ctx.lineJoin = 'round';
 
   // ── Grid dimensions ───────────────────────────────────────────────
   const N_RINGS = 18;       // horizontal contour rings
-  const PTS     = 72;       // points per ring
+  const PTS = 72;       // points per ring
   const RIPPLE_WAVES = 1;   // single flow: starts at top, flows down both sides, merges at bottom
 
   // ── Step 1: compute all vertex positions ON the perfect sphere ─────
@@ -143,29 +143,29 @@ function renderFrame(
 
       // ── Latitude wave: points slide up/down along the surface ───
       const latWave =
-        Math.sin(phase)                         * 0.09 +
+        Math.sin(phase) * 0.09 +
         Math.sin(phase * 1.6 + theta * 2.1 + 0.9) * 0.04 +
         Math.cos(phase * 0.7 - theta * 1.3 - 0.5) * 0.03;
 
       const lat = lat0 + latWave;
 
       const ringR = R * Math.cos(lat);
-      const yPos  = R * Math.sin(lat);
+      const yPos = R * Math.sin(lat);
 
       // ── Longitude wave: points slide around the ring ───────────
       const lonWave =
         Math.sin(theta * 3.5 + phase * 0.8) * 0.06 +
         Math.cos(theta * 4.2 - phase * 1.1) * 0.04;
 
-      const spin  = t * 0.20;
+      const spin = t * 0.20;
       const angle = theta + spin + lonWave;
 
       // ── 3D → 2D (perspective projection) ───────────────────────
-      const x3d   = ringR * Math.cos(angle);
-      const z3d   = ringR * Math.sin(angle);
+      const x3d = ringR * Math.cos(angle);
+      const z3d = ringR * Math.sin(angle);
       const persp = 1 + z3d / (R * 4.4);
-      const x2    = cx + x3d * persp;
-      const y2    = cy + yPos * persp;
+      const x2 = cx + x3d * persp;
+      const y2 = cy + yPos * persp;
 
       row.push({ x2, y2, z3d });
     }
@@ -178,16 +178,16 @@ function renderFrame(
   for (let i = 0; i < N_RINGS; i++) {
     const frac = i / (N_RINGS - 1);
 
-    const phase  = frac * RIPPLE_WAVES * 2 * PI - t * 1.1;
+    const phase = frac * RIPPLE_WAVES * 2 * PI - t * 1.1;
     const ripple = Math.sin(phase);
-    const crest  = Math.max(0, ripple);
+    const crest = Math.max(0, ripple);
 
     const baseBright = 50 + (1 - Math.abs(frac - 0.5) * 2) * 40;
-    const bright     = Math.round(Math.min(255, baseBright + crest * 160));
-    const alpha      = 0.30 + frac * 0.20 + crest * 0.40;
+    const bright = Math.round(Math.min(255, baseBright + crest * 160));
+    const alpha = 0.30 + frac * 0.20 + crest * 0.40;
 
     ctx.strokeStyle = `rgb(${bright},${bright},${bright})`;
-    ctx.lineWidth   = Math.max(0.7, 2.0 - frac * 0.6);
+    ctx.lineWidth = Math.max(0.7, 2.0 - frac * 0.6);
     ctx.globalAlpha = Math.min(1, alpha);
 
     ctx.beginPath();
@@ -201,7 +201,7 @@ function renderFrame(
     if (crest > 0.45) {
       const hl = (crest - 0.45) / 0.55;
       ctx.strokeStyle = `rgb(220,220,220)`;
-      ctx.lineWidth   = 1.0 + hl * 0.8;
+      ctx.lineWidth = 1.0 + hl * 0.8;
       ctx.globalAlpha = hl * 0.30;
 
       ctx.beginPath();
@@ -220,7 +220,7 @@ function renderFrame(
 
 export default function PreLoader({ minMs = 2500, onDone }: PreLoaderProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const rafRef    = useRef<number>(0);
+  const rafRef = useRef<number>(0);
   const [phase, setPhase] = useState<Phase>('in');
 
   const dismiss = useCallback(() => {
@@ -258,7 +258,7 @@ export default function PreLoader({ minMs = 2500, onDone }: PreLoaderProps) {
 
     // ── Canvas setup ───────────────────────────────────────────────
     const resize = () => {
-      canvas.width  = window.innerWidth;
+      canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     };
     resize();
@@ -303,26 +303,51 @@ export default function PreLoader({ minMs = 2500, onDone }: PreLoaderProps) {
   if (phase === 'gone') return null;
 
   return (
+
     <div
       style={{
-        position     : 'fixed',
-        inset        : 0,
-        zIndex       : 9999,
-        background   : '#000',
-        opacity      : phase === 'out' ? 0 : 1,
-        transition   : 'opacity 0.7s cubic-bezier(.4,0,.2,1)',
+        position: 'fixed',
+        inset: 0,
+        zIndex: 9999,
+        background: '#000',
+        opacity: phase === 'out' ? 0 : 1,
+        transition: 'opacity 0.7s cubic-bezier(.4,0,.2,1)',
         pointerEvents: phase === 'out' ? 'none' : 'auto',
       }}
     >
       <canvas ref={canvasRef} style={{ display: 'block' }} />
 
       {/* Remove the span below if you don't want the loading label */}
-      <span className="absolute bottom-[30%] left-1/2 -translate-x-1/2 text-[10px] tracking-[0.45em]  select-none whitespace-nowrap">
+      <motion.span
+        variants={{
+          hidden: { opacity: 0, y: 4, filter: "blur(6px)" },
+          show: {
+            opacity: 1,
+            y: 0,
+            filter: "blur(0px)",
+            transition: { duration: 0.4, ease: "easeOut" },
+          },
+        }}
+        initial="hidden"
+        animate="show"
+        className="absolute bottom-[30%] left-1/2 -translate-x-1/2 text-[10px] tracking-[0.45em]  select-none whitespace-nowrap">
         LOADING...
-      </span>
-      <span className="absolute uppercase bottom-[27%] left-1/2 -translate-x-1/2 text-[10px] tracking-[0.45em]  select-none whitespace-nowrap">
+      </motion.span>
+      <motion.span
+        variants={{
+          hidden: { opacity: 0, y: 4, filter: "blur(6px)" },
+          show: {
+            opacity: 1,
+            y: 0,
+            filter: "blur(0px)",
+            transition: { duration: 0.4, ease: "easeOut" },
+          },
+        }}
+        initial="hidden"
+        animate="show"
+        className="absolute uppercase bottom-[27%] left-1/2 -translate-x-1/2 text-[10px] tracking-[0.45em]  select-none whitespace-nowrap">
         For Better Experince open on Laptop
-      </span>
+      </motion.span>
     </div>
   );
 }
