@@ -223,10 +223,10 @@ export default function PreLoader({ minMs = 2500, onDone }: PreLoaderProps) {
   const rafRef = useRef<number>(0);
   const [phase, setPhase] = useState<Phase>('in');
 
+  const FADE_OUT_MS = 700;
   const dismiss = useCallback(() => {
     setPhase('out');
 
-    // Reset scroll to top while fading out, then unlock scroll.
     setTimeout(() => {
       const lenis = (window as any).__lenis;
       if (lenis) {
@@ -238,7 +238,7 @@ export default function PreLoader({ minMs = 2500, onDone }: PreLoaderProps) {
       }
       setPhase('gone');
       onDone?.();
-    }, 400);
+    }, FADE_OUT_MS);
   }, [onDone]);
 
   useEffect(() => {
@@ -311,7 +311,7 @@ export default function PreLoader({ minMs = 2500, onDone }: PreLoaderProps) {
         zIndex: 9999,
         background: '#000',
         opacity: phase === 'out' ? 0 : 1,
-        transition: 'opacity 0.7s cubic-bezier(.4,0,.2,1)',
+        transition: `opacity ${FADE_OUT_MS}ms cubic-bezier(.4,0,.2,1)`,
         pointerEvents: phase === 'out' ? 'none' : 'auto',
       }}
     >

@@ -94,3 +94,5 @@
   transform: none;
 }
 }
+
+.hero-prehide { visibility: hidden; opacity: 0; }
