@@ -51,6 +51,8 @@ export default function LetsTalk() {
   const leftHandRef = useRef<HTMLDivElement>(null);
   const rightHandRef = useRef<HTMLDivElement>(null);
   const imgRefs = useRef<(HTMLDivElement | null)[]>([null, null, null, null]);
+  const hireMeRefs = useRef<HTMLDivElement>(null);
+  const everyGreatProdRefs = useRef<HTMLElement>(null);
 
   const note = "I'm currently open to Senior Full-Stack, Backend and AI Engineering roles • Product companies building at scale • Early-stage startups with strong engineering culture •";
 
@@ -68,6 +70,22 @@ export default function LetsTalk() {
       gsap.set(imgs[0]!, { scale: 0.5 });
       gsap.set(leftHandRef.current, { x: "-115%", opacity: 0 });
       gsap.set(rightHandRef.current, { x: "115%", opacity: 0 });
+      gsap.set(hireMeRefs.current, { opacity: 0, y: 4, filter: "blur(6px)" });
+      gsap.set(everyGreatProdRefs.current, { opacity: 0, y: 4, filter: "blur(6px)" });
+      
+      gsap.to(everyGreatProdRefs.current, {
+        opacity: 1,
+        y: 0,
+        filter: "blur(0px)",
+        duration: 1.2,
+        stagger: 0.22,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 50%",
+          toggleActions: "play none reverse none",
+        },
+      });
 
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -132,7 +150,14 @@ export default function LetsTalk() {
           T.img4In + 0.1
         )
 
-        .to({}, { duration: 0.6 }, T.finalHold);
+        .to({}, { duration: 0.6 }, T.finalHold)
+        .to(hireMeRefs.current, {
+          opacity: 1,
+          y: 0,
+          filter: "blur(0px)",
+          stagger: 0.22,
+          ease: "power3.out", duration: 0.6
+        }, T.img4In + 0.1);
     },
     { scope: sectionRef }
   );
@@ -166,6 +191,7 @@ export default function LetsTalk() {
           </p>
         </section> */}
         <section
+          ref={everyGreatProdRefs}
           className="
             absolute top-36 right-20 md:top-40 md:left-[55%] z-30
             flex flex-col gap-2.5 text-xl md:text-[32px]
@@ -252,7 +278,7 @@ export default function LetsTalk() {
         </div>
 
         {/* CTA — bottom left */}
-        <div className="absolute bottom-32 left-26 md:bottom-40 md:left-69 z-30">
+        <div ref={hireMeRefs} className="absolute bottom-32 left-26 md:bottom-40 md:left-69 z-30">
           <h2
             className="
               font-doto font-bold text-[54px] md:text-6xl/[84px] lg:text-7xl/[84px]

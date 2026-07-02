@@ -85,14 +85,14 @@ export default function Work() {
             </section> */}
 
             <section className="relative w-full">
-                <Image
+                {/* <Image
                     src={'/assets/work laptop.png'}
                     alt="work laptop"
                     height={206}
                     width={216}
                     className="absolute md:left-20 md:-top-6
                     left-2 -top-12 h-[80px] w-[80px] md:h-auto md:w-auto invisible md:visible"
-                />
+                /> */}
                 <div className="flex flex-col items-center relative">
                     <h1 className="
                         bg-[linear-gradient(0deg,#000_11%,#fff_57%)]
@@ -111,7 +111,7 @@ export default function Work() {
                     height={140}
                     width={140}
                     className="absolute -right-8 top-20 md:right-20 md:top-10 
-                    h-[100px] w-[100px] md:h-auto md:w-auto"
+                    h-[100px] w-[100px] md:h-auto md:w-auto z-10"
                 />
             </section>
 
@@ -122,7 +122,7 @@ export default function Work() {
             */}
             <section
                 ref={containerRef}
-                className="card-list group/list w-full md:w-[calc(100%-340px)] h-auto border border-primary-border smooth-corners rounded-4xl"
+                className="card-list group/list w-full md:w-[calc(100%-340px)] h-auto border border-primary-border smooth-corners rounded-4xl backdrop-filter-[0.4]"
             >
                 {work_be_data.map((proj, index) => (
                     <section

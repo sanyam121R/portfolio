@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import CursorCanvas from "@/components/CursorCanvas";
+import ClientShell from "@/components/ClientShell";
 import { inter, doto, montreuil, werid_word, mansalva } from "@/lib/fonts";
-import DraggableNav from "@/components/DraggableNav";
-import PreLoader from "@/components/PreLoader";
-import SmoothScroll from "@/components/SmoothScroll";
 
 export const metadata: Metadata = {
   title: "Sanyam Rathore's Portfolio",
@@ -24,15 +22,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${montreuil.variable} ${inter.variable} ${werid_word.variable} ${doto.variable} ${mansalva.variable} h-full antialiased md:subpixel-antialiased`}
+      className={`${montreuil.variable} ${inter.variable} ${werid_word.variable} ${doto.variable} ${mansalva.variable} h-full antialiased md:subpixel-antialiased bg-black`}
     >
       <body className="min-h-full bg-[url('/assets/black-bg.jpeg')] bg-cover bg-center bg-fixed">
         <CursorCanvas />
-        <SmoothScroll>
-          {children}
-          <DraggableNav />
-        </SmoothScroll>
-        <PreLoader minMs={2000} />
+        <ClientShell>{children}</ClientShell>
       </body>
     </html>
   );
