@@ -4,6 +4,7 @@ import Footer from "@/components/sections/Footer";
 import Header from "@/components/sections/Header";
 import Hero from "@/components/sections/Hero";
 import LetsTalk from "@/components/sections/LetsTalk";
+import Project from "@/components/sections/Project";
 import Work from "@/components/sections/Work";
 import TechStack from "@/components/TechStack";
 
@@ -14,7 +15,8 @@ export default function Home() {
 
       <Hero />
       <About />
-      <Work />
+      <Project />
+      {/* <Work /> */}
       <Experience />
       <TechStack />
       <LetsTalk />

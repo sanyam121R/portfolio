@@ -53,26 +53,40 @@ export default function LetsTalk() {
   const imgRefs = useRef<(HTMLDivElement | null)[]>([null, null, null, null]);
   const hireMeRefs = useRef<HTMLDivElement>(null);
   const everyGreatProdRefs = useRef<HTMLElement>(null);
+  // Ref for ripple effect container
+  const rippleRef = useRef<HTMLDivElement>(null);
 
   const note = "I'm currently open to Senior Full-Stack, Backend and AI Engineering roles • Product companies building at scale • Early-stage startups with strong engineering culture •";
 
   useGSAP(
     () => {
       const imgs = imgRefs.current;
+      const rippleDots = rippleRef.current
+        ? gsap.utils.toArray<HTMLDivElement>(rippleRef.current.querySelectorAll(".ripple-dot"))
+        : [];
+  
       if (
         !sectionRef.current ||
         !leftHandRef.current ||
         !rightHandRef.current ||
         imgs.some((r) => !r)
       ) return;
-
+  
       gsap.set(imgs, { opacity: 0, scale: 1 });
+      gsap.set(rippleDots, {
+        x: 0,
+        y: 0,
+        scale: 0,
+        opacity: 0,
+      });
       gsap.set(imgs[0]!, { scale: 0.5 });
       gsap.set(leftHandRef.current, { x: "-115%", opacity: 0 });
       gsap.set(rightHandRef.current, { x: "115%", opacity: 0 });
       gsap.set(hireMeRefs.current, { opacity: 0, y: 4, filter: "blur(6px)" });
       gsap.set(everyGreatProdRefs.current, { opacity: 0, y: 4, filter: "blur(6px)" });
+  
       
+  
       gsap.to(everyGreatProdRefs.current, {
         opacity: 1,
         y: 0,
@@ -86,22 +100,18 @@ export default function LetsTalk() {
           toggleActions: "play none reverse none",
         },
       });
-
+  
       const tl = gsap.timeline({
         scrollTrigger: {
           id: "lets-talk",
           trigger: sectionRef.current,
           start: "top top",
-          // Reduced from 5x to 3x viewport height for smoother scroll
           end: () => `+=${window.innerHeight * 3}`,
           pin: true,
-          // Lower scrub value for more responsive feel (was 0.9)
           scrub: 0.5,
           pinSpacing: true,
-          // Reduced anticipatePin to prevent jump (was 1)
           anticipatePin: 0.5,
           invalidateOnRefresh: true,
-          // Add smooth end transition
           onLeave: () => {
             gsap.to(sectionRef.current, { opacity: 1, duration: 0.3 });
           },
@@ -110,22 +120,28 @@ export default function LetsTalk() {
           },
         },
       });
-
+  
       tl
         .to(leftHandRef.current!, {
-          x: "0%", duration: T.img4In, ease: "none",
+          x: "0%",
+          duration: T.img4In,
+          ease: "none",
         }, 0)
         .to(rightHandRef.current!, {
-          x: "0%", duration: T.img4In, ease: "none",
+          x: "0%",
+          duration: T.img4In,
+          ease: "none",
         }, 0)
         .to(leftHandRef.current!, { opacity: 1, duration: 0.35 }, 0)
         .to(rightHandRef.current!, { opacity: 1, duration: 0.35 }, 0)
-
+  
         .to(imgs[0]!, {
-          opacity: 1, scale: 1,
-          duration: 0.55, ease: "back.out(1.4)",
+          opacity: 1,
+          scale: 1,
+          duration: 0.55,
+          ease: "back.out(1.4)",
         }, T.img1In)
-
+  
         .to(imgs[0]!, { opacity: 0, scale: 0.85, duration: 0.25 }, T.img2In)
         .fromTo(
           imgs[1]!,
@@ -133,7 +149,7 @@ export default function LetsTalk() {
           { opacity: 1, scale: 1, duration: 0.35, ease: "power2.out" },
           T.img2In + 0.1
         )
-
+  
         .to(imgs[1]!, { opacity: 0, scale: 0.85, duration: 0.25 }, T.img3In)
         .fromTo(
           imgs[2]!,
@@ -141,26 +157,186 @@ export default function LetsTalk() {
           { opacity: 1, scale: 1, duration: 0.35, ease: "power2.out" },
           T.img3In + 0.1
         )
-
+  
         .to(imgs[2]!, { opacity: 0, scale: 0.85, duration: 0.25 }, T.img4In)
         .fromTo(
           imgs[3]!,
-          { scale: 1.15 },
+          { scale: 1.15, zIndex:"10" },
           { opacity: 1, scale: 1, duration: 0.35, ease: "power2.out" },
           T.img4In + 0.1
         )
-
+  
+        .fromTo(
+          rippleDots,
+          {
+            x: 0,
+            y: 0,
+            scale: 0,
+            opacity: 0,
+          },
+          {
+            x: () => gsap.utils.random(-100, 100),
+            y: () => gsap.utils.random(-120, 120),
+            scale: () => gsap.utils.random(0.8, 1.5),
+            opacity: 1,
+            duration: 0.22,
+            stagger: {
+              each: 0.02,
+              from: "center",
+            },
+            ease: "power2.out",
+            zIndex:0,
+          },
+          T.img4In + 0.1
+        )
+        .to(
+          rippleDots,
+          {
+            opacity: 0,
+            scale: 0,
+            duration: 0.3,
+            stagger: 0.02,
+            ease: "power2.in",
+            zIndex:0
+          },
+          T.img4In + 0.8
+        )
+  
         .to({}, { duration: 0.6 }, T.finalHold)
         .to(hireMeRefs.current, {
           opacity: 1,
           y: 0,
+          zIndex:10,
           filter: "blur(0px)",
           stagger: 0.22,
-          ease: "power3.out", duration: 0.6
+          ease: "power3.out",
+          duration: 0.6,
         }, T.img4In + 0.1);
     },
     { scope: sectionRef }
   );
+  // useGSAP(
+  //   () => {
+  //     const imgs = imgRefs.current;
+  //     if (
+  //       !sectionRef.current ||
+  //       !leftHandRef.current ||
+  //       !rightHandRef.current ||
+  //       imgs.some((r) => !r)
+  //     ) return;
+
+  //     gsap.set(imgs, { opacity: 0, scale: 1 });
+  //     gsap.set(imgs[0]!, { scale: 0.5 });
+  //     gsap.set(leftHandRef.current, { x: "-115%", opacity: 0 });
+  //     gsap.set(rightHandRef.current, { x: "115%", opacity: 0 });
+  //     gsap.set(hireMeRefs.current, { opacity: 0, y: 4, filter: "blur(6px)" });
+  //     gsap.set(everyGreatProdRefs.current, { opacity: 0, y: 4, filter: "blur(6px)" });
+      
+  //     gsap.to(everyGreatProdRefs.current, {
+  //       opacity: 1,
+  //       y: 0,
+  //       filter: "blur(0px)",
+  //       duration: 1.2,
+  //       stagger: 0.22,
+  //       ease: "power3.out",
+  //       scrollTrigger: {
+  //         trigger: sectionRef.current,
+  //         start: "top 50%",
+  //         toggleActions: "play none reverse none",
+  //       },
+  //     });
+
+  //     const tl = gsap.timeline({
+  //       scrollTrigger: {
+  //         id: "lets-talk",
+  //         trigger: sectionRef.current,
+  //         start: "top top",
+  //         // Reduced from 5x to 3x viewport height for smoother scroll
+  //         end: () => `+=${window.innerHeight * 3}`,
+  //         pin: true,
+  //         // Lower scrub value for more responsive feel (was 0.9)
+  //         scrub: 0.5,
+  //         pinSpacing: true,
+  //         // Reduced anticipatePin to prevent jump (was 1)
+  //         anticipatePin: 0.5,
+  //         invalidateOnRefresh: true,
+  //         // Add smooth end transition
+  //         onLeave: () => {
+  //           gsap.to(sectionRef.current, { opacity: 1, duration: 0.3 });
+  //         },
+  //         onEnterBack: () => {
+  //           gsap.to(sectionRef.current, { opacity: 1, duration: 0.3 });
+  //         },
+  //       },
+  //     });
+
+  //     tl
+  //       .to(leftHandRef.current!, {
+  //         x: "0%", duration: T.img4In, ease: "none",
+  //       }, 0)
+  //       .to(rightHandRef.current!, {
+  //         x: "0%", duration: T.img4In, ease: "none",
+  //       }, 0)
+  //       .to(leftHandRef.current!, { opacity: 1, duration: 0.35 }, 0)
+  //       .to(rightHandRef.current!, { opacity: 1, duration: 0.35 }, 0)
+
+  //       .to(imgs[0]!, {
+  //         opacity: 1, scale: 1,
+  //         duration: 0.55, ease: "back.out(1.4)",
+  //       }, T.img1In)
+
+  //       .to(imgs[0]!, { opacity: 0, scale: 0.85, duration: 0.25 }, T.img2In)
+  //       .fromTo(
+  //         imgs[1]!,
+  //         { scale: 1.15 },
+  //         { opacity: 1, scale: 1, duration: 0.35, ease: "power2.out" },
+  //         T.img2In + 0.1
+  //       )
+
+  //       .to(imgs[1]!, { opacity: 0, scale: 0.85, duration: 0.25 }, T.img3In)
+  //       .fromTo(
+  //         imgs[2]!,
+  //         { scale: 1.15 },
+  //         { opacity: 1, scale: 1, duration: 0.35, ease: "power2.out" },
+  //         T.img3In + 0.1
+  //       )
+
+  //       .to(imgs[2]!, { opacity: 0, scale: 0.85, duration: 0.25 }, T.img4In)
+  //       .fromTo(
+  //         imgs[3]!,
+  //         { scale: 1.15 },
+  //         { opacity: 1, scale: 1, duration: 0.35, ease: "power2.out" },
+  //         T.img4In + 0.1
+  //       )
+  //       // Ripple effect after the fourth image appears
+  //       .add(() => {
+  //         const rippleDots = rippleRef.current?.querySelectorAll('.ripple-dot') as NodeListOf<HTMLElement>;
+  //         if (rippleDots?.length) {
+  //           const distance = 80; // radius in pixels
+  //           gsap.set(rippleDots, { opacity: 1, scale: 1 });
+  //           gsap.to(rippleDots, {
+  //             x: i => Math.cos(i / rippleDots.length * Math.PI * 2) * distance,
+  //             y: i => Math.sin(i / rippleDots.length * Math.PI * 2) * distance,
+  //             opacity: 0,
+  //             scale: 0.5,
+  //             duration: 0.8,
+  //             ease: "power2.out",
+  //             stagger: 0.05,
+  //           });
+  //         }
+  //       }, T.img4In + 0.2)
+
+  //       .to({}, { duration: 0.6 }, T.finalHold)
+  //       .to(hireMeRefs.current, {
+  //         opacity: 1,
+  //         y: 0,
+  //         filter: "blur(0px)",
+  //         stagger: 0.22,
+  //         ease: "power3.out", duration: 0.6
+  //       }, T.img4In + 0.1);
+  //   },
+  //   { scope: sectionRef }
+  // );
 
   return (
     // ✅ FIX 2: removed min-h-screen, overflow-hidden, w-svw, flex, flex-col
@@ -217,7 +393,7 @@ export default function LetsTalk() {
             ref={leftHandRef}
             className="
               relative z-10 flex-1
-              h-[38vh] md:h-[50vh] lg:h-[calc(100vh-20px)]
+              h-[38vh] md:h-[50vh] lg:h-[calc(100vh--70px)]
               will-change-transform
             "
             style={{ transform: 'translateZ(0)' }}
@@ -233,34 +409,43 @@ export default function LetsTalk() {
             />
           </div>
 
-          {/* Center image stack */}
-          <div className="absolute top-1/2 left-1/2 translate-x-[-30%] -translate-y-1/2 z-20 shrink-0 w-24 h-24 md:w-30 md:h-30 lg:w-38 lg:h-38">
-            {CENTER_IMAGES.map((src, idx) => (
-              <div
-                key={src}
-                ref={(el) => { imgRefs.current[idx] = el; }}
-                className="absolute inset-0 will-change-transform"
-                style={{ transform: 'translateZ(0)' }}
-              >
-                <Image
-                  src={src}
-                  alt={`Stage ${idx + 1}`}
-                  fill
-                  sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 33vw"
-                  className="object-contain"
-                  priority
-                  draggable={false}
-                />
+            {/* Center image stack */}
+            <div className="absolute top-1/2 left-1/2 translate-x-[-30%] -translate-y-1/2 z-20 shrink-0 w-24 h-24 md:w-30 md:h-30 lg:w-38 lg:h-38">
+              {CENTER_IMAGES.map((src, idx) => (
+                <div
+                  key={src}
+                  ref={(el) => { imgRefs.current[idx] = el; }}
+                  className="absolute inset-0 will-change-transform"
+                  style={{ transform: 'translateZ(0)' }}
+                >
+                  <Image
+                    src={src}
+                    alt={`Stage ${idx + 1}`}
+                    fill
+                    sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 33vw"
+                    className="object-contain"
+                    priority
+                    draggable={false}
+                  />
+                </div>
+              ))}
+              {/* Ripple effect container */}
+              <div ref={rippleRef} className="absolute inset-0 z-0 pointer-events-none">
+                {Array.from({ length: 36 }).map((_, i) => (
+                  <div
+                    key={i}
+                    className="ripple-dot w-1 h-1 bg-primary rounded-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0"
+                  />
+                ))}
               </div>
-            ))}
-          </div>
+            </div>
 
           {/* Right Hand */}
           <div
             ref={rightHandRef}
             className="
               relative z-10 flex-1
-              h-[38vh] md:h-[50vh] lg:h-[calc(100vh-20px)]
+              h-[38vh] md:h-[50vh] lg:h-[calc(100vh--70px)]
               will-change-transform
             "
             style={{ transform: 'translateZ(0)' }}
