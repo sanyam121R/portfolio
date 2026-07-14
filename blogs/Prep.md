@@ -1,3 +1,11 @@
+---
+title: "GOMO Group — Round 1 Interview Prep"
+date: "2024-06-15"
+description: "Comprehensive interview preparation notes for GOMO Group Senior Full Stack Developer role — covering technical breadth, ownership stories, agency fit, and logistics."
+tags: ["interview-prep", "career", "system-design", "fullstack", "gomo"]
+readTime: "15 min read"
+---
+
 # GOMO Group — Round 1 Interview Prep
 **Role:** Senior Full Stack Developer (Web, Applications & Integrations)
 **Format:** 30 min call — this is almost certainly a screening round with a recruiter or hiring manager, not a deep technical round. Expect fit, background, and breadth-of-skills questions, not live coding.

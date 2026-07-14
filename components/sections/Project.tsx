@@ -20,7 +20,7 @@ const project_data = [
       { figure: '99%', of: 'delivery reliability' },
       { figure: '75%', of: 'overhead reduction' },
     ],
-    caseStudy: '/blogs/deep-customer-problem.html',
+    caseStudy: '/blogs/deep-customer-problem',
   },
   {
     id: '02',
@@ -81,7 +81,7 @@ export default function Project() {
   return (
     <div
       id="project"
-      className="h-svh w-svw p-8 pt-16 flex flex-col gap-12 items-center"
+      className="min-h-svh w-svw p-8 pt-16 flex flex-col gap-12 items-center"
     >
       <section className="relative w-full">
         <div className="flex flex-col items-center relative">
@@ -126,16 +126,16 @@ export default function Project() {
             <article
               key={index}
               className="
-                project-card group
-                min-h-[320px] md:min-h-[360px]
+                project-card ggroup flex
+                min-h-[300px]
                 border border-primary-border rounded-3xl smooth-corners
-                p-5 md:p-6
-                backdrop-filter-[0.4]
+                p-6
+                bg-[#111]
                 transition-all duration-300 ease-out
                 hover:shadow-[0_0_10px_4px] hover:shadow-toggle
                 hover:-translate-y-1
-                hover:backdrop-blur-2xl
-                flex flex-col justify-between gap-6
+                hover:border-tertiary
+                flex-col justify-between gap-6
               "
             >
               <div className="flex flex-col gap-4">
@@ -166,7 +166,7 @@ export default function Project() {
                 </div>
 
                 <div className="flex flex-col gap-3">
-                  <h3 className="text-[22px] md:text-[24px] leading-tight">
+                  <h3 className="text-[16px] md:text-[20px] leading-tight">
                     {proj.title}
                   </h3>
                   <p className="text-tertiary text-[14px] leading-6">
@@ -191,7 +191,7 @@ export default function Project() {
                   <div className="flex flex-wrap gap-4 pt-1">
                     {proj.effect.map((ef, efIndex) => (
                       <div key={efIndex} className="flex flex-col">
-                        <span className="text-[24px] md:text-[30px] leading-none">
+                        <span className="text-[20px] md:text-[26px] leading-none">
                           {ef.figure}
                         </span>
                         <span className="text-tertiary text-xs md:text-sm">

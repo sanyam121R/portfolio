@@ -15,7 +15,6 @@ const CENTER_IMAGES = [
   "/assets/lets talk/4.png",
 ];
 
-// Optimized timing for smoother animation
 const T = {
   img1In: 0,
   img2In: 0.8,
@@ -53,7 +52,6 @@ export default function LetsTalk() {
   const imgRefs = useRef<(HTMLDivElement | null)[]>([null, null, null, null]);
   const hireMeRefs = useRef<HTMLDivElement>(null);
   const everyGreatProdRefs = useRef<HTMLElement>(null);
-  // Ref for ripple effect container
   const rippleRef = useRef<HTMLDivElement>(null);
 
   const note = "I'm currently open to Senior Full-Stack, Backend and AI Engineering roles • Product companies building at scale • Early-stage startups with strong engineering culture •";
@@ -215,157 +213,15 @@ export default function LetsTalk() {
     },
     { scope: sectionRef }
   );
-  // useGSAP(
-  //   () => {
-  //     const imgs = imgRefs.current;
-  //     if (
-  //       !sectionRef.current ||
-  //       !leftHandRef.current ||
-  //       !rightHandRef.current ||
-  //       imgs.some((r) => !r)
-  //     ) return;
-
-  //     gsap.set(imgs, { opacity: 0, scale: 1 });
-  //     gsap.set(imgs[0]!, { scale: 0.5 });
-  //     gsap.set(leftHandRef.current, { x: "-115%", opacity: 0 });
-  //     gsap.set(rightHandRef.current, { x: "115%", opacity: 0 });
-  //     gsap.set(hireMeRefs.current, { opacity: 0, y: 4, filter: "blur(6px)" });
-  //     gsap.set(everyGreatProdRefs.current, { opacity: 0, y: 4, filter: "blur(6px)" });
-      
-  //     gsap.to(everyGreatProdRefs.current, {
-  //       opacity: 1,
-  //       y: 0,
-  //       filter: "blur(0px)",
-  //       duration: 1.2,
-  //       stagger: 0.22,
-  //       ease: "power3.out",
-  //       scrollTrigger: {
-  //         trigger: sectionRef.current,
-  //         start: "top 50%",
-  //         toggleActions: "play none reverse none",
-  //       },
-  //     });
-
-  //     const tl = gsap.timeline({
-  //       scrollTrigger: {
-  //         id: "lets-talk",
-  //         trigger: sectionRef.current,
-  //         start: "top top",
-  //         // Reduced from 5x to 3x viewport height for smoother scroll
-  //         end: () => `+=${window.innerHeight * 3}`,
-  //         pin: true,
-  //         // Lower scrub value for more responsive feel (was 0.9)
-  //         scrub: 0.5,
-  //         pinSpacing: true,
-  //         // Reduced anticipatePin to prevent jump (was 1)
-  //         anticipatePin: 0.5,
-  //         invalidateOnRefresh: true,
-  //         // Add smooth end transition
-  //         onLeave: () => {
-  //           gsap.to(sectionRef.current, { opacity: 1, duration: 0.3 });
-  //         },
-  //         onEnterBack: () => {
-  //           gsap.to(sectionRef.current, { opacity: 1, duration: 0.3 });
-  //         },
-  //       },
-  //     });
-
-  //     tl
-  //       .to(leftHandRef.current!, {
-  //         x: "0%", duration: T.img4In, ease: "none",
-  //       }, 0)
-  //       .to(rightHandRef.current!, {
-  //         x: "0%", duration: T.img4In, ease: "none",
-  //       }, 0)
-  //       .to(leftHandRef.current!, { opacity: 1, duration: 0.35 }, 0)
-  //       .to(rightHandRef.current!, { opacity: 1, duration: 0.35 }, 0)
-
-  //       .to(imgs[0]!, {
-  //         opacity: 1, scale: 1,
-  //         duration: 0.55, ease: "back.out(1.4)",
-  //       }, T.img1In)
-
-  //       .to(imgs[0]!, { opacity: 0, scale: 0.85, duration: 0.25 }, T.img2In)
-  //       .fromTo(
-  //         imgs[1]!,
-  //         { scale: 1.15 },
-  //         { opacity: 1, scale: 1, duration: 0.35, ease: "power2.out" },
-  //         T.img2In + 0.1
-  //       )
-
-  //       .to(imgs[1]!, { opacity: 0, scale: 0.85, duration: 0.25 }, T.img3In)
-  //       .fromTo(
-  //         imgs[2]!,
-  //         { scale: 1.15 },
-  //         { opacity: 1, scale: 1, duration: 0.35, ease: "power2.out" },
-  //         T.img3In + 0.1
-  //       )
-
-  //       .to(imgs[2]!, { opacity: 0, scale: 0.85, duration: 0.25 }, T.img4In)
-  //       .fromTo(
-  //         imgs[3]!,
-  //         { scale: 1.15 },
-  //         { opacity: 1, scale: 1, duration: 0.35, ease: "power2.out" },
-  //         T.img4In + 0.1
-  //       )
-  //       // Ripple effect after the fourth image appears
-  //       .add(() => {
-  //         const rippleDots = rippleRef.current?.querySelectorAll('.ripple-dot') as NodeListOf<HTMLElement>;
-  //         if (rippleDots?.length) {
-  //           const distance = 80; // radius in pixels
-  //           gsap.set(rippleDots, { opacity: 1, scale: 1 });
-  //           gsap.to(rippleDots, {
-  //             x: i => Math.cos(i / rippleDots.length * Math.PI * 2) * distance,
-  //             y: i => Math.sin(i / rippleDots.length * Math.PI * 2) * distance,
-  //             opacity: 0,
-  //             scale: 0.5,
-  //             duration: 0.8,
-  //             ease: "power2.out",
-  //             stagger: 0.05,
-  //           });
-  //         }
-  //       }, T.img4In + 0.2)
-
-  //       .to({}, { duration: 0.6 }, T.finalHold)
-  //       .to(hireMeRefs.current, {
-  //         opacity: 1,
-  //         y: 0,
-  //         filter: "blur(0px)",
-  //         stagger: 0.22,
-  //         ease: "power3.out", duration: 0.6
-  //       }, T.img4In + 0.1);
-  //   },
-  //   { scope: sectionRef }
-  // );
 
   return (
-    // ✅ FIX 2: removed min-h-screen, overflow-hidden, w-svw, flex, flex-col
-    // The section must be a plain block so pin-spacer can freely set its height.
-    // overflow-hidden was clipping the spacer; flex-col was fighting it.
     <section
       id="lets-talk"
       ref={sectionRef}
       className="relative w-full"
     >
       {/* ── Main visual area — now drives its own height via h-screen ── */}
-      {/* ✅ FIX 3: use h-screen instead of min-h-screen + flex-1 */}
       <div className="relative flex h-screen items-center justify-center overflow-hidden">
-
-        {/* Tagline — top right */}
-        {/* <section
-          className="
-            absolute top-40 right-53 md:top-40 md:right-53 z-30
-            text-right font-mansalva text-2xl md:text-[44px]
-            text-secondary leading-relaxed
-          "
-        >
-          <p className="relative left-[-200px]">
-            if not ME, then WHO?
-          </p>
-          <p className="relative top-[-23px]">
-            if not NOW, then WHEN!
-          </p>
-        </section> */}
         <section
           ref={everyGreatProdRefs}
           className="
@@ -431,7 +287,7 @@ export default function LetsTalk() {
               ))}
               {/* Ripple effect container */}
               <div ref={rippleRef} className="absolute inset-0 z-0 pointer-events-none">
-                {Array.from({ length: 36 }).map((_, i) => (
+                {Array.from({ length: 28 }).map((_, i) => (
                   <div
                     key={i}
                     className="ripple-dot w-1 h-1 bg-primary rounded-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0"
@@ -487,8 +343,6 @@ export default function LetsTalk() {
       </div>
 
       {/* ── Marquee ──────────────────────────────────────────────────── */}
-      {/* ✅ FIX 4: marquee lives inside the section but OUTSIDE the 
-          h-screen div, so it renders below the pinned visual area */}
       <Marquee text={note} />
     </section>
   );

@@ -15,7 +15,7 @@ const NAV_ITEMS = [
     { label: "Work", sectionId: "work" },
     { label: "Experience", sectionId: "experience" },
     { label: "Stack", sectionId: "stack" },
-    { label: "Writing", sectionId: "writing" },
+    { label: "Writing", sectionId: "blogs" },
     { label: "Let's Talk", sectionId: "contact-me" },
 ];
 

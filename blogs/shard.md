@@ -1,3 +1,11 @@
+---
+title: "Master Database Sharding from First Principles"
+date: "2024-08-20"
+description: "Comprehensive guide to database sharding — from fundamentals to production challenges, consistent hashing, and real-world case studies from Instagram, Uber, Amazon, and Netflix."
+tags: ["sharding", "database", "system-design", "distributed-systems", "architecture", "scaling"]
+readTime: "45 min read"
+---
+
 # Master Sharding from First Principles
 ### Staff Engineer Level — System Design Interview Reference
 

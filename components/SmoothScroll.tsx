@@ -16,27 +16,39 @@ export const lenisRef = { current: null as Lenis | null };
 
 export function scrollToSection(sectionId: string) {
   const lenis = (window as any).__lenis as Lenis | undefined;
-  if (!lenis) return;
 
   // Try ScrollTrigger-based position first
   const trigger = ScrollTrigger.getById(sectionId);
   if (trigger) {
+    if (lenis) {
       lenis.scrollTo(trigger.start, {
-          duration: 1.4,
-          easing: (t) => 1 - Math.pow(1 - t, 3),
+        duration: 1.4,
+        easing: (t) => 1 - Math.pow(1 - t, 3),
       });
-      return;
+    }
+    return;
   }
 
   // Fallback for normal sections
   const el = document.getElementById(sectionId);
-  if (!el) return;
+  if (el) {
+    if (lenis) {
+      lenis.scrollTo(el, {
+        offset: 0,
+        duration: 1.2,
+        easing: (t) => 1 - Math.pow(1 - t, 3),
+      });
+    } else {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+    return;
+  }
 
-  lenis.scrollTo(el, {
-      offset: 0,
-      duration: 1.2,
-      easing: (t) => 1 - Math.pow(1 - t, 3),
-  });
+  // The section doesn't exist on this route (e.g. we're on /blogs).
+  // Navigate to the homepage and deep-link to the section via the hash.
+  if (window.location.pathname !== '/') {
+    window.location.href = `/#${sectionId}`;
+  }
 }
 
 export default function SmoothScroll({ children }: { children: ReactNode }) {
@@ -61,6 +73,15 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
     lenisRef.current = lenis;
     (window as any).__lenis = lenis;
 
+    // Disable the browser's native scroll restoration so a full reload
+    // always starts at the top (the hero) instead of restoring the last
+    // scroll position (e.g. deep in the LetsTalk section).
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+    lenis.scrollTo(0, { immediate: true, force: true });
+    window.scrollTo(0, 0);
+
     // Sync Lenis scroll with GSAP ScrollTrigger
     lenis.on('scroll', ScrollTrigger.update);
 
@@ -70,7 +91,27 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
     });
     gsap.ticker.lagSmoothing(0);
 
+    // Deep-link: if the URL arrived with a hash (e.g. /#about from another route),
+    // scroll to that section once the preloader has cleared.
+    const hash = window.location.hash.replace(/^#/, '');
+    const timers: number[] = [];
+    if (hash) {
+      timers.push(
+        window.setTimeout(() => {
+          const target = document.getElementById(hash);
+          if (target) {
+            lenis.scrollTo(target, {
+              offset: 0,
+              duration: 1.2,
+              easing: (t) => 1 - Math.pow(1 - t, 3),
+            });
+          }
+        }, 2200)
+      );
+    }
+
     return () => {
+      timers.forEach((t) => window.clearTimeout(t));
       lenis.destroy();
       lenisRef.current = null;
       delete (window as any).__lenis;

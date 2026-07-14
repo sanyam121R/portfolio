@@ -1,3 +1,11 @@
+---
+title: "Database Pages: The Fundamental Unit of Storage"
+date: "2024-12-15"
+description: "Understanding how databases store data in pages — the fundamental building block that shapes everything from indexes to sharding."
+tags: ["database", "storage", "pages", "buffer-pool", "sharding", "fundamentals"]
+readTime: "8 min read"
+---
+
 I was learning about Sharding from first principles and strategies and all. just when I stumbled upon this basic thing called Page the smallest unit of storage management that the database engine works with to read or write data from disk.
 Our SSD/HDD stores files as raw bytes, but the database engine doesn’t read one byte at a time - that would be incredibly inefficient. Instead, it carves up its data files into fixed-size blocks called pages. MySQL InnoDB uses 16KB pages (show in image), PostgreSQL uses 8KB by default.
 
