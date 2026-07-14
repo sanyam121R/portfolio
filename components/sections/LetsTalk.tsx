@@ -110,6 +110,10 @@ export default function LetsTalk() {
           pinSpacing: true,
           anticipatePin: 0.5,
           invalidateOnRefresh: true,
+          // Lower priority ensures this pin's start is computed AFTER the
+          // earlier Experience pin has established its pin-spacer, so it does
+          // not begin pinning at a scroll position that lands inside TechStack.
+          refreshPriority: -1,
           onLeave: () => {
             gsap.to(sectionRef.current, { opacity: 1, duration: 0.3 });
           },

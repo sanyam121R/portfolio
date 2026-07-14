@@ -5,6 +5,8 @@ import Lenis from 'lenis';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+gsap.registerPlugin(ScrollTrigger);
+
 /**
  * Initialises Lenis smooth-scrolling and wires it into GSAP's ticker
  * so that ScrollTrigger stays in sync.
@@ -110,8 +112,21 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
       );
     }
 
+    // After all assets (images/fonts) finish loading the real layout — and
+    // therefore the horizontal Experience track's measured width — is final.
+    // Recompute every ScrollTrigger then so the pinned sections don't keep
+    // start positions that were calculated against a still-settling layout
+    // (the bug that made LetsTalk pin inside TechStack). Fires once.
+    const onLoad = () => ScrollTrigger.refresh();
+    if (document.readyState === 'complete') {
+      onLoad();
+    } else {
+      window.addEventListener('load', onLoad);
+    }
+
     return () => {
       timers.forEach((t) => window.clearTimeout(t));
+      window.removeEventListener('load', onLoad);
       lenis.destroy();
       lenisRef.current = null;
       delete (window as any).__lenis;

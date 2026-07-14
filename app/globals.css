@@ -97,6 +97,24 @@
 
 .hero-prehide { visibility: hidden; opacity: 0; }
 
+/* ---------- Journey character (running / idle leg + arm loops) ---------- */
+@keyframes char-leg-a {
+  0%, 100% { transform: rotate(18deg); }
+  50%      { transform: rotate(-18deg); }
+}
+@keyframes char-leg-b {
+  0%, 100% { transform: rotate(-18deg); }
+  50%      { transform: rotate(18deg); }
+}
+@keyframes char-arm {
+  0%, 100% { transform: rotate(10deg); }
+  50%      { transform: rotate(-10deg); }
+}
+
+.char-leg-a { animation: char-leg-a 0.42s ease-in-out infinite; }
+.char-leg-b { animation: char-leg-b 0.42s ease-in-out infinite; }
+.char-arm-swing { animation: char-arm 0.42s ease-in-out infinite; }
+
 /* ---------- Blog post prose (rendered markdown) ---------- */
 .prose-blog {
   color: var(--color-secondary);
@@ -230,4 +248,16 @@
   border: none;
   border-top: 1px solid var(--color-primary-border);
   margin: 2.5em 0;
+}
+
+/* ---------- Reduced motion: disable character + journey animations ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .char-leg-a,
+  .char-leg-b,
+  .char-arm-swing {
+    animation: none;
+  }
+  .animate-ping {
+    animation: none;
+  }
 }
