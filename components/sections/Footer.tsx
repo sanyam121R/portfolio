@@ -1,6 +1,7 @@
 'use client';
 
 import { Mail, FileText, ArrowUpRight } from 'lucide-react';
+import WaveText from '../WaveText';
 
 const GitHubIcon = ({ size = 14 }: { size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -83,7 +84,8 @@ const Footer = () => {
                       className="opacity-60 group-hover:opacity-100 transition-opacity duration-200 shrink-0"
                       aria-hidden="true"
                     />
-                    {label}
+                    {/* {label} */}
+                    <WaveText text={label}/>
                     <ArrowUpRight
                       size={11}
                       className= {`opacity-0 group-hover:opacity-50 -ml-0.5 transition-opacity duration-200 shrink-0`}

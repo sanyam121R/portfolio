@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Customer Problem Deep Dive</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0f0f0f;
+    --paper: #f5f0e8;
+    --accent: #c0392b;
+    --muted: #6b6560;
+    --rule: #d4cec5;
+    --highlight: #fff8e1;
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    padding: 48px 24px;
+    background-image: 
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 27px,
+        var(--rule) 27px,
+        var(--rule) 28px
+      );
+    background-attachment: local;
+  }
+
+  .page {
+    max-width: 780px;
+    margin: 0 auto;
+    background: rgba(245,240,232,0.92);
+    backdrop-filter: blur(4px);
+  }
+
+  /* Header */
+  .header {
+    border-bottom: 3px solid var(--ink);
+    padding-bottom: 20px;
+    margin-bottom: 40px;
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border: 1px solid var(--rule);
+    padding: 3px 8px;
+    white-space: nowrap;
+  }
+
+  .label.red {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(28px, 5vw, 44px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    flex: 1 1 300px;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  /* Sections */
+  .section {
+    margin-bottom: 40px;
+  }
+
+  .section-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .step-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 500;
+    min-width: 24px;
+  }
+
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    letter-spacing: -0.01em;
+  }
+
+  p {
+    font-size: 15.5px;
+    line-height: 1.75;
+    color: #2a2623;
+    margin-bottom: 12px;
+    padding-left: 36px;
+  }
+
+  p:last-child { margin-bottom: 0; }
+
+  /* Callout */
+  .callout {
+    margin: 32px 0;
+    border-left: 4px solid var(--accent);
+    padding: 18px 24px;
+    background: var(--highlight);
+  }
+
+  .callout-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  .callout p {
+    padding-left: 0;
+    font-size: 15px;
+    font-style: italic;
+    margin: 0;
+    color: #3a2e28;
+  }
+
+  /* Stats row */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin: 32px 0;
+  }
+
+  .stat {
+    background: var(--paper);
+    padding: 24px 20px;
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 38px;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-desc {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* Divider */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 36px 0;
+  }
+
+  /* Footer */
+  .footer {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 48px;
+    padding-top: 20px;
+    border-top: 3px solid var(--ink);
+  }
+
+  .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border: 1px solid var(--rule);
+    padding: 4px 10px;
+  }
+
+  @media print {
+    body { background: white; background-image: none; }
+    .page { background: white; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <span class="label red">Interview Story</span>
+    <span class="label">Customer Problem Deep Dive</span>
+    <h1>When the <em>CEO was the customer</em> — and didn't know it yet</h1>
+  </div>
+
+  <!-- SITUATION -->
+  <div class="section">
+    <div class="section-head">
+      <span class="step-num">01</span>
+      <h2>The Problem</h2>
+    </div>
+    <p>
+      At CloudEQ, when the sales team closed or advanced a deal into an opportunity state requiring a POC, they'd hand it off to leadership — the CEO, CTO, and VP — who owned the technical engagement from that point forward. But these executives were never part of the sales operations tooling. No automation touched them.
+    </p>
+    <p>
+      So every time a qualified opportunity landed, the same painful manual loop kicked off: someone would ping leadership over email or Slack, they'd request context, gather requirements, draft a Statement of Work from scratch, create a project record, assign resources — all by hand, often across multiple systems. For leaders already context-switching constantly, this intake process was burning hours they couldn't afford.
+    </p>
+
+    <div class="callout">
+      <div class="callout-label">The real cost</div>
+      <p>"These weren't sales ops people — they were decision-makers. Every hour they spent on intake paperwork was an hour not spent closing the next deal or running the POC itself."</p>
+    </div>
+  </div>
+
+  <hr class="divider"/>
+
+  <!-- DEEP DIVE -->
+  <div class="section">
+    <div class="section-head">
+      <span class="step-num">02</span>
+      <h2>Going Deep</h2>
+    </div>
+    <p>
+      I didn't wait to be assigned this. I noticed the pattern by watching how leadership reacted to Salesforce opportunity updates — they were the ones creating follow-up tasks manually, not the ops team. I sat with the CEO and mapped every step he took from the moment a deal moved to Opportunity stage to the moment a project and SOW existed. It was twelve steps. Six of them were pure data-copying between systems.
+    </p>
+    <p>
+      The core insight: Salesforce already had all the signal — opportunity stage, deal value, client name, service line. Nothing new needed to be captured. The problem was that no system was listening and reacting to it on behalf of leadership.
+    </p>
+  </div>
+
+  <hr class="divider"/>
+
+  <!-- WHAT I BUILT -->
+  <div class="section">
+    <div class="section-head">
+      <span class="step-num">03</span>
+      <h2>What I Built</h2>
+    </div>
+    <p>
+      I designed and built a Saga Orchestrator — an event-driven automation platform using Salesforce Change Data Capture as the entry point. When a Salesforce opportunity hit the right stage, a CDC event fired into BullMQ, which drove a multi-step saga: project record creation, SOW generation pre-populated from CRM data, stakeholder assignment, and notification delivery — all coordinated with exactly-once guarantees using idempotency keys and MongoDB as the state store.
+    </p>
+    <p>
+      I used optimistic locking to prevent race conditions when multiple events fired in quick succession, and BullMQ's exponential backoff to handle any downstream failures gracefully. The entire pipeline ran on AWS Lambda, keeping it serverless and cost-efficient.
+    </p>
+    <p>
+      Critically, I designed it so executives received a pre-filled draft — not a blank form. The SOW template pulled opportunity metadata directly. Their job went from "build it" to "review and approve."
+    </p>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num">80–90%</div>
+      <div class="stat-desc">Reduction in manual intake time</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">500+</div>
+      <div class="stat-desc">Events processed per month</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">0</div>
+      <div class="stat-desc">Duplicate records from race conditions</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">3</div>
+      <div class="stat-desc">C-suite users unblocked</div>
+    </div>
+  </div>
+
+  <hr class="divider"/>
+
+  <!-- OUTCOME -->
+  <div class="section">
+    <div class="section-head">
+      <span class="step-num">04</span>
+      <h2>What Changed</h2>
+    </div>
+    <p>
+      Leadership went from spending 3–4 hours per opportunity intake to spending under 30 minutes reviewing a pre-built draft. POCs started faster. The CEO specifically noted that the gap between deal close and project kickoff had shrunk noticeably — which had a downstream effect on client trust and time-to-value.
+    </p>
+    <p>
+      Beyond the metrics, what changed organizationally was the belief that automation could reach people at the top of the org chart — not just ops teams. That opened conversations about extending the same event-driven model to other leadership workflows.
+    </p>
+  </div>
+
+  <div class="footer">
+    <span class="tag">Event-Driven Architecture</span>
+    <span class="tag">Salesforce CDC</span>
+    <span class="tag">BullMQ / Redis</span>
+    <span class="tag">AWS Lambda</span>
+    <span class="tag">MongoDB</span>
+    <span class="tag">Saga Pattern</span>
+    <span class="tag">Stakeholder Impact</span>
+  </div>
+
+</div>
+</body>
+</html>
