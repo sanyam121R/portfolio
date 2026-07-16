@@ -1,5 +1,5 @@
 import About from "@/components/sections/About";
-import Experience from "@/components/sections/Experience";
+import Experience from "@/components/sections/experience/ExperienceSection";
 import Footer from "@/components/sections/Footer";
 import Header from "@/components/sections/Header";
 import Hero from "@/components/sections/Hero";

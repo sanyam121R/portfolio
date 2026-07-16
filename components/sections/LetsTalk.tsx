@@ -109,7 +109,6 @@ export default function LetsTalk() {
           scrub: 0.5,
           pinSpacing: true,
           anticipatePin: 0.5,
-          invalidateOnRefresh: true,
           onLeave: () => {
             gsap.to(sectionRef.current, { opacity: 1, duration: 0.3 });
           },

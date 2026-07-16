@@ -85,6 +85,17 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
     // Sync Lenis scroll with GSAP ScrollTrigger
     lenis.on('scroll', ScrollTrigger.update);
 
+    // CRITICAL: when ScrollTrigger refreshes it recomputes the document
+    // height (e.g. after the experience section's pin spacer is injected).
+    // Lenis caches its own scroll limit and does NOT auto-detect that change,
+    // so it clamps wheel scrolling short of the real bottom — the page gets
+    // "stuck" mid-pin. Recompute Lenis's dimensions on every refresh so its
+    // limit always matches the actual scrollable height.
+    const onRefresh = () => lenis.resize();
+    ScrollTrigger.addEventListener('refresh', onRefresh);
+    // Run once immediately in case triggers are already set up.
+    lenis.resize();
+
     // Tell GSAP to use Lenis's RAF instead of its own
     gsap.ticker.add((time) => {
       lenis.raf(time * 1000);
@@ -112,6 +123,7 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
 
     return () => {
       timers.forEach((t) => window.clearTimeout(t));
+      ScrollTrigger.removeEventListener('refresh', onRefresh);
       lenis.destroy();
       lenisRef.current = null;
       delete (window as any).__lenis;

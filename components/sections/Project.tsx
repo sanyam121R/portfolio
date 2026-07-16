@@ -180,7 +180,7 @@ export default function Project() {
                   {proj.techstack.map((ts, tsIndex) => (
                     <span
                       key={tsIndex}
-                      className="text-tertiary text-[12px] md:text-[13px] py-1 px-3 border border-primary-border rounded-[8px] whitespace-nowrap"
+                      className="text-tertiary text-[12px] md:text-[13px] py-1 px-3 border border-primary-border rounded-2xl smooth-corners whitespace-nowrap"
                     >
                       {ts}
                     </span>

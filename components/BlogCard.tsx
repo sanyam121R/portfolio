@@ -40,13 +40,13 @@ export default function BlogCard({ blog }: { blog: BlogMeta }) {
           {blog.tags.slice(0, 4).map((tag) => (
             <span
               key={tag}
-              className="text-tertiary text-[12px] py-1 px-3 border border-primary-border rounded-[8px] whitespace-nowrap"
+              className="text-tertiary text-[12px] py-1 px-3 border border-primary-border rounded-2xl smooth-corners whitespace-nowrap"
             >
               {tag}
             </span>
           ))}
           {blog.tags.length > 4 && (
-            <span className="text-tertiary text-[12px] py-1 px-3 border border-primary-border rounded-[8px] whitespace-nowrap">
+            <span className="text-tertiary text-[12px] py-1 px-3 border border-primary-border rounded-2xl smooth-corners whitespace-nowrap">
               +{blog.tags.length - 4}
             </span>
           )}
