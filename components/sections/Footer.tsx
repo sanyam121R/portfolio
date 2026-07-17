@@ -32,7 +32,7 @@ const links = [
   },
   {
     label: 'Email',
-    url: 'mailto:sanyam.12rathore@gmail.com',
+    url: 'mailto:sanyamr.work@gmail.com',
     ariaLabel: 'Send me an email',
     icon: Mail,
     external: false,

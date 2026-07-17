@@ -129,7 +129,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 - **Portfolio:** [sanyam121r.vercel.app](https://sanyam121r.vercel.app/)
 - **GitHub:** [github.com/sanyam121R](https://github.com/sanyam121R)
 - **LinkedIn:** [linkedin.com/in/sanyam-rathore](https://linkedin.com/in/sanyam-rathore)
-- **Email:** sanyam.12rathore@gmail.com
+- **Email:** sanyamr.work@gmail.com
 
 
 ### Curosr
