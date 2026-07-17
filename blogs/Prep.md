@@ -4,6 +4,7 @@ date: "2024-06-15"
 description: "Comprehensive interview preparation notes for GOMO Group Senior Full Stack Developer role — covering technical breadth, ownership stories, agency fit, and logistics."
 tags: ["interview-prep", "career", "system-design", "fullstack", "gomo"]
 readTime: "15 min read"
+link: ""
 ---
 
 # GOMO Group — Round 1 Interview Prep

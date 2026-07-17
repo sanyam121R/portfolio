@@ -50,7 +50,6 @@
 
   h1 {
     font-size: 2rem;
-    font-family: var(--font-weird-word);
   }
 
   ::-webkit-scrollbar {

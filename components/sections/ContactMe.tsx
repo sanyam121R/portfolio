@@ -86,6 +86,7 @@ export default function ContactMe() {
         <div className="flex flex-col items-center text-center">
           <h1
             className="
+              font-weird-word
               bg-[linear-gradient(0deg,#000_11%,#fff_57%)]
               bg-clip-text [-webkit-background-clip:text]
               text-transparent [-webkit-text-fill-color:transparent]

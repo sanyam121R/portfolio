@@ -4,6 +4,7 @@ date: "2024-07-10"
 description: "A deep dive into rate limiting concepts from first principles — covering Redis fundamentals, atomicity, race conditions, and practical implementations with code examples."
 tags: ["redis", "rate-limiting", "backend", "distributed-systems", "algorithms"]
 readTime: "12 min read"
+link: ""
 ---
 
 Act as a Senior Backend developer Teacher and explain each of the principles/terminologies/techniques/methods used in Rate limiting from first principle. Also explain the methods used of Redis. I'm new to Redis.

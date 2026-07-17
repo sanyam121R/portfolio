@@ -70,6 +70,9 @@ export default async function BlogPostPage(
               </span>
             ))}
           </div>
+          {blog?.link !== "" && <p className='italic text-secondary text-[15px] leading-7 underline'>
+            <Link href={blog.link} target='_blank' rel="noopener noreferrer" passHref={true}>Medium Link</Link>
+          </p>}
         </header>
 
         {blog.type === 'html' && blog.htmlUrl ? (

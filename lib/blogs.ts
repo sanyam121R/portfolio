@@ -13,6 +13,7 @@ export interface BlogMeta {
   tags: string[]
   readTime: string
   type: BlogType
+  link: string
   /** Only present for markdown blogs — raw markdown body */
   content?: string
   /** Only present for html blogs — public path to the standalone HTML file */
@@ -50,6 +51,7 @@ const HTML_BLOGS: BlogMeta[] = [
     readTime: '6 min read',
     type: 'html',
     htmlUrl: '/blogs/deep-customer-problem.html',
+    link: ''
   },
 ]
 
@@ -72,6 +74,7 @@ function readMarkdownBlogs(): BlogMeta[] {
         tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
         readTime: data.readTime ?? '5 min read',
         type: 'markdown' as const,
+        link: data.link,
         content,
       }
     })

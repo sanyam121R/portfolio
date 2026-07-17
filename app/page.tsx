@@ -20,8 +20,8 @@ export default function Home() {
       <Project />
       {/* <Work /> */}
       <Experience />
-      <Blogs />
       <TechStack />
+      <Blogs />
       <LetsTalk />
       <ContactMe />
       <Footer />

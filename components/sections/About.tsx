@@ -60,6 +60,7 @@ export default function About() {
     return (
         <div id="about" className="h-auto md:h-svh w-svw p-8 pt-20 flex flex-col gap-10">
             <h1 className="
+                font-weird-word
                 bg-[linear-gradient(0deg,#000_11%,#fff_57%)]
                 bg-clip-text [-webkit-background-clip:text]
                 text-transparent [-webkit-text-fill-color:transparent]
