@@ -5,14 +5,10 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useExperience } from "./ExperienceContext";
 import { hReveal, float, drift } from "./sceneFx";
+import { ScrollTrigger } from "gsap/all";
 
-gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-/**
- * Scene 02 — Persistent Systems.
- * Foundation / learning / databases. Architectural wireframe cubes, a faint
- * database grid, thin technical lines. Floating metric labels, unboxed.
- */
 function WireCube({ className = "" }: { className?: string }) {
   return (
     <svg
@@ -52,6 +48,10 @@ export default function ScenePersistent() {
       float(".pers-cube", { distance: 18, duration: 8, delay: 0.4 });
       float(".pers-metric", { distance: 12, duration: 6, delay: 0.8 });
       drift(".pers-grid", { duration: 90 });
+
+      const onResize = () => ScrollTrigger?.refresh();
+      window.addEventListener("resize", onResize);
+      return () => window.removeEventListener("resize", onResize);
     },
     { scope: rootRef, dependencies: [containerAnimation] }
   );
@@ -59,45 +59,44 @@ export default function ScenePersistent() {
   return (
     <div
       ref={rootRef}
-      className="relative flex h-full w-[85vw] shrink-0 items-center overflow-hidden px-12 md:px-24"
+      className="relative flex h-full w-[200vw] sm:w-[150vw] md:w-[110vw] lg:w-[85vw] shrink-0 items-center overflow-hidden px-5 sm:px-8 md:px-12 lg:px-24"
     >
       {/* Wireframe cubes */}
-      <WireCube className="pers-cube absolute right-[14%] top-[20%] h-40 w-40 opacity-100" />
-      <WireCube className="pers-cube absolute right-[8%] bottom-[16%] h-24 w-24 opacity-100" />
+      <WireCube className="pers-cube absolute right-[6%] top-[12%] h-20 w-20 sm:right-[10%] sm:top-[16%] sm:h-28 sm:w-28 sm:opacity-90 md:right-[14%] md:top-[20%] md:h-36 md:w-36 lg:h-40 lg:w-40 opacity-100" />
+      <WireCube className="pers-cube absolute right-[4%] bottom-[10%] h-12 w-12 sm:right-[6%] sm:bottom-[14%] sm:h-16 sm:w-16 sm:opacity-90 md:right-[8%] md:bottom-[16%] md:h-20 md:w-20 lg:h-24 lg:w-24 opacity-100" />
 
       {/* Faint database grid */}
       <div
-        className="pers-grid pointer-events-none absolute inset-y-0 right-[6%] w-[40%] opacity-70"
+        className="pers-grid pointer-events-none absolute inset-y-0 right-[2%] w-[55%] opacity-40 sm:right-[4%] sm:w-[48%] sm:opacity-55 md:right-[6%] md:w-[42%] md:opacity-65 lg:w-[40%] lg:opacity-70"
         style={{
           backgroundImage:
             "linear-gradient(to right, rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.08) 1px, transparent 1px)",
-          backgroundSize: "48px 48px",
+          backgroundSize: "32px 32px",
         }}
       />
 
-
       <div className="relative z-10 max-w-2xl">
-        <p className="pers-rise mb-6 text-[11px] uppercase tracking-[0.5em] text-tertiary">
+        <p className="pers-rise mb-4 sm:mb-6 text-[9px] sm:text-[10px] md:text-[11px] uppercase tracking-[0.4em] md:tracking-[0.5em] text-tertiary">
           Chapter 01
         </p>
-        <h2 className="pers-rise font-weird-word text-[clamp(2.5rem,7vw,6rem)] leading-[0.95] text-primary">
+        <h2 className="pers-rise font-weird-word text-[clamp(2rem,10vw,6rem)] leading-[0.95] text-primary">
           Persistent
           <br />
           Systems
         </h2>
-        <p className="pers-rise mt-3 text-lg font-light italic text-secondary">
+        <p className="pers-rise mt-2 sm:mt-3 text-base sm:text-lg font-light italic text-secondary">
           Database Apprentice
         </p>
-        <p className="pers-rise mt-8 max-w-md text-base leading-relaxed text-tertiary">
+        <p className="pers-rise mt-6 sm:mt-8 max-w-md text-sm sm:text-base leading-relaxed text-tertiary">
           Learning enterprise systems and data infrastructure — where reliable
           foundations are quietly built, one query at a time.
         </p>
 
-        <div className="pers-rise mt-12 flex flex-wrap gap-x-6 gap-y-4 text-sm uppercase tracking-[0.25em] text-secondary">
-          <span className="pers-metric py-1 px-3 border border-primary-border rounded-2xl smooth-corners whitespace-nowrap">SQL</span>
-          <span className="pers-metric py-1 px-3 border border-primary-border rounded-2xl smooth-corners whitespace-nowrap">Docker</span>
-          <span className="pers-metric py-1 px-3 border border-primary-border rounded-2xl smooth-corners whitespace-nowrap">PostgreSQL</span>
-          <span className="pers-metric py-1 px-3 border border-primary-border rounded-2xl smooth-corners whitespace-nowrap">IBM Netezza</span>
+        <div className="pers-rise mt-8 sm:mt-12 flex flex-wrap gap-x-4 sm:gap-x-6 gap-y-2 sm:gap-y-4 text-xs sm:text-sm uppercase tracking-[0.2em] sm:tracking-[0.25em] text-secondary">
+          <span className="pers-metric py-1 px-2.5 sm:px-3 border border-primary-border rounded-2xl smooth-corners whitespace-nowrap">SQL</span>
+          <span className="pers-metric py-1 px-2.5 sm:px-3 border border-primary-border rounded-2xl smooth-corners whitespace-nowrap">Docker</span>
+          <span className="pers-metric py-1 px-2.5 sm:px-3 border border-primary-border rounded-2xl smooth-corners whitespace-nowrap">PostgreSQL</span>
+          <span className="pers-metric py-1 px-2.5 sm:px-3 border border-primary-border rounded-2xl smooth-corners whitespace-nowrap">IBM Netezza</span>
         </div>
       </div>
     </div>
