@@ -11,6 +11,8 @@
   "dependencies": {
     "@gsap/react": "^2.1.2",
     "@types/splitting": "^1.0.6",
+    "@vercel/analytics": "^2.0.1",
+    "@vercel/speed-insights": "^2.0.0",
     "date-fns": "^4.4.0",
     "framer-motion": "^12.41.0",
     "gray-matter": "^4.0.3",

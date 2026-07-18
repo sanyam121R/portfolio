@@ -4,6 +4,8 @@ import { createContext, useContext, useState } from 'react';
 import PreLoader from '@/components/PreLoader';
 import SmoothScroll from '@/components/SmoothScroll';
 import DraggableNav from '@/components/DraggableNav';
+import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Analytics } from "@vercel/analytics/next"
 
 type AppReadyContextType = {
   preloaderDone: boolean;
@@ -37,6 +39,9 @@ export default function ClientShell({
           }}
         />
       )}
+
+      <Analytics />
+      <SpeedInsights />
     </AppReadyContext.Provider>
   );
 }
