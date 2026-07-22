@@ -111,7 +111,7 @@ export default function ContactMe() {
           ))}
         </div>
 
-        <div className="w-full max-w-xl min-h-[220px] flex items-center justify-center">
+        <div className="w-full max-w-xl min-h-55 flex items-center justify-center">
           <AnimatePresence mode="wait">
             {step === 0 && (
               <motion.div
@@ -123,7 +123,6 @@ export default function ContactMe() {
                 <label className="flex flex-col gap-3">
                   <span className="text-tertiary text-sm">What's your name?</span>
                   <input
-                    autoFocus
                     value={data.name}
                     onChange={(e) => update('name', e.target.value)}
                     onKeyDown={(e) => e.key === 'Enter' && next()}
@@ -151,7 +150,6 @@ export default function ContactMe() {
                 <label className="flex flex-col gap-3">
                   <span className="text-tertiary text-sm">And your email?</span>
                   <input
-                    autoFocus
                     type="email"
                     value={data.email}
                     onChange={(e) => update('email', e.target.value)}
@@ -191,7 +189,6 @@ export default function ContactMe() {
                     What's this about, {data.name.split(' ')[0] || 'friend'}?
                   </span>
                   <textarea
-                    autoFocus
                     value={data.message}
                     onChange={(e) => update('message', e.target.value)}
                     rows={4}
