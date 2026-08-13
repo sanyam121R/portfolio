@@ -30,7 +30,7 @@ export function CenterNode() {
     */
     <div
       ref={pulseRef}
-      className="relative flex items-center justify-center w-[160px] h-[180px] sm:w-[185px] sm:h-[205px] lg:w-[210px] lg:h-[235px]"
+      className="relative flex items-center justify-center w-40 h-45 sm:w-46.25 sm:h-51.25 lg:w-52.5 lg:h-58.75"
     >
       {/* ── Hexagon SVG background ── */}
       <svg
@@ -128,10 +128,11 @@ function hexPath(cx: number, cy: number, r: number, radius: number): string {
   return d + " Z";
 }
 
-function hexEdges(cx: number, cy: number, r: number, _radius: number) {
-  const pts = hexPoints(cx, cy, r);
-  return pts.map((pt, i) => {
-    const next = pts[(i + 1) % pts.length];
-    return { x1: pt[0], y1: pt[1], x2: next[0], y2: next[1] };
-  });
-}
+// Unused helper - kept for future use if needed
+// function hexEdges(cx: number, cy: number, r: number, radius: number) {
+//   const pts = hexPoints(cx, cy, r);
+//   return pts.map((pt, i) => {
+//     const next = pts[(i + 1) % pts.length];
+//     return { x1: pt[0], y1: pt[1], x2: next[0], y2: next[1] };
+//   });
+// }

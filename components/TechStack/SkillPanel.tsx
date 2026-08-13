@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, type Variants } from "framer-motion";
-import { X, CheckCircle2, ArrowRight } from "lucide-react";
+import { X, ArrowRight } from "lucide-react";
 import type { TechItem } from "@/lib/techStackData";
 
 interface SkillPanelProps {
@@ -31,9 +31,8 @@ const itemVariants: Variants = {
   hidden: { opacity: 0, y: 10 },
   visible: { opacity: 1, y: 0 },
 };
-export function SkillPanel({ skill, onClose, isFixed = false, monochrome = false }: SkillPanelProps) {
+export function SkillPanel({ skill, onClose, isFixed = false }: SkillPanelProps) {
   const Icon = skill.icon;
-  const iconColor = monochrome ? "#ffffff" : skill.color;
 
   return (
     <motion.div
@@ -74,7 +73,7 @@ export function SkillPanel({ skill, onClose, isFixed = false, monochrome = false
             className="shrink-0 w-11 h-11 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center bg-[#1e1e1e] border border-primary-border"
             style={{ boxShadow: `0 0 16px 2px ${skill.color}22` }}
           >
-            <Icon size={22} className="sm:w-[28px] sm:h-[28px]" color={skill.color} />
+            <Icon size={22} className="sm:w-7 sm:h-7" color={skill.color} />
           </div>
           <div>
             <h3 className="text-primary font-inter font-bold text-lg sm:text-xl leading-tight">

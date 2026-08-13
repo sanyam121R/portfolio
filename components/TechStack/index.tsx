@@ -109,7 +109,7 @@ export default function TechStack() {
         </div>
 
         {/* ── Center column ── */}
-        <div className="order-2 lg:order-2 h-full flex-col items-center justify-end gap-6 lg:gap-14 lg:pr-5 lg:pb-5 md:flex hidden lg:h-[650px]">
+        <div className="order-2 lg:order-2 h-full flex-col items-center justify-end gap-6 lg:gap-14 lg:pr-5 lg:pb-5 md:flex hidden lg:h-162.5">
           <div className="center-node-wrap md:inline hidden" ref={centerRef}>
             <CenterNode />
           </div>
@@ -119,9 +119,9 @@ export default function TechStack() {
             initial={prefersReducedMotion ? false : { opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.45, duration: 0.5 }}
-            className="relative rounded-3xl smooth-corners border border-primary-border p-4 text-center max-w-[230px] z-10"
+            className="relative rounded-3xl smooth-corners border border-primary-border p-4 text-center max-w-57.5 z-10"
           >
-            <span className="absolute top-[-10px] left-1/2 -translate-x-1/2 block text-2xl text-tertiary mb-1.5 font-serif leading-none">❝</span>
+            <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 block text-2xl text-tertiary mb-1.5 font-serif leading-none">❝</span>
             <p className="text-secondary text-xs italic font-inter leading-relaxed">
               I don't just use technologies, I integrate them to create seamless,{" "}
               <strong className="text-foreground not-italic font-semibold">high-impact</strong>{" "}

@@ -47,7 +47,7 @@ export default function ExperienceSection() {
             section.style.zIndex = self.isActive ? "45" : "";
           },
           onRefresh: (self) => {
-            // eslint-disable-next-line no-console
+             
             console.log(
               "[EXP] scrollAmount=",
               getScrollAmount(),
