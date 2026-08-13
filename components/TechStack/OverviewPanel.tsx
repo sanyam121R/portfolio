@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence, type Variants } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { Briefcase, Code2, BarChart2, Layers, MousePointer } from "lucide-react";
 
 const containerVariants: Variants = {
@@ -104,7 +104,7 @@ export function OverviewPanel() {
         </p>
         <div className="space-y-2">
           <ApproachCard
-            icon={<Layers size={18} className="sm:w-[20px] sm:h-[20px] text-secondary" />}
+            icon={<Layers size={18} className="sm:w-5 sm:h-5 text-secondary" />}
             text={
               <>
                 The right technology for the right problem. Always scalable.
@@ -114,7 +114,7 @@ export function OverviewPanel() {
             }
           />
           <ApproachCard
-            icon={<MousePointer size={18} className="sm:w-[20px] sm:h-[20px] text-secondary" />}
+            icon={<MousePointer size={18} className="sm:w-5 sm:h-5 text-secondary" />}
             text="Hover over any technology to see how I leverage it."
           />
         </div>

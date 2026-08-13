@@ -4,7 +4,6 @@ import gsap from "gsap";
 import { Draggable } from "gsap/Draggable";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef } from "react";
-import Lenis from "lenis";
 import WaveText from "./WaveText";
 import { scrollToSection } from "./SmoothScroll";
 
@@ -368,7 +367,7 @@ export default function DraggableNav() {
                     ref={dropZoneRef}
                     className="
                         absolute top-0 left-0
-                        h-[40px]
+                        h-10
                         border-[0.075rem] border-secondary border-dashed rounded-[4rem]
                         opacity-0 pointer-events-none
                         -translate-2/4 will-change-transform
@@ -441,7 +440,7 @@ export default function DraggableNav() {
 
             <div
                 className="
-                    flex flex-row gap-1 sm:hidden text-sm py-[6px] px-[8px] bg-primary text-background rounded-full
+                    flex flex-row gap-1 sm:hidden text-sm py-1.5 px-2 bg-primary text-background rounded-full
                     items-center absolute -translate-2/4 will-change-transform"
             >
                 <div className="flex flex-row justify-center items-center bg-background h-10 w-max py-2 px-4 rounded-full">
@@ -450,7 +449,7 @@ export default function DraggableNav() {
 
                 <div className="grid grid-cols-[repeat(3,1fr)] justify-items-center pr-1">
                     {NAV_ITEMS.map((item) => (
-                        <div key={item.sectionId} className="w-max py-[2px] pb-0 px-1 hover:underline items-center text-center">
+                        <div key={item.sectionId} className="w-max py-0.5 pb-0 px-1 hover:underline items-center text-center">
                             <a
                                 href={`#${item.sectionId}`}
                                 onClick={(e) => {

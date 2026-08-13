@@ -1,8 +1,7 @@
 'use client';
 
-import { SubmitEvent, useState } from 'react';
+import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import WaveText from '@/components/WaveText';
 
 type Step = 0 | 1 | 2 | 3; // 3 = submitted
 
@@ -37,7 +36,7 @@ export default function ContactMe() {
       return;
     }
     if (step === 1 && !EMAIL_RE.test(data.email.trim())) {
-      setError('That email doesn’t look right.');
+      setError("That email doesn't look right.");
       return;
     }
     setError(null);
@@ -49,7 +48,7 @@ export default function ContactMe() {
     setStep((s) => (s - 1) as Step);
   };
 
-  const submit = async (e: SubmitEvent<HTMLFormElement>) => {
+  const submit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (data.message.trim().length < 5) {
       setError('Add a little more detail, please.');
@@ -96,7 +95,7 @@ export default function ContactMe() {
             Let's Connect.
           </h1>
           <p className="text-secondary text-[10px] md:text-sm">
-            hiring? collaborating? just say hi — one step at a time.
+            hiring? collaborating? just say hi &mdash; one step at a time.
           </p>
         </div>
 
@@ -164,7 +163,7 @@ export default function ContactMe() {
                     onClick={back}
                     className="text-sm text-tertiary hover:text-primary transition-colors"
                   >
-                    ← Back
+                    &larr; Back
                   </button>
                   <button
                     onClick={next}
@@ -192,7 +191,7 @@ export default function ContactMe() {
                     value={data.message}
                     onChange={(e) => update('message', e.target.value)}
                     rows={4}
-                    placeholder="Role, project, or just a hello…"
+                    placeholder="Role, project, or just a hello&hellip;"
                     className="bg-transparent border-b border-primary-border focus:border-primary outline-none py-3 text-lg md:text-xl text-primary placeholder:text-tertiary/50 transition-colors resize-none"
                   />
                 </label>
@@ -204,14 +203,14 @@ export default function ContactMe() {
                     disabled={sending}
                     className="text-sm text-tertiary hover:text-primary transition-colors disabled:opacity-40"
                   >
-                    ← Back
+                    &larr; Back
                   </button>
                   <button
                     type="submit"
                     disabled={sending}
                     className="text-sm md:text-base text-primary hover:underline disabled:opacity-40"
                   >
-                    {sending ? 'Sending…' : 'Send →'}
+                    {sending ? 'Sending&hellip;' : 'Send →'}
                   </button>
                 </div>
               </motion.form>
@@ -228,7 +227,7 @@ export default function ContactMe() {
                   Thanks, {data.name.split(' ')[0] || 'friend'}!
                 </h2>
                 <p className="text-secondary text-sm max-w-sm">
-                  Your message is on its way — I'll get back to you at{' '}
+                  Your message is on its way &mdash; I'll get back to you at{' '}
                   <span className="text-primary">{data.email}</span> soon.
                 </p>
               </motion.div>

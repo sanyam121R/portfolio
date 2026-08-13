@@ -5,7 +5,6 @@ import Header from "@/components/sections/Header";
 import Hero from "@/components/sections/Hero";
 import LetsTalk from "@/components/sections/LetsTalk";
 import Project from "@/components/sections/Project";
-import Work from "@/components/sections/Work";
 import Blogs from "@/components/sections/Blogs";
 import ContactMe from "@/components/sections/ContactMe";
 import TechStack from "@/components/TechStack";
@@ -18,7 +17,6 @@ export default function Home() {
       <Hero />
       <About />
       <Project />
-      {/* <Work /> */}
       <Experience />
       <TechStack />
       <Blogs />

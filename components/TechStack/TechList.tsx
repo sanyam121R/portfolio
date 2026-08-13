@@ -39,12 +39,12 @@ export function TechList({ items, activeId, cardRefs, onHover, onLeave, onClick,
       </div>
 
       {/* Subtext */}
-      <p className="tech-entrance-item text-tertiary text-xs font-inter leading-relaxed mb-2 max-w-[260px] text-center lg:text-left">
+      <p className="tech-entrance-item text-tertiary text-xs font-inter leading-relaxed mb-2 max-w-65 text-center lg:text-left">
         I combine the right technologies to build scalable, performant and impactful solutions.
       </p>
 
       {/* Cards — centered on mobile, offset on desktop */}
-      <div className="flex flex-col gap-2 w-full max-w-[260px] sm:max-w-[300px] lg:max-w-[220px] lg:ml-10">
+      <div className="flex flex-col gap-2 w-full max-w-65 sm:max-w-75 lg:max-w-55 lg:ml-10">
         {items.map((item, index) => (
           <TechCard
             key={item.id}
