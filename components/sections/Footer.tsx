@@ -39,7 +39,7 @@ const links = [
   },
   {
     label: 'Resume',
-    url: '/Sanyam Rathore - Full Stack.pdf',
+    url: '/resume.pdf',
     ariaLabel: 'Download my resume',
     icon: FileText,
     external: false,
@@ -54,12 +54,12 @@ const Footer = () => {
       className="relative"
       role="contentinfo"
     >
-      <div className="max-w-[1200px] mx-auto p-8 text-[10px] flex flex-col gap-12">
+      <div className="max-w-300 mx-auto p-8 text-[10px] flex flex-col gap-12">
         {/* Main row */}
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           {/* Identity block */}
           <div className="flex flex-col">
-            <h3 className="text-primary text-[clamp(4rem,7vw,5rem)] leading-none tracking-tight font-mont-sign">
+            <h3 className="text-primary text-[clamp(4rem,7vw,5rem)] leading-none tracking-tight font-sharpenhill">
               Sanyam Rathore
             </h3>
             <p className="text-[12px] text-tertiary tracking-wide">

@@ -64,7 +64,7 @@ export default async function BlogPostPage(
             {blog.tags.map((tag) => (
               <span
                 key={tag}
-                className="text-tertiary text-[12px] py-1 px-3 border border-primary-border rounded-[8px] whitespace-nowrap"
+                className="text-tertiary text-[12px] py-1 px-3 border border-primary-border rounded-lg whitespace-nowrap"
               >
                 {tag}
               </span>
@@ -80,7 +80,7 @@ export default async function BlogPostPage(
             <iframe
               src={blog.htmlUrl}
               title={blog.title}
-              className="w-full min-h-[1200px] bg-[#f5f0e8]"
+              className="w-full min-h-300 bg-[#f5f0e8]"
             />
           </div>
         ) : (

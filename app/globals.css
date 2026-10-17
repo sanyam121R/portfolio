@@ -24,6 +24,7 @@
   --font-weird-word: var(--font-weird-word);
   --font-doto: var(--font-doto);
   --font-mansalva: var(--font-mansalva);
+  --font-sharpenhill: var(--font-sharpenhill);
 
   --animate-marquee: marquee 22s linear infinite;
 }

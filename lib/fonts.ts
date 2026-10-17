@@ -31,3 +31,9 @@ export const werid_word = localFont({
     display: 'swap',
     variable: '--font-weird-word'
 })
+
+export const sharpenhill = localFont({
+    src: '../public/fonts/Sharpenhill.otf',
+    display: 'swap',
+    variable: '--font-sharpenhill'
+})

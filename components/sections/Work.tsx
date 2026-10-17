@@ -112,7 +112,7 @@ export default function Work() {
                     height={140}
                     width={140}
                     className="absolute -right-8 top-20 md:right-20 md:top-10 
-                    h-[100px] w-[100px] md:h-auto md:w-auto z-10"
+                    h-25 w-25 md:h-auto md:w-auto z-10"
                 />
             </section>
 
@@ -130,7 +130,7 @@ export default function Work() {
                         key={index}
                         className="
                             card-item relative
-                            min-h-auto md:min-h-[290px] p-5 md:p-8
+                            min-h-auto md:min-h-72.5 p-5 md:p-8
                             grid grid-cols-1 md:grid-cols-[3fr_1fr] gap-6
                             border-b border-primary-border first:rounded-t-4xl last:rounded-b-4xl smooth-corners 
                             transition-[opacity,transform,box-shadow] duration-300 ease-out
@@ -145,13 +145,13 @@ export default function Work() {
                         {/* Accent bar — grows on hover, purely decorative, zero layout cost */}
                         <span
                             className="
-                                absolute left-0 top-5 bottom-5 w-[2px] bg-white/0
+                                absolute left-0 top-5 bottom-5 w-0.5 bg-white/0
                                 transition-all duration-300 ease-out
                                 group-has-[.card-item:hover]/list:bg-white/0"
                         />
                         <span
                             className="
-                                absolute left-0 top-1/2 -translate-y-1/2 w-[2px] h-0
+                                absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-0
                                 bg-white transition-all duration-300 ease-out
                                 [.card-item:hover_&]:h-[60%]"
                         />

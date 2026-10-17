@@ -27,7 +27,7 @@ export default function Header() {
       <section className="flex flex-row justify-end items-center gap-2 border-b pb-1 w-35">
         <FaceWithEyes />
         <a
-          href="/Sanyam Rathore - Full Stack.pdf"
+          href="/resume.pdf"
           target="_blank"
           rel="noopener noreferrer"
           className="cursor-[url('https://cdn.cursors-4u.net/previews/tiny-finger-point-c1336353-32.webp')_32_32,auto]"
