@@ -5,6 +5,7 @@ description: "Comprehensive interview preparation notes for GOMO Group Senior Fu
 tags: ["interview-prep", "career", "system-design", "fullstack", "gomo"]
 readTime: "15 min read"
 link: ""
+draft: true
 ---
 
 # GOMO Group — Round 1 Interview Prep

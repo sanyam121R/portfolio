@@ -84,18 +84,27 @@ export default function ScenePersistent() {
           <br />
           Systems
         </h2>
-        <p className="pers-rise mt-2 sm:mt-3 text-base sm:text-lg font-light italic text-secondary">
-          Database Apprentice
-        </p>
+        <div className="pers-rise mt-2 sm:mt-3 flex flex-wrap items-center gap-2 sm:gap-3">
+          <p className="text-base sm:text-lg font-light italic text-secondary">
+            Software Developer
+          </p>
+          <span className="py-1 px-2.5 sm:px-3 border border-primary-border rounded-2xl smooth-corners whitespace-nowrap text-[9px] sm:text-[10px] uppercase tracking-[0.2em] sm:tracking-[0.25em] text-tertiary">
+            Intern → FTE
+          </span>
+          <span className="text-[9px] sm:text-[10px] uppercase tracking-[0.2em] sm:tracking-[0.25em] text-tertiary">
+            Dec 2021 – Aug 2022
+          </span>
+        </div>
         <p className="pers-rise mt-6 sm:mt-8 max-w-md text-sm sm:text-base leading-relaxed text-tertiary">
-          Learning enterprise systems and data infrastructure — where reliable
-          foundations are quietly built, one query at a time.
+          Maintaining IBM Netezza data-warehouse appliances — monitoring SPUs,
+          debugging SQL workloads, and containerizing workflows with Docker. Where
+          reliable foundations are quietly built, one query at a time.
         </p>
 
         <div className="pers-rise mt-8 sm:mt-12 flex flex-wrap gap-x-4 sm:gap-x-6 gap-y-2 sm:gap-y-4 text-xs sm:text-sm uppercase tracking-[0.2em] sm:tracking-[0.25em] text-secondary">
           <span className="pers-metric py-1 px-2.5 sm:px-3 border border-primary-border rounded-2xl smooth-corners whitespace-nowrap">SQL</span>
           <span className="pers-metric py-1 px-2.5 sm:px-3 border border-primary-border rounded-2xl smooth-corners whitespace-nowrap">Docker</span>
-          <span className="pers-metric py-1 px-2.5 sm:px-3 border border-primary-border rounded-2xl smooth-corners whitespace-nowrap">PostgreSQL</span>
+          <span className="pers-metric py-1 px-2.5 sm:px-3 border border-primary-border rounded-2xl smooth-corners whitespace-nowrap">nzsql / nzcli</span>
           <span className="pers-metric py-1 px-2.5 sm:px-3 border border-primary-border rounded-2xl smooth-corners whitespace-nowrap">IBM Netezza</span>
         </div>
       </div>

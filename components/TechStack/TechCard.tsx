@@ -16,7 +16,7 @@ interface TechCardProps {
 
 
 export const TechCard = forwardRef<HTMLDivElement, TechCardProps>(
-  ({ item, isActive, isFixed, index, onHover, onLeave, onClick }, ref) => {
+  ({ item, isActive, isFixed, onHover, onLeave, onClick }, ref) => {
     const Icon = item.icon;
 
     return (

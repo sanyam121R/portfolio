@@ -47,7 +47,7 @@ export default async function BlogPostPage(
             href="/blogs"
             className="text-tertiary text-sm hover:text-primary transition-colors w-max"
           >
-            ← Back to home
+            ← All posts
           </Link>
           <h1 className="font-inter text-5xl md:text-6xl">
             {blog.title}

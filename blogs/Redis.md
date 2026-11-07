@@ -7,9 +7,7 @@ readTime: "12 min read"
 link: ""
 ---
 
-Act as a Senior Backend developer Teacher and explain each of the principles/terminologies/techniques/methods used in Rate limiting from first principle. Also explain the methods used of Redis. I'm new to Redis.
-
-Let me break down every single concept here from zero — Redis, its commands, atomicity, race conditions, all of it. Read the prose to build the mental model, then use the widget below as a hands-on playground.
+This post breaks down every concept behind rate limiting from zero — Redis, its commands, atomicity, race conditions, all of it. Read it top to bottom to build the mental model, then use the code examples as a starting point.
 
 ---
 

@@ -129,8 +129,8 @@ export default function Hero() {
         </div>
 
         <div ref={pRef} className="text-secondary text-xs md:text-sm">
-          <p>Systems that scale, Interfaces that don't ask users to think.</p>
-          <p>Building event-driven architecture and the interfaces that sit on top of them.</p>
+          <p>Systems that scale, Interfaces that don’t ask users to think.</p>
+          <p>Building event-driven systems, AI-powered workflows, and the interfaces that sit on top of them.</p>
           <p className="font-extrabold italic mt-3 md:mt-4">— you call it, I design it.</p>
         </div>
       </section>

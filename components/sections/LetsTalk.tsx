@@ -248,10 +248,11 @@ export default function LetsTalk() {
             ref={leftHandRef}
             className="
               relative z-10 flex-1
-              h-[38vh] md:h-[50vh] lg:h-[calc(100vh--70px)]
+              h-[38vh] md:h-[50vh] lg:h-[calc(100vh+70px)]
               will-change-transform
             "
             style={{ transform: 'translateZ(0)' }}
+            aria-hidden="true"
           >
             <Image
               src="/assets/lets talk/left hand.png"
@@ -259,13 +260,12 @@ export default function LetsTalk() {
               fill
               sizes="50vw"
               className="object-contain object-right"
-              priority
               draggable={false}
             />
           </div>
 
             {/* Center image stack */}
-            <div className="absolute top-1/2 left-1/2 translate-x-[-30%] -translate-y-1/2 z-20 shrink-0 w-24 h-24 md:w-30 md:h-30 lg:w-38 lg:h-38">
+            <div aria-hidden="true" className="absolute top-1/2 left-1/2 translate-x-[-30%] -translate-y-1/2 z-20 shrink-0 w-24 h-24 md:w-30 md:h-30 lg:w-38 lg:h-38">
               {CENTER_IMAGES.map((src, idx) => (
                 <div
                   key={src}
@@ -275,12 +275,11 @@ export default function LetsTalk() {
                 >
                   <Image
                     src={src}
-                    alt={`Stage ${idx + 1}`}
+                    alt=""
                     fill
-                    sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 33vw"
+                    sizes="160px"
                     className="object-contain"
-                    priority
-                    draggable={false}
+                          draggable={false}
                   />
                 </div>
               ))}
@@ -300,10 +299,11 @@ export default function LetsTalk() {
             ref={rightHandRef}
             className="
               relative z-10 flex-1
-              h-[38vh] md:h-[50vh] lg:h-[calc(100vh--70px)]
+              h-[38vh] md:h-[50vh] lg:h-[calc(100vh+70px)]
               will-change-transform
             "
             style={{ transform: 'translateZ(0)' }}
+            aria-hidden="true"
           >
             <Image
               src="/assets/lets talk/right hand.png"
@@ -311,7 +311,6 @@ export default function LetsTalk() {
               fill
               sizes="50vw"
               className="object-contain object-left"
-              priority
               draggable={false}
             />
           </div>

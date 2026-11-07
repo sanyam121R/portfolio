@@ -23,6 +23,8 @@ export interface BlogMeta {
    * Computed lazily so build output stays deterministic.
    */
   formattedDate?: string
+  /** Drafts are excluded from listings and routes */
+  draft?: boolean
 }
 
 const BLOGS_DIR = path.join(process.cwd(), 'blogs')
@@ -74,7 +76,8 @@ function readMarkdownBlogs(): BlogMeta[] {
         tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
         readTime: data.readTime ?? '5 min read',
         type: 'markdown' as const,
-        link: data.link,
+        link: data.link ?? '',
+        draft: data.draft === true,
         content,
       }
     })
@@ -94,6 +97,7 @@ function decorate(meta: BlogMeta): BlogMeta {
 export function getAllBlogs(): BlogMeta[] {
   const all = [...readMarkdownBlogs(), ...HTML_BLOGS]
   return all
+    .filter((b) => !b.draft)
     .sort((a, b) => parseISO(b.date).getTime() - parseISO(a.date).getTime())
     .map(decorate)
 }

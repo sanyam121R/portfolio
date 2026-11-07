@@ -9,45 +9,82 @@ import WaveText from '../WaveText'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const project_data = [
+type ProjectItem = {
+  id: string
+  title: string
+  description: string
+  techstack: string[]
+  effect?: { figure: string; of: string }[]
+  link?: { href: string; label: string }
+}
+
+const project_data: ProjectItem[] = [
   {
     id: '01',
-    title: 'Salesforce CDC Saga Orchestrator',
+    title: 'AI Financial Analytics SaaS + Copilot',
     description:
-      'Event-driven saga layer on BullMQ + MongoDB handling Salesforce Change Data Capture — optimistic locking, idempotency, retry topology.',
-    techstack: ['Node.js', 'TypeScript', 'Redis BullMQ', 'MongoDB', 'AWS Lambda'],
-    effect: [
-      { figure: '99%', of: 'delivery reliability' },
-      { figure: '75%', of: 'overhead reduction' },
-    ],
-    caseStudy: '/blogs/deep-customer-problem',
+      'Multi-tenant financial analytics platform with RBAC and workspace-level isolation — dashboards for revenue, cash flow, net worth, budgets and investments, plus an LLM Copilot that runs tool-based analysis over tenant-scoped data: anomaly detection, forecasting, what-if scenarios and AI-generated reports.',
+    techstack: ['Next.js', 'TypeScript', 'Node.js', 'PostgreSQL', 'Redis', 'BullMQ', 'LLM Tool Calling'],
   },
   {
     id: '02',
-    title: 'Jira—Halo / Jira—ServiceNow Two Way Sync Engine',
+    title: 'Event-Driven AI Workflow Orchestrator',
     description:
-      'Bidirectional sync between two ITSM systems via AWS Lambda — conflict resolution, field mapping, web-hook handling, zero source-of-truth coupling.',
-    techstack: ['Node.js', 'TypeScript', 'AWS Lambda', 'AWS API Gateway'],
-    effect: [{ figure: '80%', of: 'manual sync eliminated' }],
-    caseStudy: '#',
+      'Salesforce CDC-driven platform automating project intake, provisioning and approvals. Saga workflows with idempotency, transactional outbox, compensation and DLQs, with human-in-the-loop AI guardrails so no autonomous decision executes critical operations.',
+    techstack: ['Node.js', 'TypeScript', 'Kafka', 'PostgreSQL', 'Redis', 'Salesforce CDC'],
+    effect: [
+      { figure: '99%', of: 'reliability' },
+      { figure: '75%', of: 'intake overhead cut' },
+      { figure: '0', of: 'data loss / duplicates' },
+    ],
+    link: { href: '/blogs/deep-customer-problem', label: 'Case Study' },
   },
   {
     id: '03',
+    title: 'Jira—Halo / Jira—ServiceNow Two Way Sync Engine',
+    description:
+      'Event-triggered bidirectional sync between ITSM systems and Jira via AWS Lambda — conflict resolution, field mapping, webhook handling, zero source-of-truth coupling.',
+    techstack: ['Node.js', 'TypeScript', 'AWS Lambda', 'AWS API Gateway'],
+    effect: [
+      { figure: '80%', of: 'manual sync eliminated' },
+      { figure: '25%', of: 'faster ticket resolution' },
+    ],
+  },
+  {
+    id: '04',
+    title: 'react-finance-grid',
+    description:
+      'Reusable React data-grid library for financial workflows — pinned columns, drag-and-drop ordering, async row expansion, sticky grand totals, virtualized rendering and an accessible column menu. Ships ESM/CJS builds, TypeScript declarations, CSS export and tests.',
+    techstack: ['React', 'TypeScript', 'Virtualization', 'a11y', 'Vitest'],
+    link: { href: 'https://github.com/sanyam121R/react-finance-grid', label: 'Source' },
+  },
+  {
+    id: '05',
+    title: 'StreamSync — Real-time Video Sharing',
+    description:
+      'Full-stack desktop app for real-time video sharing with low-latency streaming over Socket.io and global delivery through AWS CloudFront. Whisper AI generates titles, descriptions and transcripts from each video.',
+    techstack: ['Next.js', 'Electron', 'Express.js', 'Socket.io', 'AWS CloudFront', 'PostgreSQL', 'Prisma', 'Clerk', 'Whisper AI'],
+  },
+  {
+    id: '06',
     title: 'Conversation Session Service',
     description:
       'A service powering conversation sessions and their events for a Voice AI platform. It exposes APIs to create/upsert sessions, append immutable events, fetch a session with its events (with pagination), and complete a session.',
     techstack: ['Node.js', 'Nest.js', 'TypeScript', 'MongoDB'],
-    caseStudy: 'https://github.com/sanyam121R/conversation-session-service',
+    link: { href: 'https://github.com/sanyam121R/conversation-session-service', label: 'Source' },
   },
   {
-    id: '04',
-    title: 'OTP Verification',
-    description: 'Verify user login otp',
+    id: '07',
+    title: 'OTP Verification Service',
+    description:
+      'Login OTP issue-and-verify service built on NestJS, with codes held in Redis under a 5-minute TTL and user records in MongoDB.',
     techstack: ['Node.js', 'Nest.js', 'Redis', 'TypeScript', 'MongoDB'],
     effect: [{ figure: '5 min', of: 'Time to live' }],
-    caseStudy: '#',
   },
 ]
+
+const linkTarget = (href: string) =>
+  href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {}
 
 export default function Project() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -123,11 +160,11 @@ export default function Project() {
             2xl:grid-cols-3
           "
         >
-          {project_data.map((proj, index) => (
+          {project_data.map((proj) => (
             <article
-              key={index}
+              key={proj.id}
               className="
-                project-card ggroup flex
+                project-card group flex
                 min-h-[300px]
                 border border-primary-border rounded-3xl smooth-corners
                 p-6
@@ -143,27 +180,28 @@ export default function Project() {
                 <div className="flex items-start justify-between gap-3">
                   <span className="text-tertiary text-[14px]">{proj.id}</span>
 
-                  <a
-                    href={proj.caseStudy}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="shrink-0 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                    aria-label={`Open case study for ${proj.title}`}
-                  >
-                    <svg
-                      width="17"
-                      height="16"
-                      viewBox="0 0 19 18"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="w-4 h-4"
+                  {proj.link && (
+                    <a
+                      href={proj.link.href}
+                      {...linkTarget(proj.link.href)}
+                      className="shrink-0 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                      aria-label={`${proj.link.label} for ${proj.title}`}
                     >
-                      <path
-                        d="M9.10156 9.58136L9.65136 10.0915V10.0915L9.10156 9.58136ZM16.1131 0.532157C15.9927 0.135835 15.5738 -0.0878291 15.1775 0.0325919L8.71901 1.99496C8.32269 2.11538 8.09903 2.53428 8.21945 2.9306C8.33987 3.32693 8.75877 3.55059 9.1551 3.43017L14.8959 1.68584L16.6403 7.42669C16.7607 7.82301 17.1796 8.04668 17.5759 7.92626C17.9722 7.80584 18.1959 7.38693 18.0755 6.99061L16.1131 0.532157ZM0.395508 16.7502L0.790659 17.3877C4.59104 15.0319 6.61017 13.3692 9.65136 10.0915L9.10156 9.58136L8.55176 9.07124C5.60182 12.2507 3.68671 13.8276 0.000356641 16.1127L0.395508 16.7502ZM9.10156 9.58136L9.65136 10.0915C12.5757 6.93964 14.0321 4.89621 16.0571 1.10344L15.3955 0.750198L14.7339 0.396951C12.7696 4.07596 11.3884 6.01394 8.55176 9.07124L9.10156 9.58136Z"
-                        fill="white"
-                      />
-                    </svg>
-                  </a>
+                      <svg
+                        width="17"
+                        height="16"
+                        viewBox="0 0 19 18"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="w-4 h-4"
+                      >
+                        <path
+                          d="M9.10156 9.58136L9.65136 10.0915V10.0915L9.10156 9.58136ZM16.1131 0.532157C15.9927 0.135835 15.5738 -0.0878291 15.1775 0.0325919L8.71901 1.99496C8.32269 2.11538 8.09903 2.53428 8.21945 2.9306C8.33987 3.32693 8.75877 3.55059 9.1551 3.43017L14.8959 1.68584L16.6403 7.42669C16.7607 7.82301 17.1796 8.04668 17.5759 7.92626C17.9722 7.80584 18.1959 7.38693 18.0755 6.99061L16.1131 0.532157ZM0.395508 16.7502L0.790659 17.3877C4.59104 15.0319 6.61017 13.3692 9.65136 10.0915L9.10156 9.58136L8.55176 9.07124C5.60182 12.2507 3.68671 13.8276 0.000356641 16.1127L0.395508 16.7502ZM9.10156 9.58136L9.65136 10.0915C12.5757 6.93964 14.0321 4.89621 16.0571 1.10344L15.3955 0.750198L14.7339 0.396951C12.7696 4.07596 11.3884 6.01394 8.55176 9.07124L9.10156 9.58136Z"
+                          fill="white"
+                        />
+                      </svg>
+                    </a>
+                  )}
                 </div>
 
                 <div className="flex flex-col gap-3">
@@ -203,14 +241,15 @@ export default function Project() {
                   </div>
                 )}
 
-                <a
-                  href={proj.caseStudy}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-max text-sm md:text-base hover:underline flex items-center gap-2"
-                >
-                  <WaveText text="Case Study" />
-                </a>
+                {proj.link && (
+                  <a
+                    href={proj.link.href}
+                    {...linkTarget(proj.link.href)}
+                    className="w-max text-sm md:text-base hover:underline flex items-center gap-2"
+                  >
+                    <WaveText text={proj.link.label} />
+                  </a>
+                )}
               </div>
             </article>
           ))}

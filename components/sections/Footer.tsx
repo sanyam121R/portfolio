@@ -1,6 +1,7 @@
 'use client';
 
 import { Mail, FileText, ArrowUpRight } from 'lucide-react';
+import { SiLeetcode } from 'react-icons/si';
 import WaveText from '../WaveText';
 
 const GitHubIcon = ({ size = 14 }: { size?: number }) => (
@@ -28,6 +29,13 @@ const links = [
     url: 'https://linkedin.com/in/sanyam-rathore',
     ariaLabel: 'Visit my LinkedIn profile',
     icon: LinkedInIcon,
+    external: true,
+  },
+  {
+    label: 'LeetCode',
+    url: 'https://leetcode.com/zash24/',
+    ariaLabel: 'Visit my LeetCode profile',
+    icon: SiLeetcode,
     external: true,
   },
   {

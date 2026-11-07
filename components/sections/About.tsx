@@ -77,7 +77,7 @@ export default function About() {
                 </section>
                 <section ref={sectionRef} className="flex flex-col sm:w-75 lg:w-202.5 md:w-125 max-w-full gap-6">
                     <h2 className="font-normal text-secondary text-base tracking-[0.03px]">
-                        <span className="pb-2">Hi, I'm{" "}</span>
+                        <span className="pb-2">Hi, I’m{" "}</span>
                         <span className="font-mont-sign text-[64px]/[48px] tracking-[0.08px] pl-1">
                             Sanyam Rathore.
                         </span>
@@ -96,10 +96,10 @@ export default function About() {
                         </p>
 
                         <p className="mb-5" ref={line2Ref}>
-                            <span className="text-secondary">+4 years </span> in, I've shipped systems that move data between enterprise
-                            platforms at scale, handle real-time events reliably, and give teams back
-                            hours they used to lose, to manual work. My stack lives mostly in React,
-                            TypeScript, Node.js, and cloud infrastructure — but the{" "}
+                            <span className="text-secondary">4.8+ years </span> in, I’ve shipped systems that move data between enterprise
+                            platforms at scale, handle real-time events reliably, put LLMs to work behind
+                            guardrails, and give teams back hours they used to lose to manual work. My stack
+                            lives mostly in React, Next.js, TypeScript, Node.js, and cloud infrastructure — but the{" "}
                             <span className="text-secondary">
                                 tools matter less to me than the problem being solved
                             </span>
@@ -107,14 +107,14 @@ export default function About() {
                         </p>
 
                         <p className="mb-5" ref={line3Ref}>
-                            I'm drawn to systems that hold up and interfaces that feel{" "}
+                            I’m drawn to systems that hold up and interfaces that feel{" "}
                             <span className="text-secondary">inevitable</span>
                             {" "}— the kind of work where nothing is wasted and nothing is half-done.
                         </p>
 
                         <blockquote ref={blockquoteRef} className=" border-l-2 border-l-toggle italic text-secondary content-center">
                             <p className="pl-4">
-                                Faith keeps me grounded. Curiosity keeps me moving. The two don't
+                                Faith keeps me grounded. Curiosity keeps me moving. The two don’t
                                 fight — they push each other.
                             </p>
                         </blockquote>

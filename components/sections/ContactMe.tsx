@@ -92,7 +92,7 @@ export default function ContactMe() {
               text-[40px] tracking-normal leading-normal whitespace-nowrap
             "
           >
-            Let's Connect.
+            Let’s Connect.
           </h1>
           <p className="text-secondary text-[10px] md:text-sm">
             hiring? collaborating? just say hi &mdash; one step at a time.
@@ -120,7 +120,7 @@ export default function ContactMe() {
                 className="w-full flex flex-col gap-6"
               >
                 <label className="flex flex-col gap-3">
-                  <span className="text-tertiary text-sm">What's your name?</span>
+                  <span className="text-tertiary text-sm">What’s your name?</span>
                   <input
                     value={data.name}
                     onChange={(e) => update('name', e.target.value)}
@@ -185,7 +185,7 @@ export default function ContactMe() {
               >
                 <label className="flex flex-col gap-3">
                   <span className="text-tertiary text-sm">
-                    What's this about, {data.name.split(' ')[0] || 'friend'}?
+                    What’s this about, {data.name.split(' ')[0] || 'friend'}?
                   </span>
                   <textarea
                     value={data.message}
@@ -210,7 +210,7 @@ export default function ContactMe() {
                     disabled={sending}
                     className="text-sm md:text-base text-primary hover:underline disabled:opacity-40"
                   >
-                    {sending ? 'Sending&hellip;' : 'Send →'}
+                    {sending ? 'Sending…' : 'Send →'}
                   </button>
                 </div>
               </motion.form>
@@ -227,7 +227,7 @@ export default function ContactMe() {
                   Thanks, {data.name.split(' ')[0] || 'friend'}!
                 </h2>
                 <p className="text-secondary text-sm max-w-sm">
-                  Your message is on its way &mdash; I'll get back to you at{' '}
+                  Your message is on its way &mdash; I’ll get back to you at{' '}
                   <span className="text-primary">{data.email}</span> soon.
                 </p>
               </motion.div>

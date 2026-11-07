@@ -147,12 +147,21 @@ export default function SceneInfoHub() {
           <br />
           Innovations
         </h2>
-        <p className="info-rise mt-2 sm:mt-3 text-base sm:text-lg font-light italic text-secondary">
-          System Builder
-        </p>
+        <div className="info-rise mt-2 sm:mt-3 flex flex-wrap items-center gap-2 sm:gap-3">
+          <p className="text-base sm:text-lg font-light italic text-secondary">
+            Software Engineer I
+          </p>
+          <span className="py-1 px-2.5 sm:px-3 border border-primary-border rounded-2xl smooth-corners whitespace-nowrap text-[9px] sm:text-[10px] uppercase tracking-[0.2em] sm:tracking-[0.25em] text-tertiary">
+            System Builder
+          </span>
+          <span className="text-[9px] sm:text-[10px] uppercase tracking-[0.2em] sm:tracking-[0.25em] text-tertiary">
+            Sept 2022 – Dec 2022
+          </span>
+        </div>
         <p className="info-rise mt-6 sm:mt-8 max-w-md text-sm sm:text-base leading-relaxed text-tertiary">
-          Shipping production software that moved real content to real users —
-          building the products, not just the parts.
+          Secure Node.js services with OAuth 2.0 and automated CMS ingestion,
+          plus a React refactor for faster, steadier pages — building the
+          products, not just the parts.
         </p>
 
         <div className="info-rise mt-8 sm:mt-10 flex flex-wrap gap-x-8 sm:gap-x-12 gap-y-4 sm:gap-y-6">
@@ -171,14 +180,20 @@ export default function SceneInfoHub() {
           <div>
             <p className="text-2xl sm:text-3xl md:text-4xl font-light text-primary">10%</p>
             <p className="mt-1 text-[9px] sm:text-[10px] md:text-[11px] uppercase tracking-[0.25em] md:tracking-[0.3em] text-tertiary">
-              Performance Gain
+              LCP Improvement
+            </p>
+          </div>
+          <div>
+            <p className="text-2xl sm:text-3xl md:text-4xl font-light text-primary">0.23 → 0.12</p>
+            <p className="mt-1 text-[9px] sm:text-[10px] md:text-[11px] uppercase tracking-[0.25em] md:tracking-[0.3em] text-tertiary">
+              CLS
             </p>
           </div>
         </div>
 
         <div className="info-rise mt-8 sm:mt-10 flex flex-wrap gap-x-4 sm:gap-x-6 gap-y-2 sm:gap-y-3 text-xs sm:text-sm uppercase tracking-[0.2em] sm:tracking-[0.25em] text-secondary">
           <span className="info-metric py-1 px-2.5 sm:px-3 border border-primary-border rounded-2xl smooth-corners whitespace-nowrap">Node.js</span>
-          <span className="info-metric py-1 px-2.5 sm:px-3 border border-primary-border rounded-2xl smooth-corners whitespace-nowrap">OAuth</span>
+          <span className="info-metric py-1 px-2.5 sm:px-3 border border-primary-border rounded-2xl smooth-corners whitespace-nowrap">OAuth 2.0</span>
           <span className="info-metric py-1 px-2.5 sm:px-3 border border-primary-border rounded-2xl smooth-corners whitespace-nowrap">React</span>
           <span className="info-metric py-1 px-2.5 sm:px-3 border border-primary-border rounded-2xl smooth-corners whitespace-nowrap">CMS</span>
           <span className="info-metric py-1 px-2.5 sm:px-3 border border-primary-border rounded-2xl smooth-corners whitespace-nowrap">Web Performance</span>

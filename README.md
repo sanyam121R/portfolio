@@ -11,62 +11,39 @@
 ```
 portfolio/
 ├── app/                          # Next.js App Router (routes & layouts)
+│   ├── api/contact/route.ts      # Contact form → Gmail (nodemailer)
+│   ├── blogs/                    # Blog index + /blogs/[slug] pages
 │   ├── globals.css               # Global styles (Tailwind v4 + theme)
-│   ├── layout.tsx                # Root layout (metadata, fonts, cursor, nav)
-│   └── page.tsx                  # Home page (composes all sections)
+│   ├── layout.tsx                # Root layout (metadata, fonts, cursor, shell)
+│   ├── page.tsx                  # Home page (composes all sections + JSON-LD)
+│   ├── robots.ts                 # robots.txt
+│   └── sitemap.ts                # sitemap.xml (includes blog posts)
 │
-├── components/                   # Shared UI components
+├── blogs/                        # Markdown posts (frontmatter; `draft: true` hides a post)
+│
+├── components/
+│   ├── ClientShell.tsx           # Preloader + smooth scroll + nav wrapper
 │   ├── CursorCanvas.tsx          # Custom trailing cursor (canvas-based)
 │   ├── DraggableNav.tsx          # Draggable floating navigation menu
-│   ├── sections/                 # Page sections
-│   │   ├── Hero.tsx
-│   │   ├── About.tsx
-│   │   ├── Work.tsx
-│   │   ├── Experience.tsx
-│   │   ├── SectionStack.tsx
-│   │   └── Footer.tsx
-│   └── TechStack/                # Tech stack visualization
-│       ├── index.tsx             # Main TechStack section
-│       ├── TechList.tsx          # Tech item list (left column)
-│       ├── CenterNode.tsx        # Center SVG node
-│       ├── ConnectionLines.tsx   # SVG connection lines between panels
-│       ├── OverviewPanel.tsx     # Overview panel (right column)
-│       ├── SkillPanel.tsx        # Skill detail panel (right column)
-│       └── TechCard.tsx          # Individual tech card
+│   ├── PreLoader.tsx             # Canvas orb preloader
+│   ├── SmoothScroll.tsx          # Lenis + GSAP ScrollTrigger sync
+│   ├── sections/
+│   │   ├── Hero.tsx, About.tsx, Project.tsx
+│   │   ├── experience/           # Horizontal-scroll career journey (one file per scene)
+│   │   ├── Credentials.tsx       # Education & certifications
+│   │   ├── Blogs.tsx, LetsTalk.tsx, ContactMe.tsx
+│   │   └── Header.tsx, Footer.tsx
+│   └── TechStack/                # Interactive tech stack (list, center node, panels, SVG lines)
 │
-├── lib/                          # Utilities, configs, & data
-│   ├── fonts.ts                  # Font configuration (Inter + local fonts)
+├── lib/
+│   ├── blogs.ts                  # Blog loading (markdown + standalone HTML)
+│   ├── fonts.ts                  # Font configuration
 │   ├── gsapConfig.ts             # GSAP plugin registration
+│   ├── markdown.ts               # remark/rehype pipeline
+│   ├── site.ts                   # Site URL, description, social links
 │   └── techStackData.ts          # Tech stack items & metadata
 │
-├── public/                       # Static assets (served at root `/`)
-│   ├── fonts/
-│   │   ├── Montreuil Signature.otf
-│   │   └── Weird Words.otf
-│   ├── assets/
-│   │   ├── About me.png
-│   │   ├── card_bg.jpeg
-│   │   ├── black-bg.jpeg
-│   │   ├── black-background.jpeg
-│   │   ├── experience.png
-│   │   ├── work laptop.png
-│   │   ├── work notepade.png
-│   │   ├── arik_personal_intro.html
-│   │   ├── NoiseTexture.png
-│   │   ├── canvas imgs/
-│   │   ├── favicon.png
-│   │   └── other-favicon.png
-│   └── next.svg
-│
-├── next.config.ts                # Next.js configuration
-├── tsconfig.json                 # TypeScript configuration
-├── postcss.config.mjs            # PostCSS config (Tailwind v4)
-├── eslint.config.mjs             # ESLint flat config
-├── package.json                  # Dependencies & scripts
-├── bun.lock                      # Bun lockfile
-├── next-env.d.ts                 # Next.js TypeScript declarations
-├── .gitignore
-└── README.md
+└── public/                       # Static assets (fonts, images, resume.pdf, HTML blogs)
 ```
 
 ---
@@ -131,14 +108,3 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 - **LinkedIn:** [linkedin.com/in/sanyam-rathore](https://linkedin.com/in/sanyam-rathore)
 - **Email:** sanyamr.work@gmail.com
 
-
-### Curosr
-
-cursor: url('https://cdn.cursors-4u.net/previews/paper-airplane-19477b19-32.webp') 28 28, auto !important; 
-cursor: url('https://cdn.cursors-4u.net/previews/batman-536f0ffc-32.webp') 32 32, auto !important; 
-cursor: url('https://cdn.cursors-4u.net/previews/chrome-pointer-4db561db-32.webp') 34 34, auto !important; 
-cursor: url('https://cdn.cursors-4u.net/previews/batman-logo-5093138d-32.webp') 32 32, auto !important;
-
-Tailwind style
-cursor-[url('https://cdn.cursors-4u.net/previews/paper-airplane-19477b19-32.webp')_32_32,_auto] !important
-cursor-[url('https://cdn.cursors-4u.net/previews/batman-logo-5093138d-32.webp')_32_32,_auto] !important

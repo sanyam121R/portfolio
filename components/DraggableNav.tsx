@@ -11,9 +11,10 @@ gsap.registerPlugin(Draggable, ScrollTrigger);
 
 const NAV_ITEMS = [
     { label: "About", sectionId: "about" },
-    { label: "Work", sectionId: "work" },
+    { label: "Projects", sectionId: "project" },
     { label: "Experience", sectionId: "experience" },
     { label: "Stack", sectionId: "stack" },
+    { label: "Credentials", sectionId: "credentials" },
     { label: "Writing", sectionId: "blogs" },
     { label: "Let's Talk", sectionId: "contact-me" },
 ];

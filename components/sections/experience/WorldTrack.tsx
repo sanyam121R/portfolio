@@ -3,6 +3,7 @@ import SceneIntro from "./SceneIntro";
 import ScenePersistent from "./ScenePersistent";
 import SceneInfoHub from "./SceneInfoHub";
 import SceneCloudEQ from "./SceneCloudEQ";
+import SceneFreelance from "./SceneFreelance";
 import SceneEnding from "./SceneEnding";
 
 /**
@@ -20,6 +21,7 @@ const WorldTrack = forwardRef<HTMLDivElement>((_, ref) => {
       <ScenePersistent />
       <SceneInfoHub />
       <SceneCloudEQ />
+      <SceneFreelance />
       <SceneEnding />
     </div>
   );
