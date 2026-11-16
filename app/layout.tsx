@@ -3,10 +3,46 @@ import "./globals.css";
 import CursorCanvas from "@/components/CursorCanvas";
 import ClientShell from "@/components/ClientShell";
 import { inter, doto, montreuil, werid_word, mansalva, sharpenhill } from "@/lib/fonts";
+import { SITE_DESCRIPTION, SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Sanyam Rathore's Portfolio",
-  description: "Get to know Sanyam Rathore..",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Sanyam Rathore — Full-Stack Software Engineer",
+    template: "%s",
+  },
+  description: SITE_DESCRIPTION,
+  keywords: [
+    "Sanyam Rathore",
+    "Full-Stack Engineer",
+    "Software Engineer",
+    "Node.js",
+    "TypeScript",
+    "React",
+    "Next.js",
+    "Event-Driven Architecture",
+    "AI Engineering",
+    "LLM Integration",
+    "Kafka",
+    "PostgreSQL",
+    "AWS",
+  ],
+  authors: [{ name: "Sanyam Rathore", url: SITE_URL }],
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    url: SITE_URL,
+    siteName: "Sanyam Rathore",
+    title: "Sanyam Rathore — Full-Stack Software Engineer",
+    description: SITE_DESCRIPTION,
+    images: [{ url: "/assets/About me.png", width: 375, height: 473, alt: "Sanyam Rathore" }],
+  },
+  twitter: {
+    card: "summary",
+    title: "Sanyam Rathore — Full-Stack Software Engineer",
+    description: SITE_DESCRIPTION,
+    images: ["/assets/About me.png"],
+  },
   icons: { icon: "/assets/favicon.png" },
   other: {
     // This injects the link tag automatically into the <head>

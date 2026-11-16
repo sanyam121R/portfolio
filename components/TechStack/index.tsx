@@ -123,7 +123,7 @@ export default function TechStack() {
           >
             <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 block text-2xl text-tertiary mb-1.5 font-serif leading-none">❝</span>
             <p className="text-secondary text-xs italic font-inter leading-relaxed">
-              I don't just use technologies, I integrate them to create seamless,{" "}
+              I don’t just use technologies, I integrate them to create seamless,{" "}
               <strong className="text-foreground not-italic font-semibold">high-impact</strong>{" "}
               products.
             </p>

@@ -6,7 +6,6 @@ import {
   type RefObject,
 } from "react";
 import { motion, useAnimationFrame } from "framer-motion";
-import { techItems } from "@/lib/techStackData";
 
 /* ─────────────────────────────────────────────────────────
    PathParticle — Framer's useAnimationFrame keeps this at
@@ -158,7 +157,7 @@ export function ConnectionLines({
       window.removeEventListener("load", computePaths);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
-  }, [computePaths, itemCount]);
+  }, [computePaths, itemCount, sectionRef]);
 
   // Recompute when active panel swap shifts right panel position
   useEffect(() => { computePaths(); }, [activeIndex, computePaths]);

@@ -65,7 +65,7 @@ export function OverviewPanel() {
       {/* Stats */}
       <motion.div variants={itemVariants} className="grid grid-cols-3 gap-2">
         {[
-          { icon: <Briefcase size={18} />, value: "4+", label: "Years Experience" },
+          { icon: <Briefcase size={18} />, value: "4.8+", label: "Years Experience" },
           { icon: <Code2 size={18} />, value: "20+", label: "Projects Completed" },
           { icon: <BarChart2 size={18} />, value: "95%", label: "Proficiency Score" },
         ].map(({ icon, value, label }) => (

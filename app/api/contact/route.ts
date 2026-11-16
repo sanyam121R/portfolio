@@ -7,9 +7,11 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 const escapeHtml = (s: string) =>
   s
-    .replace(/&/g, '')
-    .replace(/</g, '')
-    .replace(/>/g, '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
 
 export async function POST(request: Request) {
   let body: { name?: string; email?: string; message?: string }
@@ -19,7 +21,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Invalid request body.' }, { status: 400 })
   }
 
-  const name = (body.name ?? '').trim()
+  const name = (body.name ?? '').replace(/[\r\n]+/g, ' ').trim()
   const email = (body.email ?? '').trim()
   const message = (body.message ?? '').trim()
 
@@ -57,9 +59,9 @@ export async function POST(request: Request) {
       text: `Name: ${name}\nEmail: ${email}\n\n${message}`,
       html: `
         <div style="font-family:Inter,Helvetica,Arial,sans-serif;color:#111;">
-          <h2 style="margin:0 0 12px;">New contact from ${name}</h2>
+          <h2 style="margin:0 0 12px;">New contact from ${escapeHtml(name)}</h2>
           <p style="margin:0 0 8px;"><strong>Email:</strong>
-            <a href="mailto:${email}">${email}</a>
+            <a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a>
           </p>
           <p style="white-space:pre-wrap;line-height:1.6;margin:16px 0 0;
             padding:16px;background:#f5f5f5;border-radius:12px;">${escapeHtml(
@@ -68,8 +70,8 @@ export async function POST(request: Request) {
         </div>
       `,
     })
-  } catch (e){
-    console.log(e);
+  } catch (e) {
+    console.error(e)
 
     return NextResponse.json(
       { error: 'Could not send your message. Please try again later.' },

@@ -1,12 +1,5 @@
 "use client";
 
-import { useRef } from "react";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import { useExperience } from "./ExperienceContext";
-import { hReveal, float } from "./sceneFx";
-
-gsap.registerPlugin(useGSAP);
 
 /**
  * Scene 05 — Journey Ending.
@@ -33,7 +26,7 @@ export default function SceneEnding() {
           <br />
           <span className="text-tertiary">To</span>
           <br />
-          SaaS Apps
+          AI-powered SaaS
         </h2>
         <p className="end-rise mt-10 text-sm tracking-[0.3em] text-secondary">
           2021 — Present

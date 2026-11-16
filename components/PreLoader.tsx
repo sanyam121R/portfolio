@@ -11,82 +11,6 @@ interface PreLoaderProps {
   onDone?: () => void;
 }
 
-// ─── Readiness guard ───────────────────────────────────────────────────────────
-
-/**
- * Returns a promise that resolves once ALL of these conditions are met:
- *  1. The window `load` event has fired (images, stylesheets, …)
- *  2. The browser font API has resolved (`document.fonts.ready`)
- *  3. Lenis (smooth-scroll) has been initialised (`window.__lenis` exists)
- *  4. At least the above-fold images are loaded
- *
- * A hard timeout (10 s) ensures we never hang.
- */
-function waitForPageReady(): Promise<void> {
-  const checks: Promise<void>[] = [];
-
-  // 1. Window load
-  checks.push(
-    new Promise((resolve) => {
-      if (document.readyState === 'complete') resolve();
-      else window.addEventListener('load', () => resolve(), { once: true });
-    }),
-  );
-
-  // 2. Fonts ready
-  if (document.fonts) {
-    checks.push(document.fonts.ready.then(() => { }));
-  }
-
-  // 3. Lenis initialised (poll up to 5 s)
-  checks.push(
-    new Promise<void>((resolve) => {
-      if ((window as any).__lenis) {
-        resolve();
-        return;
-      }
-      let elapsed = 0;
-      const poll = setInterval(() => {
-        elapsed += 100;
-        if ((window as any).__lenis || elapsed >= 5000) {
-          clearInterval(poll);
-          resolve();
-        }
-      }, 100);
-    }),
-  );
-
-  // 4. Images — wait only for images that have *started* loading already.
-  //    Lazy images below the fold are skipped to avoid deadlock.
-  checks.push(
-    new Promise<void>((resolve) => {
-      const imgs = document.querySelectorAll<HTMLImageElement>('img');
-      // Only images that are actively loading (not complete, have a src)
-      const loading = [...imgs].filter(
-        (img) => !img.complete && img.hasAttribute('src') && img.getAttribute('src') !== '',
-      );
-      if (loading.length === 0) {
-        resolve();
-        return;
-      }
-      let loaded = 0;
-      const onDone = () => {
-        loaded++;
-        if (loaded >= loading.length) resolve();
-      };
-      loading.forEach((img) => {
-        img.addEventListener('load', onDone, { once: true });
-        img.addEventListener('error', onDone, { once: true });
-      });
-    }),
-  );
-
-  // Safety timeout — never block longer than 10 s
-  //   const timeout = new Promise<void>((resolve) => setTimeout(resolve, 10_000));
-
-  return Promise.race([Promise.all(checks).then(() => undefined)]);
-}
-
 // ─── Renderer ──────────────────────────────────────────────────────────────────
 
 const PI = Math.PI;
@@ -193,7 +117,8 @@ function renderFrame(
     ctx.beginPath();
     for (let j = 0; j <= PTS; j++) {
       const p = vertices[i][j % PTS];
-      j === 0 ? ctx.moveTo(p.x2, p.y2) : ctx.lineTo(p.x2, p.y2);
+      if (j === 0) ctx.moveTo(p.x2, p.y2);
+      else ctx.lineTo(p.x2, p.y2);
     }
     ctx.stroke();
 
@@ -207,7 +132,8 @@ function renderFrame(
       ctx.beginPath();
       for (let j = 0; j <= PTS; j++) {
         const p = vertices[i][j % PTS];
-        j === 0 ? ctx.moveTo(p.x2, p.y2) : ctx.lineTo(p.x2, p.y2);
+        if (j === 0) ctx.moveTo(p.x2, p.y2);
+      else ctx.lineTo(p.x2, p.y2);
       }
       ctx.stroke();
     }
@@ -228,7 +154,7 @@ export default function PreLoader({ minMs = 2500, onDone }: PreLoaderProps) {
     setPhase('out');
 
     setTimeout(() => {
-      const lenis = (window as any).__lenis;
+      const lenis = window.__lenis;
       if (lenis) {
         lenis.scrollTo(0, { immediate: true });
         lenis.start();
@@ -249,7 +175,7 @@ export default function PreLoader({ minMs = 2500, onDone }: PreLoaderProps) {
     if (!ctx) return;
 
     // ── Lock scroll while preloader is visible ─────────────────────
-    const lenis = (window as any).__lenis;
+    const lenis = window.__lenis;
     if (lenis) {
       lenis.stop();
     } else {
@@ -271,13 +197,6 @@ export default function PreLoader({ minMs = 2500, onDone }: PreLoaderProps) {
       rafRef.current = requestAnimationFrame(tick);
     };
     rafRef.current = requestAnimationFrame(tick);
-
-    // const t0 = Date.now();
-
-    // waitForPageReady().then(() => {
-    //   const wait = Math.max(0, minMs - (Date.now() - t0));
-    //   setTimeout(dismiss, wait);
-    // });
 
     const t0 = Date.now();
     const go = () => {
@@ -346,7 +265,7 @@ export default function PreLoader({ minMs = 2500, onDone }: PreLoaderProps) {
         initial="hidden"
         animate="show"
         className="absolute uppercase bottom-[27%] left-1/2 -translate-x-1/2 text-[10px] tracking-[0.45em]  select-none whitespace-nowrap">
-        For Better Experince open on Laptop
+        For a better experience, open on a laptop
       </motion.span>
     </div>
   );

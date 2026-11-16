@@ -25,7 +25,7 @@ export default function BlogsPage() {
             Blogs
           </h2>
           <p>
-          technical insights, project breakdowns, and development experiences. i occasionally write and share details about what i've implemented and how i've done it.
+          technical insights, project breakdowns, and development experiences. i occasionally write and share details about what i’ve implemented and how i’ve done it.
           </p>
         </header>
 

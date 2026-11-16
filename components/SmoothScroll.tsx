@@ -12,10 +12,16 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
  * Exposes the Lenis instance via a ref so sibling components (e.g.
  * DraggableNav) can call `lenisRef.current.scrollTo(…)`.
  */
+declare global {
+  interface Window {
+    __lenis?: Lenis;
+  }
+}
+
 export const lenisRef = { current: null as Lenis | null };
 
 export function scrollToSection(sectionId: string) {
-  const lenis = (window as any).__lenis as Lenis | undefined;
+  const lenis = window.__lenis;
 
   // Try ScrollTrigger-based position first
   const trigger = ScrollTrigger.getById(sectionId);
@@ -71,7 +77,7 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
 
     // Expose globally for other components
     lenisRef.current = lenis;
-    (window as any).__lenis = lenis;
+    window.__lenis = lenis;
 
     // Disable the browser's native scroll restoration so a full reload
     // always starts at the top (the hero) instead of restoring the last
@@ -97,9 +103,8 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
     lenis.resize();
 
     // Tell GSAP to use Lenis's RAF instead of its own
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
-    });
+    const onTick = (time: number) => lenis.raf(time * 1000);
+    gsap.ticker.add(onTick);
     gsap.ticker.lagSmoothing(0);
 
     // Deep-link: if the URL arrived with a hash (e.g. /#about from another route),
@@ -124,9 +129,10 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
     return () => {
       timers.forEach((t) => window.clearTimeout(t));
       ScrollTrigger.removeEventListener('refresh', onRefresh);
+      gsap.ticker.remove(onTick);
       lenis.destroy();
       lenisRef.current = null;
-      delete (window as any).__lenis;
+      delete window.__lenis;
     };
   }, []);
 

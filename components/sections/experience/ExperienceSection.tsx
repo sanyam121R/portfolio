@@ -46,17 +46,6 @@ export default function ExperienceSection() {
           onToggle: (self) => {
             section.style.zIndex = self.isActive ? "45" : "";
           },
-          onRefresh: (self) => {
-             
-            console.log(
-              "[EXP] scrollAmount=",
-              getScrollAmount(),
-              "track.scrollWidth=",
-              track.scrollWidth,
-              "progress=",
-              self.progress
-            );
-          },
           onUpdate: (self) => {
             if (progressFillRef.current) {
               progressFillRef.current.style.transform = `scaleX(${self.progress})`;

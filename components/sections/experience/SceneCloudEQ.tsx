@@ -158,11 +158,10 @@ export default function SceneCloudEQ() {
 
           <p className="ceq-rise mt-6 sm:mt-8 max-w-xl text-sm sm:text-base leading-relaxed text-tertiary">
             Enterprise integrations across React, AWS Lambda, ServiceNow, HALO,
-            Azure AD and Jira — connecting systems that the business runs on.
+            Jira and Power Apps — connecting the systems the business runs on.
           </p>
 
           <div className="ceq-rise mt-8 sm:mt-10 flex flex-wrap gap-x-6 sm:gap-x-10 gap-y-4 sm:gap-y-6">
-            <StatBlock value="40%" label="Collab Efficiency" />
             <StatBlock value="80%" label="Manual Sync Removed" />
             <StatBlock value="800ms" label="Load Time Cut" />
             <StatBlock value="25%" label="Faster Ticket Resolution" />
@@ -175,6 +174,7 @@ export default function SceneCloudEQ() {
             <span className="ceq-metric py-1 px-2.5 sm:px-3 border border-primary-border rounded-2xl smooth-corners whitespace-nowrap">AWS Lambda</span>
             <span className="ceq-metric py-1 px-2.5 sm:px-3 border border-primary-border rounded-2xl smooth-corners whitespace-nowrap">Jira</span>
             <span className="ceq-metric py-1 px-2.5 sm:px-3 border border-primary-border rounded-2xl smooth-corners whitespace-nowrap">Microsoft Graph API</span>
+            <span className="ceq-metric py-1 px-2.5 sm:px-3 border border-primary-border rounded-2xl smooth-corners whitespace-nowrap">Power Apps · PCF</span>
             <span className="ceq-metric py-1 px-2.5 sm:px-3 border border-primary-border rounded-2xl smooth-corners whitespace-nowrap">Figma → React</span>
           </div>
 
@@ -192,6 +192,7 @@ export default function SceneCloudEQ() {
               <span>Ticket routing, </span>
               <span>HALO ↔ Jira · ServiceNow ↔ Jira, </span>
               <span>Teams + Jira automation, </span>
+              <span>Power Apps PCF components, </span>
               <span>Time Tracking Calendar, </span>
               <span>Windowed budget-variance table</span>
             </div>
@@ -250,7 +251,7 @@ export default function SceneCloudEQ() {
   <Wave />
 </div>
 
-        <div className="relative z-10 max-w-2xl">
+        <div className="relative z-10 max-w-3xl">
           <p className="ceq-rise mb-4 sm:mb-6 text-[9px] sm:text-[10px] md:text-[11px] uppercase tracking-[0.4em] md:tracking-[0.5em] text-tertiary">
             Chapter 03 · Act Three
           </p>
@@ -263,33 +264,51 @@ export default function SceneCloudEQ() {
               Architect
             </span>
             <span className="text-[9px] sm:text-[10px] uppercase tracking-[0.2em] sm:tracking-[0.25em] text-tertiary">
-              Aug 2025 – Present
+              Aug 2025 – Apr 2026
             </span>
           </div>
           <p className="ceq-rise mt-6 sm:mt-8 max-w-md text-sm sm:text-base leading-relaxed text-tertiary">
-            Event-driven Salesforce CDC pipeline with saga orchestration, compensating
-            transactions, and human-in-the-loop approval — reliable by design.
+            Event-driven AI workflow orchestration on Salesforce CDC, Kafka and
+            PostgreSQL — saga workflows with a transactional outbox, compensation and
+            DLQs, plus human-in-the-loop AI guardrails. Reliable by design.
           </p>
 
-          <div className="mt-8 sm:mt-10 flex flex-wrap gap-x-8 sm:gap-x-12 gap-y-4 sm:gap-y-6">
+          <div className="mt-6 sm:mt-8 flex flex-wrap gap-x-8 sm:gap-x-12 gap-y-4 sm:gap-y-6">
             <StatBlock value="99%" label="Reliability" />
             <StatBlock value="75%" label="Reduce Manual Project-Intake" />
             <StatBlock value="500+" label="Events" />
+            <StatBlock value="0" label="Data Loss · Duplicates" />
           </div>
 
-          <div className="ceq-rise mt-8 sm:mt-10 flex flex-wrap gap-x-4 sm:gap-x-6 gap-y-2 sm:gap-y-3 text-xs sm:text-sm uppercase tracking-[0.2em] sm:tracking-[0.25em] text-secondary">
+          <div className="ceq-rise mt-6 sm:mt-8 max-w-[540px] border border-primary-border rounded-4xl smooth-corners bg-background/15 px-4 sm:px-5 py-3 sm:py-4 backdrop-blur-sm">
+            <div className="flex flex-wrap items-center justify-between gap-2 sm:gap-4">
+              <p className="text-[10px] sm:text-[11px] uppercase tracking-[0.24em] sm:tracking-[0.28em] text-secondary">
+                AI Layer
+              </p>
+              <span className="text-[9px] sm:text-[10px] uppercase tracking-[0.2em] sm:tracking-[0.24em] text-tertiary">
+                Assist → Validate → Approve
+              </span>
+            </div>
+            <div className="mt-3 sm:mt-4 h-px w-full bg-primary-border/60" />
+            <div className="mt-3 sm:mt-4 flex flex-wrap gap-2 sm:gap-3 text-[10px] sm:text-[11px] uppercase tracking-[0.14em] sm:tracking-[0.18em] text-tertiary">
+              <span>Confidence-based routing, </span>
+              <span>Guardrails &amp; approval checkpoints, </span>
+              <span>AI Project Copilot via LLM tool calling, </span>
+              <span>Mentoring &amp; Vitest adoption</span>
+            </div>
+          </div>
+
+          <div className="ceq-rise mt-6 sm:mt-8 flex flex-wrap gap-x-4 sm:gap-x-6 gap-y-2 sm:gap-y-3 text-xs sm:text-sm uppercase tracking-[0.2em] sm:tracking-[0.25em] text-secondary">
             <span className="ceq-metric py-1 px-2.5 sm:px-3 border border-primary-border rounded-2xl smooth-corners whitespace-nowrap">Saga Orchestration</span>
             <span className="ceq-metric py-1 px-2.5 sm:px-3 border border-primary-border rounded-2xl smooth-corners whitespace-nowrap">Idempotency Guards</span>
-            <span className="ceq-metric py-1 px-2.5 sm:px-3 border border-primary-border rounded-2xl smooth-corners whitespace-nowrap">Exponential Backoff</span>
+            <span className="ceq-metric py-1 px-2.5 sm:px-3 border border-primary-border rounded-2xl smooth-corners whitespace-nowrap">Transactional Outbox</span>
+            <span className="ceq-metric py-1 px-2.5 sm:px-3 border border-primary-border rounded-2xl smooth-corners whitespace-nowrap">DLQs</span>
             <span className="ceq-metric py-1 px-2.5 sm:px-3 border border-primary-border rounded-2xl smooth-corners whitespace-nowrap">Jira Approval Gates</span>
-            <span className="ceq-metric py-1 px-2.5 sm:px-3 border border-primary-border rounded-2xl smooth-corners whitespace-nowrap">BullMQ</span>
+            <span className="ceq-metric py-1 px-2.5 sm:px-3 border border-primary-border rounded-2xl smooth-corners whitespace-nowrap">Kafka</span>
             <span className="ceq-metric py-1 px-2.5 sm:px-3 border border-primary-border rounded-2xl smooth-corners whitespace-nowrap">Redis</span>
-            <span className="ceq-metric py-1 px-2.5 sm:px-3 border border-primary-border rounded-2xl smooth-corners whitespace-nowrap">MongoDB</span>
+            <span className="ceq-metric py-1 px-2.5 sm:px-3 border border-primary-border rounded-2xl smooth-corners whitespace-nowrap">PostgreSQL</span>
             <span className="ceq-metric py-1 px-2.5 sm:px-3 border border-primary-border rounded-2xl smooth-corners whitespace-nowrap">Salesforce CDC</span>
-            <span className="ceq-metric py-1 px-2.5 sm:px-3 border border-primary-border rounded-2xl smooth-corners whitespace-nowrap">TypeScript</span>
-            <span className="ceq-metric py-1 px-2.5 sm:px-3 border border-primary-border rounded-2xl smooth-corners whitespace-nowrap">React</span>
-            <span className="ceq-metric py-1 px-2.5 sm:px-3 border border-primary-border rounded-2xl smooth-corners whitespace-nowrap">Azure</span>
-            <span className="ceq-metric py-1 px-2.5 sm:px-3 border border-primary-border rounded-2xl smooth-corners whitespace-nowrap">Node.js</span>
+            <span className="ceq-metric py-1 px-2.5 sm:px-3 border border-primary-border rounded-2xl smooth-corners whitespace-nowrap">LLM Tool Calling</span>
           </div>
         </div>
       </div>

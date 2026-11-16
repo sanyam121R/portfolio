@@ -67,7 +67,7 @@
   display: inline-flex;
   width: max-content;
   align-items: center;
-  animation: marquee 30s linear infinite;
+  animation: marquee 60s linear infinite;
   will-change: transform;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
