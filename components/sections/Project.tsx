@@ -143,7 +143,7 @@ export default function Project() {
           alt="project notepad"
           height={140}
           width={140}
-          className="absolute -right-8 top-20 md:right-20 md:top-10 h-[100px] w-[100px] md:h-auto md:w-auto z-10"
+          className="absolute -right-8 top-20 md:right-20 md:top-10 h-25 w-25 md:h-auto md:w-auto z-10"
         />
       </section>
 
@@ -165,7 +165,7 @@ export default function Project() {
               key={proj.id}
               className="
                 project-card group flex
-                min-h-[300px]
+                min-h-75
                 border border-primary-border rounded-3xl smooth-corners
                 p-6
                 bg-[#111]

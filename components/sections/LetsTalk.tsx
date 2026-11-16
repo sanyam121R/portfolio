@@ -24,20 +24,34 @@ const T = {
   end: 3.5,
 } as const;
 
-export function Marquee({ text }: { text: string }) {
+export function Marquee({ label, items }: { label: string; items: string[] }) {
   return (
-    <div className="absolute bottom-1 left-0 right-0 z-40 overflow-hidden border-y border-primary">
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-6 md:w-50 bg-linear-to-r from-background to-transparent" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-6 md:w-50 bg-linear-to-l from-background to-transparent" />
-
+    <div
+      className="
+        absolute bottom-0 left-0 right-0 z-40 overflow-hidden
+        border-y border-primary-border bg-black/70 backdrop-blur-sm
+        py-3 md:py-4
+        mask-[linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]
+      "
+    >
+      {/* Even copy count: the track loops by translating exactly half its width. */}
       <div className="marquee-track">
         {Array.from({ length: 4 }).map((_, i) => (
           <div
             key={i}
             aria-hidden={i !== 0}
-            className="shrink-0 whitespace-nowrap pl-1 text-[10px] tracking-wide text-secondary md:text-sm"
+            className="flex shrink-0 items-center gap-6 pr-6 md:gap-10 md:pr-10 whitespace-nowrap"
           >
-            {text}
+            <span className="inline-flex items-center gap-2 rounded-full border border-primary-border px-3 py-1 text-[10px] md:text-xs uppercase tracking-[0.25em] text-primary">
+              <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden="true" />
+              {label}
+            </span>
+            {items.map((item) => (
+              <span key={item} className="flex items-center gap-6 md:gap-10">
+                <span className="text-xs md:text-base tracking-wide text-secondary">{item}</span>
+                <span className="text-[10px] md:text-xs text-tertiary" aria-hidden="true">✦</span>
+              </span>
+            ))}
           </div>
         ))}
       </div>
@@ -54,7 +68,12 @@ export default function LetsTalk() {
   const everyGreatProdRefs = useRef<HTMLElement>(null);
   const rippleRef = useRef<HTMLDivElement>(null);
 
-  const note = "I'm currently open to Senior Full-Stack, Backend and AI Engineering roles • Product companies building at scale • Early-stage startups with strong engineering culture •";
+  const openTo = [
+    "Senior Full-Stack Engineering",
+    "Backend & AI Engineering roles",
+    "Product companies building at scale",
+    "Early-stage startups with strong engineering culture",
+  ];
 
   useGSAP(
     () => {
@@ -341,7 +360,7 @@ export default function LetsTalk() {
       </div>
 
       {/* ── Marquee ──────────────────────────────────────────────────── */}
-      <Marquee text={note} />
+      <Marquee label="Open to work" items={openTo} />
     </section>
   );
 }

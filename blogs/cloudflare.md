@@ -1,3 +1,12 @@
+---
+title: "Database Pages: The Fundamental Unit of Storage"
+date: "2025-12-15"
+description: "Understanding how databases store data in pages — the fundamental building block that shapes everything from indexes to sharding."
+tags: ["database", "storage", "pages", "buffer-pool", "sharding", "fundamentals"]
+readTime: "8 min read"
+link: "https://medium.com/gitconnected/database-pages-the-fundamental-unit-behind-every-query-380dd061b75e"
+---
+
 # How Cloudflare carries a request
 
 Cloudflare sits in front of a large share of the public web, spread across thousands of servers in 330+ cities, and it is built to keep answering when machines and cities disappear. The interesting part is not a single trick. A request is admitted by one distributed system, answered by a second, and configured by a third. They fail in different ways, and they are repaired in different ways.
