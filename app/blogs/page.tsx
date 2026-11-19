@@ -8,8 +8,8 @@ export const metadata: Metadata = {
   description: 'Notes on systems, scaling, and the craft of software.',
 }
 
-export default function BlogsPage() {
-  const blogs = getAllBlogs()
+export default async function BlogsPage() {
+  const blogs = await getAllBlogs()
 
   return (
     <main className="min-h-svh w-svw bg-[#090909] text-primary px-6 md:px-8 py-24">

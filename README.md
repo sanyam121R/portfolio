@@ -12,14 +12,13 @@
 portfolio/
 ├── app/                          # Next.js App Router (routes & layouts)
 │   ├── api/contact/route.ts      # Contact form → Gmail (nodemailer)
+│   ├── api/revalidate/route.ts   # GitHub webhook → revalidate article cache
 │   ├── blogs/                    # Blog index + /blogs/[slug] pages
 │   ├── globals.css               # Global styles (Tailwind v4 + theme)
 │   ├── layout.tsx                # Root layout (metadata, fonts, cursor, shell)
 │   ├── page.tsx                  # Home page (composes all sections + JSON-LD)
 │   ├── robots.ts                 # robots.txt
 │   └── sitemap.ts                # sitemap.xml (includes blog posts)
-│
-├── blogs/                        # Markdown posts (frontmatter; `draft: true` hides a post)
 │
 ├── components/
 │   ├── ClientShell.tsx           # Preloader + smooth scroll + nav wrapper
@@ -36,7 +35,7 @@ portfolio/
 │   └── TechStack/                # Interactive tech stack (list, center node, panels, SVG lines)
 │
 ├── lib/
-│   ├── blogs.ts                  # Blog loading (markdown + standalone HTML)
+│   ├── blogs.ts                  # Blog loading (GitHub Articles + standalone HTML)
 │   ├── fonts.ts                  # Font configuration
 │   ├── gsapConfig.ts             # GSAP plugin registration
 │   ├── markdown.ts               # remark/rehype pipeline
