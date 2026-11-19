@@ -2,8 +2,8 @@ import Link from 'next/link'
 import { getAllBlogs } from '@/lib/blogs'
 import BlogCard from '@/components/BlogCard'
 
-export default function Blogs() {
-  const latest = getAllBlogs().slice(0, 6)
+export default async function Blogs() {
+  const latest = (await getAllBlogs()).slice(0, 6)
 
   return (
     <div id="blogs" className="w-svw min-h-svh flex flex-col justify-center items-center px-8 py-28">

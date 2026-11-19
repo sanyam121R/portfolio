@@ -1,18 +1,19 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
-import { getAllSlugs, getBlogBySlug } from '@/lib/blogs'
+import { getAllSlugs, getBlogBySlug, repoDirForBlog } from '@/lib/blogs'
 import { renderMarkdown } from '@/lib/markdown'
 
-export function generateStaticParams() {
-  return getAllSlugs().map((slug) => ({ slug }))
+export async function generateStaticParams() {
+  const slugs = await getAllSlugs()
+  return slugs.map((slug) => ({ slug }))
 }
 
 export async function generateMetadata(
   props: PageProps<'/blogs/[slug]'>
 ): Promise<Metadata> {
   const { slug } = await props.params
-  const blog = getBlogBySlug(slug)
+  const blog = await getBlogBySlug(slug)
   if (!blog) return { title: 'Blog not found — Sanyam Rathore' }
 
   return {
@@ -31,12 +32,14 @@ export default async function BlogPostPage(
   props: PageProps<'/blogs/[slug]'>
 ) {
   const { slug } = await props.params
-  const blog = getBlogBySlug(slug)
+  const blog = await getBlogBySlug(slug)
   if (!blog) notFound()
 
   const html =
     blog.type === 'markdown' && blog.content
-      ? await renderMarkdown(blog.content)
+      ? await renderMarkdown(blog.content, {
+          baseDir: repoDirForBlog(blog),
+        })
       : null
 
   return (
@@ -53,8 +56,12 @@ export default async function BlogPostPage(
             {blog.title}
           </h1>
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-tertiary text-[13px]">
-            <span>{blog.formattedDate}</span>
-            <span aria-hidden>·</span>
+            {blog.formattedDate && (
+              <>
+                <span>{blog.formattedDate}</span>
+                <span aria-hidden>·</span>
+              </>
+            )}
             <span>{blog.readTime}</span>
           </div>
           <p className="text-secondary text-[15px] leading-7">

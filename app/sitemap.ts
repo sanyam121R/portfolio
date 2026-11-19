@@ -2,10 +2,11 @@ import type { MetadataRoute } from 'next'
 import { getAllBlogs } from '@/lib/blogs'
 import { SITE_URL } from '@/lib/site'
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const blogs = getAllBlogs().map((blog) => ({
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const all = await getAllBlogs()
+  const blogs = all.map((blog) => ({
     url: `${SITE_URL}/blogs/${blog.slug}`,
-    lastModified: new Date(blog.date),
+    lastModified: blog.date ? new Date(blog.date) : new Date(),
     changeFrequency: 'yearly' as const,
     priority: 0.6,
   }))

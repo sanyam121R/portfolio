@@ -1,40 +1,26 @@
-import fs from 'fs'
-import path from 'path'
 import matter from 'gray-matter'
 import { format, parseISO } from 'date-fns'
+import { ARTICLES_BRANCH, ARTICLES_REPO } from '@/lib/site'
 
 export type BlogType = 'markdown' | 'html'
 
 export interface BlogMeta {
   slug: string
   title: string
-  date: string // ISO string
+  date: string
   description: string
   tags: string[]
   readTime: string
   type: BlogType
   link: string
-  /** Only present for markdown blogs — raw markdown body */
   content?: string
-  /** Only present for html blogs — public path to the standalone HTML file */
   htmlUrl?: string
-  /**
-   * Reading order helper: human-friendly formatted date.
-   * Computed lazily so build output stays deterministic.
-   */
   formattedDate?: string
-  /** Drafts are excluded from listings and routes */
   draft?: boolean
+  /** Path within the Articles repo, e.g. cloudflare.md */
+  repoPath?: string
 }
 
-const BLOGS_DIR = path.join(process.cwd(), 'blogs')
-
-/**
- * The deep-customer-problem blog is authored as a standalone, fully-styled
- * HTML document (served from /public/blogs). We surface it as a first-class
- * blog entry of type "html" so it shows up in listings and gets its own route
- * that renders the document inside an iframe (preserving its exact styling).
- */
 const HTML_BLOGS: BlogMeta[] = [
   {
     slug: 'deep-customer-problem',
@@ -53,60 +39,172 @@ const HTML_BLOGS: BlogMeta[] = [
     readTime: '6 min read',
     type: 'html',
     htmlUrl: '/blogs/deep-customer-problem.html',
-    link: ''
+    link: '',
   },
 ]
 
-function readMarkdownBlogs(): BlogMeta[] {
-  if (!fs.existsSync(BLOGS_DIR)) return []
+const FETCH_OPTS = {
+  next: { revalidate: 3600, tags: ['articles'] as string[] },
+} as const
 
-  return fs
-    .readdirSync(BLOGS_DIR)
-    .filter((file) => file.endsWith('.md'))
-    .map((file) => {
-      const slug = file.replace(/\.md$/, '')
-      const raw = fs.readFileSync(path.join(BLOGS_DIR, file), 'utf-8')
-      const { data, content } = matter(raw)
+function githubHeaders(): HeadersInit {
+  const headers: HeadersInit = {
+    Accept: 'application/vnd.github+json',
+    'X-GitHub-Api-Version': '2022-11-28',
+  }
+  const token = process.env.GITHUB_TOKEN
+  if (token) headers.Authorization = `Bearer ${token}`
+  return headers
+}
 
-      return {
-        slug,
-        title: data.title ?? slug,
-        date: data.date ? String(data.date) : '1970-01-01',
-        description: data.description ?? '',
-        tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
-        readTime: data.readTime ?? '5 min read',
-        type: 'markdown' as const,
-        link: data.link ?? '',
-        draft: data.draft === true,
-        content,
-      }
-    })
+function slugFromRepoPath(repoPath: string): string {
+  const base = repoPath.replace(/\.md$/i, '')
+  const parts = base.split('/')
+  return parts[parts.length - 1] ?? base
+}
+
+function repoDir(repoPath: string): string {
+  const idx = repoPath.lastIndexOf('/')
+  return idx === -1 ? '' : repoPath.slice(0, idx)
+}
+
+function estimateReadTime(markdownBody: string): string {
+  const words = markdownBody.trim().split(/\s+/).filter(Boolean).length
+  const mins = Math.max(1, Math.ceil(words / 230))
+  return `${mins} min read`
+}
+
+function stripLeadingH1(content: string): { title?: string; body: string } {
+  const trimmed = content.replace(/^\uFEFF/, '').trimStart()
+  const match = trimmed.match(/^#\s+(.+)\n+([\s\S]*)$/)
+  if (!match) return { body: content }
+  return { title: match[1].trim(), body: match[2] }
+}
+
+function parseDateMs(date: string): number {
+  if (!date) return 0
+  try {
+    return parseISO(date).getTime()
+  } catch {
+    return 0
+  }
+}
+
+async function listMarkdownPaths(): Promise<string[]> {
+  const url = `https://api.github.com/repos/${ARTICLES_REPO}/git/trees/${ARTICLES_BRANCH}?recursive=1`
+  const res = await fetch(url, { headers: githubHeaders(), ...FETCH_OPTS })
+  if (!res.ok) {
+    throw new Error(`GitHub tree ${res.status}: ${await res.text()}`)
+  }
+  const json = (await res.json()) as {
+    tree?: { path: string; type: string }[]
+  }
+  return (json.tree ?? [])
+    .filter((e) => e.type === 'blob' && e.path.endsWith('.md'))
+    .map((e) => e.path)
+    .filter((p) => p.toLowerCase() !== 'readme.md')
+}
+
+async function fetchMarkdownFile(repoPath: string): Promise<string> {
+  const url = `https://raw.githubusercontent.com/${ARTICLES_REPO}/${ARTICLES_BRANCH}/${repoPath}`
+  const res = await fetch(url, { headers: githubHeaders(), ...FETCH_OPTS })
+  if (!res.ok) {
+    throw new Error(`GitHub raw ${repoPath} ${res.status}`)
+  }
+  return res.text()
+}
+
+/** Last commit that touched this path on the articles branch (YYYY-MM-DD). */
+async function fetchLastUpdated(repoPath: string): Promise<string> {
+  const q = new URLSearchParams({
+    path: repoPath,
+    sha: ARTICLES_BRANCH,
+    per_page: '1',
+  })
+  const url = `https://api.github.com/repos/${ARTICLES_REPO}/commits?${q}`
+  const res = await fetch(url, { headers: githubHeaders(), ...FETCH_OPTS })
+  if (!res.ok) return ''
+  const commits = (await res.json()) as {
+    commit?: { committer?: { date?: string } }
+  }[]
+  const iso = commits[0]?.commit?.committer?.date
+  return iso ? iso.slice(0, 10) : ''
+}
+
+async function readGithubMarkdownBlogs(): Promise<BlogMeta[]> {
+  try {
+    const paths = await listMarkdownPaths()
+    const posts = await Promise.all(
+      paths.map(async (repoPath) => {
+        const [raw, date] = await Promise.all([
+          fetchMarkdownFile(repoPath),
+          fetchLastUpdated(repoPath),
+        ])
+        const { data, content: rawBody } = matter(raw)
+        const { title: h1Title, body } = stripLeadingH1(rawBody)
+
+        const title =
+          (data.title ? String(data.title) : undefined) ??
+          h1Title ??
+          slugFromRepoPath(repoPath)
+
+        return {
+          slug: slugFromRepoPath(repoPath),
+          title,
+          date,
+          description: data.description ? String(data.description) : '',
+          tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
+          readTime:
+            (data.readTime ? String(data.readTime) : undefined) ??
+            estimateReadTime(body),
+          type: 'markdown' as const,
+          link: data.link != null ? String(data.link) : '',
+          draft: data.draft === true,
+          content: body,
+          repoPath,
+        }
+      })
+    )
+    return posts
+  } catch (err) {
+    console.error('[blogs] Failed to load from GitHub Articles repo:', err)
+    return []
+  }
 }
 
 function decorate(meta: BlogMeta): BlogMeta {
   let formattedDate: string | undefined
-  try {
-    formattedDate = format(parseISO(meta.date), 'MMMM d, yyyy')
-  } catch {
-    formattedDate = meta.date
+  if (meta.date) {
+    try {
+      formattedDate = format(parseISO(meta.date), 'MMMM d, yyyy')
+    } catch {
+      formattedDate = meta.date
+    }
   }
   return { ...meta, formattedDate }
 }
 
-/** All blogs (markdown + html), newest first. */
-export function getAllBlogs(): BlogMeta[] {
-  const all = [...readMarkdownBlogs(), ...HTML_BLOGS]
+/** All blogs (GitHub markdown + local HTML), newest first. */
+export async function getAllBlogs(): Promise<BlogMeta[]> {
+  const markdown = await readGithubMarkdownBlogs()
+  const all = [...markdown, ...HTML_BLOGS]
   return all
     .filter((b) => !b.draft)
-    .sort((a, b) => parseISO(b.date).getTime() - parseISO(a.date).getTime())
+    .sort((a, b) => parseDateMs(b.date) - parseDateMs(a.date))
     .map(decorate)
 }
 
-export function getBlogBySlug(slug: string): BlogMeta | undefined {
-  return getAllBlogs().find((b) => b.slug === slug)
+export async function getBlogBySlug(slug: string): Promise<BlogMeta | undefined> {
+  const blogs = await getAllBlogs()
+  return blogs.find((b) => b.slug === slug)
 }
 
-/** Slugs for static generation. */
-export function getAllSlugs(): string[] {
-  return getAllBlogs().map((b) => b.slug)
+export async function getAllSlugs(): Promise<string[]> {
+  const blogs = await getAllBlogs()
+  return blogs.map((b) => b.slug)
+}
+
+export function repoDirForBlog(blog: BlogMeta): string {
+  if (!blog.repoPath) return ''
+  return repoDir(blog.repoPath)
 }
